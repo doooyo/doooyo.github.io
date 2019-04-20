@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  
+      <title>Search - N 27°59′′</title>
+  
+
+  
+  
+  <meta name="description" content="java node 微服务 大数据 数据结构">
+  <meta name="author" content="doyo">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- load loadjs.js -->
+  <script src="/libs/loadjs/dist/loadjs.min.js"></script>
+
+<link rel="stylesheet" href="/libs/animate.css/animate.min.css">
+  <!-- load lightgallery -->
+<link rel="stylesheet" href="/css/lightgallery.css">
+<link rel="stylesheet" href="/libs/noty/lib/noty.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+    <link rel="stylesheet" href="/css/taurus.css">
+    
+        <link rel="stylesheet" href="/css/scheme-taurus/animations.css">
+    
+
+
+<link rel="stylesheet" href="/.css">
+
+  <!-- load font awesome 5 -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+  </script>
+  <!-- load mathjax -->
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax//libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <!-- load js-cookie -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="/js/social-share.min.js"></script>
+    <script src="/js/theme.js"></script>
+
+  <!-- include cookie.js -->
+  
+  
+
+  <!-- include comment system code -->
+  
+    <link rel="stylesheet" href="/css/gitment/default.css">
+<script src="/js/gitment.browser.js"></script>
+  
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+
+ 
+
+<header id="header" class="header">
+	<div class="header-title">
+		
+		<div class="header-logo">
+			<a href="/">
+				<img src="/images/lion.svg">
+			</a>
+		</div>
+		<div class="header-text">
+			<h1>
+				<a href="/">N 27°59′′</a>
+			</h1>
+			<subtitle>
+				
+			</subtitle>
+		</div>
+		
+	</div>
+	<div id="header-nav">
+		
+
+
+
+<nav id="nav">
+	
+	
+	
+	<div class="nav-item" id="nav-item-archive">
+		
+				<div class="nav-icon">
+				
+			<a href="/archives/" title="归档">
+			<img src="/images/icons/own/archive.svg" alt>
+			</a>
+		</div>
+	</div>
+	<div class="nav-item" id="nav-item-search">
+		
+		<div class="nav-icon active_dot">
+		
+			<a href="/search/" title="搜索">
+			<img src="/images/icons/own/search.svg" alt>
+			</a>
+		</div>
+	</div>
+	<div class="nav-item" id="nav-item-more">
+		<div class="nav-icon">
+				<a href="#" onclick="onClickMenuIcon(event);" ontouchstart="onClickMenuIcon(event);">
+				<img src="/images/icons/own/menu.svg" alt>
+				</a>
+		</div>
+		<div class="nav-more-menu">
+				<i class="far fa-times-circle" id="nav-more-menu-close" onclick="onClickNavMenuClose(event);" ontouchstart="onClickNavMenuClose(event);"></i>
+		
+		
+	</div>
+	</div>
+</nav>
+
+	</div>
+</header>
+
+ 
+
+
+
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div style="flex: 1;">
+      <style>
+    body {
+        background-color: white;
+    }
+</style>
+<div class="search-container">
+	<input type="text" id="search-form">
+
+	<ul class="cat-list">
+		
+	</ul>
+
+	<div class="archive-cards">
+			<div class="Card-archive" style="display:none">
+				<div class="Card-body">
+					<h3 class="Card-title">
+						<a>
+						</a>
+					</h3>
+					<div class="Card-meta">
+						<ul>
+							<li><i class="fa fa-calendar"></i> <span class="Card-date"></span></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+
+<script src="/libs/fuse.js/dist/fuse.min.js"></script>
+<script>
+	var options = {
+		shouldSort: true,
+		threshold: 0.4,
+		tokenize: true,
+		location: 0,
+		distance: 100,
+		maxPatternLength: 32,
+		minMatchCharLength: 2,
+		keys: [
+			"title",
+			"author",
+			"tags"
+		]
+	};
+	var s = '[{"title":"Hello World","date":"2019-04-20T03:12:19.806Z","content":"Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.\nQuick Start\nCreate a new post\n1$ hexo new My New Post\nMore info: Writing\nRun server\n1$ hexo server\nMore info: Server\nGenerate static files\n1$ hexo generate\nMore info: Generating\nDeploy to remote sites\n1$ hexo deploy\nMore info: Deployment\n","tags":[],"path":"2019/04/20/hello-world/","external_link":""},{"title":"多线程(二)","date":"2016-04-20T04:08:16.000Z","content":"多线程(二)\n多线程(二)\n&lt;font color=orange&gt;写此篇只记录一些自己觉得比较重要的知识点, 其余查阅之前的篇幅&lt;font&gt;\n\n\n\n- 分类\n- 知识点\n\n\n\n\nThreadRunable\n线程状态机 &lt;br&gt; joinwait &lt;br&gt; sleep &lt;br&gt; suspendresume &lt;br&gt; interuptinterruptedisInterrupted &lt;br&gt; notifynotifyAll &lt;br&gt; yield &lt;br&gt;\n\n\njava内存模型\n原子性CAS &lt;br&gt; 有序性指令重排 &lt;br&gt; 可见性volatile(内存屏障) &lt;br&gt; Happen-Before\n\n\nAtomic包CAS\nAtomicInteger &lt;br&gt; AtomicReference &lt;br&gt; AtomicStampedReference &lt;br&gt; AtomicMarkableReference &lt;br&gt; AtomicIntegerArray, AtomicReferenceArray  &lt;br&gt; AtomicIntegerFieldUpdater &lt;br&gt; LockFreeVector &lt;br&gt;LongAdder(JDK8) &lt;br&gt; ABA问题 &lt;br&gt;\n\n\nsyncthroizedwaitnotify\n常用并发控制\n\n\nConcurrent并发包\nReentrantLock&lt;br&gt; Condition&lt;br&gt; Semaphore&lt;br&gt; ReadWriteLock,ReentrantReadWriteLock&lt;br&gt; CountDownLatch&lt;br&gt; CyclicBarrier&lt;br&gt; LockSupport&lt;br&gt; CountDownLatch&lt;br&gt;ForkJoin&lt;br&gt;\n\n\nAmino(并发线程组件)\nMaster-Worker模式 &lt;br&gt; Map-reduce模式 &lt;br&gt; Divide and conquer模式 &lt;br&gt; Pipeline模式 &lt;br&gt;\n\n\n\nThreadRunable\nThread只能单继承, Runable可以多继承, 内部都是重写run()方法\n\n状态机\n线程有6种状态, 请查阅java多线程基础（一）\n12345678public enum State &#123;    NEW,      初始态    RUNNABLE, 就绪态运行态    BLOCKED,  阻塞态    WAITING,  等待态    TIMED_WAITING, 超时等待态    TERMINATED; 终止态&#125;\n\n\n\nRUNNABLE状态在jvm里可以认为是运行态, 但对于操作系统来说, RUNNABLE=Runnable+Running; 只有分配到cpu时间片才叫Running, 对于java来说不用关心\n线程有三个队列\n1. 就绪队列:\n处于Runnable状态, 随时等待cpu调度; 调用yelid, sleep到期, join等待完毕后即处于此状态;\n&lt;font color=red&gt;注意:yelid是谦让cpu时间片; sleep和join也不会释放锁, 更不会进入「等待队列」。难理解的地方在于join, 它是由wait实现的, 居然不进入「等待队列」?这是由于join的是当前主线程, 而非调用线程, 主线程等待子线程调用完毕后由内部native方法去notify唤醒&lt;font&gt;\n参考: Java多线程里面join方法会使被阻塞线程释放对象锁吗？\n2. 锁池队列:\n处于竞争锁状态, synchorized, Lock, ...\n3. 等待队列:\nwait调用后即进入此队列, 一旦被唤醒则进入锁池队列去竞争锁, 一旦竞争到锁则进入等待队列, 等待被cpu时间片调度\nnotifynotifyAll, wait\nnotify是随机唤醒阻塞在锁(monitor)上的线程, 有可能会出现唤醒的线程竞争不到锁资源(进入临界区)而失败;\nnotifyAll则是唤醒所有阻塞在其上的线程, 也可能出现惊群效应, 可以理解为活锁, 大家都竞争不到锁而往复的释放自己持有的资源\n\n\n\ninteruptinterruptedisInterrupted\nsuspendresume已不推荐使用, stop由于其强杀会导致不一致性问题, 也不推荐使用\n\n\ninterrupt():\n线程状态被置为&quot;中断&quot;状态\ninterrupted():\n静态方法, 内部返回当前执行线程是否中断, 同时清除中断标记\nisInterrupted() :\n实例方法, 判断指定线程的中断状态, 但不一定是当前线程, 可以是A线程去调用B线程的isInterrupted()方法; 不会清除中断标记\n中断线程的两种方式:\n阻塞的定义是可能在访问磁盘IO,可能访问网络IO(HTTP请求),或者正在访问数据库, 也有可能调用了waitsleepjoin\n\n\n如果子线程不会进入阻塞态, 则使用volatile修饰的布尔变量来控制子线程的退出\n如果有阻塞, 则通过拦截异常进行退出\n&lt;font color=red&gt;注意如果调用了waitsleepjoin, 一旦再调用interrupt会出现中断异常, 同时JVM会清除中断标记, 所以再使用isInterrupted会得到false&lt;font&gt;\n\nJava内存模型\n这个请查阅之前写的篇幅, 这里只记录大纲\n\n\n可见性: 明白工作内存和主存\n有序性: CPU指令流水, 为了减少时钟, 出现了指令重排序\n原子性: CAS(cmpxchg汇编指令)\nHappen-Before, 规约哪些是不能重排序的\n4.1 顺序原则: 有数据相关性, 重排不能改变语义(as-if-serial)\n4.2 监视器锁规则: 解锁必须先加锁\n4.3 volatile域规则: 写了才能读\n4.4 传递性规则: 通俗讲, 调用线程的joinwaitinterrupt, 必须先start线程\njava的内在实现: 八条内存屏障指令\nlock：作用于主内存，把变量标识为线程独占状态。\nunlock：作用于主内存，解除独占状态。\nread：作用主内存，把一个变量的值从主内存传输到线程的工作内存。\nload：作用于工作内存，把read操作传过来的变量值放入工作内存的变量副本中。\nuse：作用工作内存，把工作内存当中的一个变量值传给执行引擎。\nassign：作用工作内存，把一个从执行引擎接收到的值赋值给工作内存的变量。\nstore：作用于工作内存的变量，把工作内存的一个变量的值传送到主内存中。\nwrite：作用于主内存的变量，把store操作传来的变量的值放入主内存的变量中\njava的外在体现: volatile, Atomic(CAS)\n总结\n\n\n\n避免死锁的方式: 不要在锁代码块里再获取其他锁, 这是死锁的前提\nsynchronized保证了原子性可见性; 但volatile只保证可见性(内部采用禁止重排序和内存屏障,每次都会读取主存而非寄存器的缓存), 所以volatile不适合getAndSet操作\n1\n\nAtomic包CAS\n\n\nUnsafe\n它类似直接操作C语言, 可以获取变量在对象中的偏移量并赋值, 类似struct结构体\n\n\nAtomicInteger\n从下面可以看出, 主要使用了unsafe.compareAndSwapInt, CAS使用了原子汇编指令cmpxchg, 失败重试机制(乐观锁)\n123public final boolean compareAndSet(int expect, int update) &#123;    return unsafe.compareAndSwapInt(this, valueOffset, expect, update);&#125;\n\n\nAtomicIntegerArray\n保证数组的每个元素操作都是线程安全, 比起Collections.synchronizedList使用syncthorized悲观锁性能要好一些。\n123456789101112131415161718public final int getAndSet(int i, int newValue) &#123;    return unsafe.getAndSetInt(array, checkedByteOffset(i), newValue);&#125;     最终使用了如下代码private static long byteOffset(int i) &#123;    **     * - base为数组在内存的基地址     * int base = unsafe.arrayBaseOffset(int[].class);     * - shift为数组每个元素在内存的偏移量bit     * - scale指Integer的宽度, 4个字节(byte)     * int scale = unsafe.arrayIndexScale(int[].class);     * numberOfLeadingZeros计算前导零的个数     * shift = 31 - Integer.numberOfLeadingZeros(scale);     *     *    return ((long) i &lt;&lt; shift) + base;&#125;\n\n\nAtomicIntegerFieldUpdater\n主要用于普通变量的原子操作, 但是它有四点前提:\n可见且可变的非静态volatile变量\n\n\n\n\n可见: 即不能private\n可变: 即不能以final修饰, 因为使用了反射不允许修改final已经初始化的值\n非静态: 即不能使用static, 因为CAS不支持静态堆数据的赋值\n\n\n\nLongAdder\n采用了热点分离的思想,采用了Cell[], 将value值分离为一个数组; 结果即数组的累加求和。\n和ConcurrentHashMap的Segment分段锁很类似;\n因为CAS是自旋方式, 所以可能会出现经常失败而导致cpu白白浪费(空转)\n\n\n\n用long类型的base字段存储值\ncasBase()方法进行CAS递增\n如果CAS失败,不会自旋, 会立即创建Cell[]\n单个Cell上面出现了cell更新冲突，那么会尝试创建新的Cell, 当Cell[]数组不够了, 则扩容\nAtomicLong效率比较, 在线程1000,10000次循环递增,大概差距在100+ms; 当1000线程,100w次大循环递增, 差距大致6倍\nJDK8-LongAdder代替AtomicLong\n\n\n12345678910111213public void add(long x) &#123;      Cell[] as; long b, v; int m; Cell a;       2. 对base字段进行CAS      if ((as = cells) != null || !casBase(b = base, b + x)) &#123;          boolean uncontended = true;          if (as == null || (m = as.length - 1) &lt; 0 ||              (a = as[getProbe() &amp; m]) == null ||               单个Cell上CAS失败, 新建Cell或者扩容数组              !(uncontended = a.cas(v = a.value, v + x)))               初始化Cell[]数组新建Cell扩容数组              longAccumulate(x, null, uncontended);      &#125;  &#125;\n\n\n\nThreadLocalRandom\n解决了Random类在多线程下多个线程竞争内部唯一的原子性种子变量而导致大量线程自旋重试的不足;\n如下代码所示, 虽然采用了AtomicLong, 解决了多线程计算出相同新种子的问题(获取了相同的随机数), 但是新种子是CAS运算, 线程堆积后则可能出现大量自旋;\nThreadLocalRandom重写了nextInt, 利用ThreadLocal, 初始化Thread线程实例里的``threadLocalRandomSeed变量ThreadLocalRandom.current()`就是在初始化线程里的种子\n123456789101112131415161718192021 Random的nextInt方法public int nextInt(int bound) &#123;     1. 检查区间是否负数    if (bound &lt;= 0)        throw new IllegalArgumentException(BadBound);     2.计算新种子     此处在多线程下可能会产生多个一样的种子     所以seed采用了CAS原子类AtomicLong    int r = next(31);    int m = bound - 1;     3.开始生成随机数, seed=f(seed), 所以概率相等, 分布均匀    if ((bound &amp; m) == 0)   i.e., bound is a power of 2        r = (int)((bound * (long)r) &gt;&gt; 31);    else &#123;        for (int u = r;             u - (r = u % bound) + m &lt; 0;             u = next(31))            ;    &#125;    return r;&#125;\n\n\nRandom类的实现原理如下:\n\n\n构造函数带种子或不带种子\n默认采用系统当前纳秒时间,因为代码执行速度在[几百纳秒, 几十毫秒]这个区间,整体递增, 所以精准(this(seedUniquifier() ^ System.nanoTime()))\n种子的意义\n随机的起源数字, 目的就是为了足够&quot;随机&quot;\nnextInt(100)\n返回[0,100)左闭右开内的一个随机数, 注意数字是一个线性函数生成出来的, 所以数字是均匀分布, 等概率事件这在数学上不能称之为随机, 所以我们称为伪随机数\nMath.random 生成[0,1)之间的double类型随机数, 它是Random的实例\n\n\n\nLockFreeVector\n由Amino并发库实现, 大部分为无锁CAS设计;\n其存储结构为一个AtomicReferenceArray二维数组结构, 首个数组容量为8, 一共30个数组, 每次扩容都是前一个的2倍, 所以最大容量固定为8*(2^30-1)\n目的是避免扩容时修改之前的数据\n其数据形状很类似九九乘法表, 高度30, 长度为前一个元素2倍\n1private final AtomicReferenceArray&lt;AtomicReferenceArray&lt;E&gt;&gt; buckets = new AtomicReferenceArray(30);\n\n\n1.存储结构\n定义为了CAS的二维数组AtomicReferenceArray&lt;AtomicReferenceArray&lt;E&gt;&gt;\n一共30个数组, 首个数组长度为8, 数组往后成倍递增, 8&lt;&lt;1, 8&lt;&lt;2 ... 8&lt;&lt;29; 最大容量为8*(2^30-1)\n2.Descriptor静态内部类\n目的是为了更好的有序读写数组, 是一个内部辅助类\n3.总结\n为何存储定义为二维数组, 由于一维数组必定会进行扩容, 扩容必定不是原子操作, 所以为了避开扩容来符合CAS, 所以如此设计。\n第一个数组装满, 则往第二个数组追加, 此时的重点就在于计算二维坐标\n\n我们来看一下最重要的方法, 主要是计算二维坐标\n1234567891011121314151617181920212223242526272829public void push_back(E e) &#123;    Descriptor&lt;E&gt; desc;    Descriptor&lt;E&gt; newd;    do &#123;        desc = descriptor.get();        预防上一个线程在设置完descriptor后(while语句块), 还没来得及执行最后一句话completeWrite, 预防性的措施        desc.completeWrite();        desc.size   Vector 本身的大小        FIRST_BUCKET_SIZE  第一个一位数组的大小        int pos = desc.size + FIRST_BUCKET_SIZE;        int zeroNumPos = Integer.numberOfLeadingZeros(pos);   取出pos 的前导零        zeroNumFirst  为FIRST_BUCKET_SIZE 的前导零        int bucketInd = zeroNumFirst - zeroNumPos;  哪个一位数组        判断这个一维数组是否已经启用        if (buckets.get(bucketInd) == null) &#123;            newLen  一维数组的长度            int newLen = 2 * buckets.get(bucketInd - 1).length();            if (debug)                System.out.println(New Length is: + newLen);            buckets.compareAndSet(bucketInd, null,                    new AtomicReferenceArray&lt;E&gt;(newLen));        &#125;        int idx = (0x80000000&gt;&gt;&gt;zeroNumPos) ^ pos;   在这个一位数组中，我在哪个位置        newd = new Descriptor&lt;E&gt;(desc.size + 1, new WriteDescriptor&lt;E&gt;(                buckets.get(bucketInd), idx, null, e));    &#125; while (!descriptor.compareAndSet(desc, newd));    descriptor.get().completeWrite();&#125;\n代码难点分析:\n\n\ndesc.completeWrite()\n预防上一个线程在设置完descriptor后(while语句块里), 还没来得及执行最后一句话completeWrite(保存真正的值), 所以在do里预先执行一次, 预防出现没保存值的情况\n计算第一维索引bucketIndex\n即计算进位后前导零位数差值来作为bucketIndex; 当第一个组数(长度为8), 则pos = 8+8 = 16, 会导致进位, 通过前导零差值则可计算出第一维的索引下标\n计算第二维索引iIndex\n(0x80000000&gt;&gt;&gt;zeroNumPos) ^ pos;\n&lt;font color=orange&gt;这个比较难理解, 我们看如下分析:&lt;font&gt;\n12345678910111213141516171819202122232425262728290x80000000 32位如下:1000 0000 0000 0000 0000 0000 0000 0000无符号右移动zeroNumPos位(pos的前导零个数)比如pos=17,代表第二个数组的第一位,坐标为(1,0)17已进位,则前导零个数为27,无符号右移27位,高位补27个零:0000 0000 0000 0000 0000 0000 0001 0000^异或pos (相等为0, 不等为1): 0000 0000 0000 0000 0000 0000 0001 0001结果为:0000 0000 0000 0000 0000 0000 0000 0001表明可以存入的索引为1 (注意索引从0开始, 即第二位)=======================================比如pos=13, 代表第一个数组第五位, 坐标为(0,4)前导零个数为28,无符号右移28位,高位补28个零:0000 0000 0000 0000 0000 0000 0000 1000^异或pos0000 0000 0000 0000 0000 0000 0000 1101结果为:0000 0000 0000 0000 0000 0000 0000 0101表明可以存入的索引为5 (注意索引从0开始, 即第六位)=======================================比如pos=15, 代表第一个数组第七位, 坐标为(0,6)前导零个数为28,无符号右移28位,高位补28个零:0000 0000 0000 0000 0000 0000 0000 1000^异或pos0000 0000 0000 0000 0000 0000 0000 1111结果为:0000 0000 0000 0000 0000 0000 0000 0111表明可以存入的索引为7 (注意索引从0开始, 即第八位)\n\n\n&lt;font color=red&gt;为何这样设计? 这个需要对二进制数据结构比较敏感, 可能10进制已经固化到思维, 二进制反而很不直观, 采用二进制进位和前导零的关系, 可以直接映射坐标&lt;font&gt;\n\n\n每次会判断数组是否存在, 不存在表示前一个数组已满, 需要扩容(创建后一个新数组), 长度为前一个的2倍\n\n\n\n\nABA问题\nCAS无法解决ABA问题, 即A线程讲i改为2, 然后又恢复原值, 造成B线程无法得知其中的过程;\n如果是值类型可能没有问题, 但是某些业务可能出现问题, 比如充值, 所以提出了带时间戳的CAS\n123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657public class AtomicStampedReferenceTest &#123;    private static AtomicStampedReference&lt;Integer&gt; money =            new AtomicStampedReference&lt;&gt;(19, 0);    public static void main(String args[]) &#123;        **         * 3个充值线程         *        for (int i = 0; i &lt; 3; i++) &#123;            final int timestamp = money.getStamp();            new Thread(() -&gt; &#123;                while (true) &#123;                    Integer m = money.getReference();                    if (m &lt; 20) &#123;                        if (money.compareAndSet(m, m + 20, timestamp, timestamp + 1)) &#123;                            System.out.println(余额小于20元,充值成功,余额: + money.getReference() + 元);                            break;                        &#125;                    &#125; else &#123;                        System.out.println(余额大于20,无需充值);                        break;                    &#125;                &#125;            &#125;).start();        &#125;         1个模拟消费线程        new Thread() &#123;            public void run() &#123;                for (int i = 0; i &lt; 100; i++) &#123;                    while (true) &#123;                        int timestap = money.getStamp();                        Integer m = money.getReference();                        if (m &gt; 10) &#123;                            System.out.println(金额大于10元);                            if (money.compareAndSet(m, m - 10, timestap, timestap + 1)) &#123;                                System.out.println(成功消费10元,余额: + money.getReference() + 元);                                break;                            &#125;                        &#125; else &#123;                            System.out.println(没有足够的金额);                            break;                        &#125;                    &#125;                    try &#123;                        Thread.sleep(100);                    &#125; catch (InterruptedException e) &#123;                        e.printStackTrace();                    &#125;                &#125;            &#125;        &#125;.start();    &#125;&#125;\n\n\nAtomicMarkableReference\n适合只修改一次, 因为它的stamp是boolean布尔, 所以只有「未标记」「已标记」两种状态\n\n\nConcurrent并发包\n\n\nReentrantLock\n&lt;font color=orange&gt;这里重点讲一下锁的可重入：\nReentrantLock和synchronized都是可重入的, 意思是同一个获得锁的线程, 不管进入临界区几次, 都是允许进入的；\n可重入机制: 每一个锁(monitor)关联一个线程持有者和计数器，当计数器为 0 时表示该锁没有被任何线程持有，那么任何线程都可能获得该锁而调用相应的方法；当某一线程请求成功后，JVM会记下锁的持有线程，并且将计数器置为 1；此时其它线程请求该锁，则必须等待；而该持有锁的线程如果再次请求这个锁，就可以再次拿到这个锁，同时计数器会递增；当线程退出同步代码块时，计数器会递减，如果计数器为 0，则释放该锁。\n&lt;font&gt;\n我们来模拟不可重入锁\n123456789101112131415161718192021222324** * 不可重入锁 (使用CAS实现) * 同一线程, 当两次调用lock, 而不调用unlock时, 会产生死锁 * 原因是第二次lock会永远更新不成功, 则永远在死循环 *public class UnreentrantLockByCAS &#123;      private AtomicReference&lt;Thread&gt; owner = new AtomicReference&lt;&gt;();      AtomicInteger        public void lock() &#123;          Thread current = Thread.currentThread();          这句是很经典的“自旋”语法          for (; ; ) &#123;              if (owner.compareAndSet(null, current)) &#123;                  return;              &#125;          &#125;      &#125;        public void unlock() &#123;          Thread current = Thread.currentThread();          owner.compareAndSet(current, null);      &#125;  &#125;\n123456789101112131415161718192021222324  ** * 不可重入锁 (使用CAS实现) * 同一线程, 当两次调用lock, 而不调用unlock时, 会产生死锁 * 原因是第二次lock会永远更新不成功, 则永远在死循环 *public class UnreentrantLockByCAS &#123;        private AtomicReference&lt;Thread&gt; owner = new AtomicReference&lt;&gt;();        AtomicInteger            public void lock() &#123;            Thread current = Thread.currentThread();            这句是很经典的“自旋”语法            for (; ; ) &#123;                if (owner.compareAndSet(null, current)) &#123;                    return;                &#125;            &#125;        &#125;            public void unlock() &#123;            Thread current = Thread.currentThread();            owner.compareAndSet(current, null);        &#125;&#125;\n当然我们改动一下, 增加Thread判断, 同时增加计数\n1234567891011121314151617181920212223242526 可重入 (synchronized实现)public class ReentrantLockBySync &#123;      boolean isLocked = false;      Thread lockedBy = null;      int lockedCount = 0;        public synchronized void lock() throws InterruptedException &#123;          Thread thread = Thread.currentThread();          while (isLocked &amp;&amp; lockedBy != thread) &#123;              wait();          &#125;          isLocked = true;          lockedCount++;          lockedBy = thread;      &#125;        public synchronized void unlock() &#123;          if (Thread.currentThread() == this.lockedBy) &#123;              lockedCount--;              if (lockedCount == 0) &#123;                  isLocked = false;                  notify();              &#125;          &#125;      &#125;  &#125;\n1234567891011121314151617181920212223242526272829303132333435  ** * 可重入 (使用CAS实现) * 两要素: 若是当前线程, 重入时state计数器加1, 释放时减1 *  1.持有当前线程 *  2.计数器 *public class ReentrantLockByCAS &#123;        private AtomicReference&lt;Thread&gt; owner = new AtomicReference&lt;&gt;();        private int state = 0;            public void lock() &#123;            Thread current = Thread.currentThread();            if (current == owner.get()) &#123;                state++;                return;            &#125;            这句是很经典的“自旋”语法            for (; ; ) &#123;                if (owner.compareAndSet(null, current)) &#123;                    return;                &#125;            &#125;        &#125;            public void unlock() &#123;            Thread current = Thread.currentThread();            if (current == owner.get()) &#123;                if (state != 0) &#123;                    state--;                &#125; else &#123;                    owner.compareAndSet(current, null);                &#125;            &#125;        &#125;    &#125;\n总结:\n\n\n\n可重入:\n同一线程, 加几次锁, 就要释放几次\n可中断:\nlock.lockInterruptibly();\n只有声明为可中断加锁, 则线程是可以发起中断thread.interrupt()\n可限时:\n意思是超时后若还未获得锁(monitor),则放弃锁竞争\nlock.tryLock(5, TimeUnit.SECONDS)\n公平锁:\nnew ReentrantLock(true)\n默认是非公平锁, 所谓公平即先来则先获得锁; 但是公平锁会维持队列, 且没有优先级的概念,非公平锁具有更高的吞吐量\n\n\nCondition\n\n&lt;font color=red&gt;Condition(awaitsingnalsingnalAll)和ReentrantLock的关系&lt;font&gt;\n就好比\n&lt;font color=red&gt;Object(waitnotifynotifyAll)与synchonized的关系&lt;font&gt;\n它提供了一个awaitUninterruptibly, 和wait一样, 但是不会响应中断, 即会一直等待signal唤醒\n具体就不细说,看一个例子\n12345678910111213141516171819202122232425262728293031323334353637public class ConditionTest implements Runnable &#123;    private static ReentrantLock lock = new ReentrantLock();    private static Condition condition = lock.newCondition();    @Override    public void run() &#123;        try &#123;            lock.lock();  类似synchronized            condition.await();  类似obj.wait(); 注意await和object.wait一样是会释放锁的             注意如果唤醒的是多个线程, 这里也会如同notifyAll一样, 出现锁竞争            System.out.println(thread is going on);        &#125; catch (InterruptedException e) &#123;            e.printStackTrace();        &#125; finally &#123;            lock.unlock();        &#125;    &#125;    public static void main(String[] args) throws InterruptedException &#123;        ConditionTest r = new ConditionTest();        Thread t = new Thread(r);        t.start();        Thread.sleep(5000);         开始唤醒await的线程        try &#123;            lock.lock();            System.out.println(begin signal thread);            condition.signal();        &#125;finally &#123;            lock.unlock();        &#125;    &#125;&#125;\n\nSemaphore信号量\n\n[ˈseməfɔ:(r)] 信号量, 也可以称呼为共享锁\n它可以允许多个线程进入临界区, 但是一旦许可耗尽, 则其他线程也需要等待许可的释放,即退化为Lock锁;\nSemaphore和Lock的区别:\n\n\n锁只允许一个线程进入临界区, 信号量允许多个线程进入临界区, 类似广义的独享锁\n信号量会指定许可permission的数量, 一旦许可耗尽则退化为独享锁\n一般一个线程只会持有一个permission许可, 但也可以一个线程持有多个许可\n\n\n我们来看一个例子:\n123456789101112131415161718192021222324252627282930313233343536373839404142434445public class SemaphoreTest implements Runnable &#123;      final Semaphore semaphore = new Semaphore(5);        @Override      public void run() &#123;          try &#123;               获取一个permission许可(可以多个, 但消费一个则少一个)              semaphore.acquire();                模拟2s耗时操作              Thread.sleep(2000);                System.out.println(Thread_ + Thread.currentThread().getId() +  done!);            &#125; catch (InterruptedException e) &#123;              e.printStackTrace();          &#125;finally &#123;              semaphore.release();          &#125;      &#125;        public static void main(String[] args) &#123;           创建容量固定为20的线程池          ExecutorService excutorService = Executors.newFixedThreadPool(20);            final SemaphoreTest semaphoreTask = new SemaphoreTest();            **           * 20个线程任务立马提交完毕, 但是任务里有2s耗时操作, 所以一次最多允许执行5个线程, 2s后再执行5个线程, 依次之           * 注意: execute 和 submit 区别           *      1. submit有三个重载           *         &lt;T&gt; Future&lt;T&gt; submit(Callable&lt;T&gt; task)           *         &lt;T&gt; Future&lt;T&gt; submit(Runnable task, T result)           *         Future&lt;?&gt; submit(Runnable task)           *      2. submit有返回值, 但execute没有           *      3. submit可以处理Exception异常, 捕获Future.get()即可           *           *           *          for (int i = 0; i &lt; 20; i++)&#123;              excutorService.*execute*submit(semaphoreTask);          &#125;      &#125;  &#125;\n\nReentrantReadWriteLock读写锁\n\n它要解决的是synchronized在「读读」互斥串行的情况\n\n\n读写锁是可重入的\n读-读: 不互斥, 是共享锁, 内部使用了AQS\n写-写: 互斥, 类似Lock\n读-写: 互斥, 同上; 即不支持锁升级\n写-读: 互斥, 但是支持锁降级, 即线程获取写锁, 在不释放写锁的情况下, 当前线程还可以获取读锁; 然后释放写锁后, 此时还剩下读锁, 则称为锁降级\n内部有WriteLock和ReadLock, 采用了AQS(实现阻塞锁和一系列依赖FIFO等待队列的同步器的框架)\n\n\n来看一个例子\n12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152** * 读写互斥 (测试锁降级) * * 结论: ReentrantReadWriteLock支持锁降级, 但不支持锁升级 *    1. 写锁降级为读锁, 但是不会释放当前线程获得的写锁; 仍需要手动释放写锁, 否则其他线程永远无法获得写锁 *    2. 首先读写锁是互斥的; *       2.1 获取读锁 -&gt; 获取写锁 *           发现无法获取写锁了, 这表明读写锁互斥, 且不支持锁升级 (即读锁升级为写锁) *       2.2 获取写锁 -&gt; 获取读锁 *           发现写锁加锁后还能获取读锁, 这表明互斥情况下, 支持锁降级 (写锁降级为读锁) * *       2.3 当有读锁时，写锁就不能获得；而当有写锁时，除了获得写锁的这个线程可以获得读锁外，其他线程不能获得读锁 *public class LockDownTest implements Runnable &#123;    static ReentrantReadWriteLock rwLock = new ReentrantReadWriteLock();    @Override    public void run() &#123;        **         * 先获取写锁, 在不释放写锁的前提下, 再获取读锁, 发现可以成功; 表明支持锁降级         * 先获取读锁, 发现不能再获取写锁, 证明不支持锁升级         *        rwLock.writeLock().lock();        System.out.println(Thread_ + Thread.currentThread().getId() + get writeLock);        rwLock.readLock().lock();        System.out.println(Thread_ + Thread.currentThread().getId() + get readLock);         释放写锁, 完成锁降级为读锁        rwLock.writeLock().unlock();         最后释放降级的读锁        rwLock.readLock().unlock();    &#125;    public static void main(String[] args) throws InterruptedException &#123;        LockDownTest r = new LockDownTest();        Thread t1 = new Thread(r);        Thread t2 = new Thread(r);        t1.start();        t2.start();        t1.join();        t2.join();        System.out.println(FINISH);    &#125;&#125;\n\nCountDownLatch 倒数计时器(闭锁)\n闭锁, 类似一个门最初是关闭的, 比如等到10人(线程)到齐了才会开门, 所有人(线程)才可通过, 但是门打开之后就不能再关上, 所以不能重复利用\n\n\n\n它允许一个或多个线程一直等待, 直到其他线程的操作执行完后再执行, 类似join的功能\n和Semaphore信号量一样, 提供一个count计数, 且只能初始化一次,不能修改; 当计数为0则唤醒阻塞的线程\nCountDownLatch 和 join的区别\n其实两者的功能完成一样,都是阻塞线程等待其他线程执行完毕,然后继续执行; 但是join只能等待其他线程任务整体完成, 而CountDownLatch则是通过计数器count来作为标准, 所以粒度更细, 所以控制力更强\n总结\n在需要等待的线程里调用countDownLatch.countDown();\n在受控主线程调用countDownLatch.await();\n直到内部count耗尽为0, 则会继续执行受控主线程\n适用场景\n一般用于启动服务任务前, 等待其他预检测线程反馈OK, 然后再继续启动\n很适合做MasterWorker, MapReduce等架构模式\n\n\n123456789101112131415161718192021222324252627282930313233public class CountDownLatchTest1 implements Runnable &#123;    static final CountDownLatch countDownLatch = new CountDownLatch(10);    @Override    public void run() &#123;        try &#123;             模拟随机耗时任务            Thread.sleep(new Random().nextInt(10) * 1000);            System.out.println(Thread_ + Thread.currentThread().getId() +  complete.);             每次都会count-1,直到为零,就会notifysignal唤醒主线程            countDownLatch.countDown();        &#125; catch (InterruptedException e) &#123;            e.printStackTrace();        &#125;    &#125;    public static void main(String[] args) throws InterruptedException &#123;        ExecutorService service = Executors.newFixedThreadPool(10);        CountDownLatchTest1 test = new CountDownLatchTest1();        for (int i = 0; i &lt; 10; i++)&#123;            service.submit(test);        &#125;         注意不是调用Object的wait(), 这里很容易手误        countDownLatch.await();        System.out.println(Main Thread Finish.);        service.shutdown();    &#125;&#125;\n\nCyclicBarrier 循环屏障(闭锁)\n\n它可以实现让一组线程等待至某个状态之后再全部同时执行\n\n\ngetNumberWaiting() 有几个线程已经到达屏障点\ngetParties()取得parties个数\nreset() 将屏障重置为其初始状态\nisBroken() 查询此屏障是否处于损坏状态, 即查询阻塞的线程是否被中断\n和CountDownlatch区别\nCountDownlatch是使用countDown进行count-1操作, 再使用await阻塞主线程, 直到count为零再唤醒继续执行;\nCyclicBarrier是利用await进行count+1, 当count==parties时则表明都到达屏障点\n特点\n3.1\n如果在线程处于等待状态时barrier被reset()或者在调用await()时 barrier 被损坏，将抛出BrokenBarrierException异常\n3.2\n如果当前线程在进入此方法时已经设置了该线程的中断状态或者在等待时被中断，将抛出InterruptedException，并且清除当前线程的已中断状态\n3.3\n如果任何线程在等待时被中断，则其他所有等待线程都将抛出 BrokenBarrierException 异常，并将 barrier 置于损坏状态。\n3.4\n如果当前线程是最后一个将要到达的线程，并且构造方法中提供了一个非空的屏障操作(barrierAction), 那么在允许其他线程继续运行之前，当前线程将运行该操作。如果在执行屏障操作过程中发生异常，则该异常将传播到当前线程中, 并将 barrier 置于损坏状态\n(即Commander发生了异常, 则会将barrier置于损坏状态, 同时将异常抛出到主线程)\n\n\n1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192public class CyclicBarrierTest &#123;    public static class Commander implements Runnable &#123;         是集合还是完成任务        volatile boolean flag;         人数        volatile int count;        public Commander(boolean flag, int count) &#123;            this.flag = flag;            this.count = count;        &#125;        @Override        public void run() &#123;            if (flag) &#123;                System.out.println(指挥官接到消息:[士兵 + count + 个, 任务完成!]);            &#125;else &#123;                System.out.println(指挥官接到消息:[士兵 + count + 个, 集合完毕!]);                System.out.println(指挥官发布执行任务命令... ...);                flag = true;            &#125;        &#125;    &#125;    public static class Soldier implements Runnable &#123;        private String soldier;        private final CyclicBarrier barrier;        public Soldier(String soldier, CyclicBarrier barrier) &#123;            this.soldier = soldier;            this.barrier = barrier;        &#125;        @Override        public void run() &#123;            try &#123;                 ------------ 等待所有士兵集合 ------------                int waitCount = barrier.getParties() - barrier.getNumberWaiting() - 1;                if (waitCount == 0) &#123;                    System.out.println(soldier + , 所有士兵已集合完毕, 开始通知指挥官...);                &#125;                barrier.await();                 ------------ 集合完毕后开始各自执行任务 ------------                doWork();                 ------------ 等待所有士兵完成任务 ------------                waitCount = barrier.getParties() - barrier.getNumberWaiting() - 1;                if (waitCount == 0) &#123;                    System.out.println(soldier + 已完成, 所有士兵已完成任务, 开始通知指挥官...);                &#125;else&#123;                    System.out.println(soldier + 已完成, 开始等待其他 + waitCount + 人完成任务);                &#125;                barrier.await();            &#125; catch (InterruptedException | BrokenBarrierException e) &#123;                e.printStackTrace();            &#125;        &#125;        public void doWork() &#123;            try &#123;                Math.abs(new Random().nextInt() % 10000);                Thread.sleep(new Random().nextInt(10000));            &#125; catch (InterruptedException e) &#123;                e.printStackTrace();            &#125;        &#125;    &#125;    public static void main(String[] args) &#123;        final int count = 10;        Thread[] solders = new Thread[count];        boolean flag = false;        CyclicBarrier barrier = new CyclicBarrier(count, new Commander(flag, count));        System.out.println(队伍开始集合!);        for (int i = 0; i &lt; count; i++) &#123;            System.out.println(士兵 + i + 报到);            solders[i] = new Thread(new Soldier(士兵 + i, barrier));            solders[i].start();            if (i == 5)&#123;                solders[0].interrupt();            &#125;        &#125;    &#125;&#125;\n\nLockSupport 锁支持源语\n\n之前讲过, suspendresume已经被淘汰, 因为可能导致死锁\nwaitnotify(notifyAll)则比前者更进一步, 解决了死锁问题, 但还是有一个问题存留, 先notify, 后wait,虽然不会导致死锁, 但是会导致wait的线程一直hang在那\n1234567这里再备注一下suspendresume的缺陷suspend和sleep很像, 也和wait很像, 但也有不同:1. suspend也会持有监视器(锁), 和sleep很像, 但是sleep可以被中断, 也可以过期策略, 所以不会死锁2. suspend也可以通过resume唤醒, 和waitnotify很像, 但是wait是释放了监视器(锁)的, 只是需要等待唤醒而已, 所以不会死锁3. suspend一没有释放锁, 二没有中断机制, 三没有过期策略, 所以只能被resume唤醒   如果resume被先调用, suspend后执行, 则会导致锁一直不被释放, 从而死锁\n\n\nLockSupport可以解决两大问题\n1.1 解决suspendresume的死锁问题\n1.2 解决waitnotify(notifyAll)的线程悬挂阻塞问题(虽然不会导致死锁了)\nLockSupport两大优势\n2.1 LockSupport不需要在同步代码块里;所以线程间也不需要维护一个共享的同步对象了，实现了线程间的解耦\n2.2 unpark函数可以先于park调用，所以不需要担心线程间的执行的先后顺序\nunpark将许可permit置为1, park将permit置为0\nunpark-&gt;park; 会导致线程不会被阻塞\npark-&gt;unpark; 线程阻塞后被唤醒\n多次调用unpark, 由于只是重置为1,所以不影响\n多次调用park, 由于LockSuport是不可重入锁, 所以会死锁\n广泛的应用\nThreadPoolExecutor内部使用LockSupport\n阻塞:\n典型的 future.get() 同步阻塞等待线程池的执行结果; submit提交Callable任务后会返回FutureTask, 此方法会有get方法, 继而调用awaitDone进行阻塞, 内部实则调用了LockSupport.park()\n唤醒:\nCallable被包装成了FutureTask, 内部会c.call()执行任务, 继而调用set方法, 内部调用finishCompletion, 而finishCompletion会通过CAS取出所有等待的线程, 循环唤醒 LockSupport.unpark(t)\n注意事项\n\n\n\nThreadLocal\n\n线程本地变量\n\n\nThreadLocal不是用来解决对象共享访问问题的; 反其道而行, 解决某个对象需要一直跟随某线程(同生共死), 从而解决对象如何传递的问题\n典型的Session会话管理,多线程需要避免Session的调用混乱\n2.1 首先不加锁, 铁定出现多线程问题(openSession多次正在写入数据库却被其他线程关闭close)\n2.2 加独享锁, 显然问题能解决, 但是一个操作正在进行,则其他操作必须等待, 性能有问题\n3.3 在DAO层做如下操作:\nopenSession() -&gt; 数据库操作 -&gt; close()\n也能解决问题, 但是session频繁的打开关闭这也是性能问题\nThreadLocal正好利用线程的生命周期, 将需要使用的副本对象附加其上, 这样session对象的调用就不会错乱\nThreadLocalMap总结:\n4.1 ThreadLocalMap解决hash采用了线性探测(开发地址法), 如果冲突则加1; 这种算法比起链地址法效率低很多, 所以建议一个线程只保存一个变量(即一个ThreadLocal)\n4.2 ThreadLocalMap的key是弱引用, 而Value是强引用; 这导致ThreadLocal在没有外部对象强引用时，发生GC时弱引用Key会被回收, 而Value不会回收; 如果创建ThreadLocal的线程一直持续运行，那么这个Entry对象中的value就有可能一直得不到回收，发生内存泄露; 但线程结束时总会释放掉;\n但如果线程是使用的线程池, 由于线程池里的线程结束是不会销毁的, 这时候就发生了真正意义上的内存泄漏\n\n\n\nThreadLocal使用场景为 用来解决 数据库连接、Session管理\n1234567891011121314151617181920212223private static ThreadLocal &lt; Connection &gt; connectionHolder = new ThreadLocal &lt; Connection &gt; () &#123;    public Connection initialValue() &#123;        return DriverManager.getConnection(DB_URL);    &#125;&#125;;public static Connection getConnection() &#123;    return connectionHolder.get();&#125;private static final ThreadLocal threadSession = new ThreadLocal();public static Session getSession() throws InfrastructureException &#123;    Session s = (Session) threadSession.get();    try &#123;        if (s == null) &#123;            s = getSessionFactory().openSession();            threadSession.set(s);        &#125;    &#125; catch (HibernateException ex) &#123;        throw new InfrastructureException(ex);    &#125;    return s;&#125;\n\n\nForkJoin\n\nJDK原生的单机版的MapReduce归并计算, Amino里也有类似的MasterWorker模式的实现\n主要思想:\n\n对比MapReduce1.0原理\n\n\n\n\n\n\n类图:\n\n\n一 特性:\n\n计算资源共享\n高性能队列\n避免伪共享 (Disruptor也有类似的实现, 采用补位对齐缓存行)\n它的实现是使用了@sun.misc.Contendedjdk8的注解\n工作窃取机制 (特有)\n二 对比ThreadPoolExecutor\n线程池ThreadPoolExecutor公用任务队列, ForkJoinPool则每个线程单独一个任务队列\n线程池支持RunnableCallable两种类型的任务, 同理ForkJoinPool也支持带返回值不带返回值的任务\nRecursiveTask(带返回值)  RecursiveAction(不带返回值)\n三 对应关系\nThreadPoolExecutor --&gt; Thread --&gt; RunnableCallable\nForkJoinPool --&gt; ForkJoinWorkerThread --&gt; RecursiveActionRecursiveTask\n注意不是为了替代ExecutorService, 而仅仅作为补充, 比如补充了work-stealing逻辑\n四 工作窃取(work stealing)\n&lt;font color=red&gt;1. 因为任务队列是进行了拆分 (拆到什么粒度需要我们指定拆分的临界值), 即线程会各自独享一个子任务队列;\n\n\n\n当其中线程A先执行完毕, 线程B还未执行完, 则A会从B偷取一个任务;\n如何偷? 拆分的线程子任务队列是一个线程安全的双端队列, 被窃取线程永远从头部取, 窃取线程永远从队尾取, 避免并发导致的竞争, 但是只有一个任务的极端情况还是无法避免竞争&lt;font&gt;\n\n\n五 优缺点\n优点: 类似单机版本的MapReduce归并计算, 比线程池更加充分利用CPU资源\n缺点: 编码复杂, 而且需要大量队列, 线程...的创建与销毁, 导致效率无法明显的提升, 貌似Netty5.0就是基于此原因之一放弃发布\n六 注意事项\n&lt;font color=red&gt;1. ForkJoinPool 也有submit, execute, 同时多了一个invoke\n非阻塞:\nexecute不带返回值, submit带返回值, 这和ThreadPoolExecutor类似\nsubmit返回了Future的子类ForkJoinTask, 调用task.get()才会阻塞\n阻塞:\ninvoke会阻塞调用线程 (主线程), 直到有结果并返回\n\n\nfork是分配任务\nleftTask.fork(); rightTask.fork();\n替换为\ninvokeAll(leftTask, rightTask);\n使用fork, 假如程数量固定, 当前线程会将leftTaskrightTask分配下去,自身并不会做任何事情, 会浪费一个线程\n&lt;font&gt;\n\n示例:\n123456789101112131415161718192021222324252627282930313233343536373839404142public class ForkJoinCalcTask extends RecursiveTask&lt;Long&gt; &#123;    private Long start;起始值    private Long end;结束值    public static final Long critical = 100000L;临界值10w (即划分的区间段大小)    public ForkJoinCalcTask(Long start, Long end) &#123;        this.start = start;        this.end = end;    &#125;    @Override    protected Long compute() &#123;        判断是否是拆分完毕        Long lenth = end - start;        if (lenth &lt;= critical) &#123;            如果拆分完毕就相加            Long sum = 0L;            for (Long i = start; i &lt;= end; i++) &#123;                sum += i;            &#125;            return sum;        &#125; else &#123;            没有拆分完毕就开始拆分 (递归拆分的意思)            Long middle = (end + start)  2;计算的两个值的中间值            ForkJoinCalcTask leftTask = new ForkJoinCalcTask(start, middle);            ForkJoinCalcTask rightTask = new ForkJoinCalcTask(middle + 1, end);             方式1            right.fork();拆分，压入线程队列            left.fork();拆分，压入线程队列             方式2 更好的做法             方式1的缺点是: 假如程数量固定, 当前线程会将leftTaskrightTask分配下去,             自身并不会做任何事情, 会浪费一个线程            invokeAll(leftTask, rightTask);             等待任务执行结束合并其结果            return leftTask.join() + rightTask.join();        &#125;    &#125;&#125;\n测试类:\n123456789101112131415161718192021222324252627282930313233343536373839404142434445464748public class Test &#123;    ForkJoin实现    public static void test1() &#123;        long l = System.currentTimeMillis();        ForkJoinPool forkJoinPool = new ForkJoinPool();实现ForkJoin 就必须有ForkJoinPool的支持        ForkJoinTask&lt;Long&gt; task = new ForkJoinCalcTask(0L, 10000000000L);参数为起始值与结束值 (100亿)         注意invoke是阻塞方法         submit和execute是非阻塞方法, submit是异步的, 返回了ForkJoinTask(继承了Future),         通过Future接口的get可以阻塞获取结果        Long invoke = forkJoinPool.invoke(task); 压入线程队列        long l1 = System.currentTimeMillis();        System.out.println(invoke =  + invoke +   time:  + (l1 - l));        invoke = -5340232216128654848  time: 4661    &#125;    普通线程实现    public static void test2() &#123;        Long x = 0L;        Long y = 10000000000L;        long l = System.currentTimeMillis();        Long i;        for (i = 0L; i &lt;= y; i++) &#123;            x += i;        &#125;        long l1 = System.currentTimeMillis();        System.out.println(invoke =  + x +   time:  + (l1 - l));        invoke = -5340232216128654848  time: 75901    &#125;    Java 8 并行流的实现    public static void test3() &#123;        long l = System.currentTimeMillis();        long reduce = LongStream.rangeClosed(0, 10000000000L).parallel().reduce(0, Long::sum);        long l1 = System.currentTimeMillis();        System.out.println(invoke =  + reduce +   time:  + (l1 - l));        invoke = -5340232216128654848  time: 4366    &#125;    public static void main(String[] args) &#123;        test1();        test2();        test3();    &#125;&#125;\n源码分析\n待续...\n","tags":[],"path":"2016/04/20/多线程-二/","external_link":""}]';
+
+	s = s.replace(/\\n/g, "\\n")
+               .replace(/\\'/g, "\\'")
+               .replace(/\\"/g, '\\"')
+               .replace(/\\&/g, "\\&")
+               .replace(/\\r/g, "\\r")
+               .replace(/\\t/g, "\\t")
+               .replace(/\\b/g, "\\b")
+               .replace(/\\f/g, "\\f")
+
+// remove non-printable and other non-valid JSON chars
+	s = s.replace(/[\u0000-\u0019]+/g,"");
+	var list = JSON.parse(s);
+	var fuse = new Fuse(list, options);
+	var el = document.getElementById('search-form');
+	var newBox = $('.Card-archive').first().clone();
+	el.oninput = function(event){
+		var searchText = el.value;
+		var result = fuse.search(searchText);
+		$('.archive-cards .Card-archive').remove();
+		for(var i in result){
+			var anotherBox = newBox.clone();
+			var dateStr = new Date(result[i].date);
+			anotherBox.css('display','flex');
+			var url = "";
+			if(result[i].external_link !== ""){
+				url = result[i].external_link;
+			}else{
+				url = '/' + result[i].path;
+			}
+
+			anotherBox.find('.Card-title a').text(result[i].title).attr('href', url);
+			anotherBox.find('.Card-date').text(dateStr.toDateString());
+			anotherBox.appendTo('.archive-cards');
+		}
+	}
+</script>
+
+<div class="tagcloud-container">
+<div class="tag-cloud">
+	
+</div>
+</div>
+
+  </div>
+
+  
+
+<footer id="footer">
+    <div class="footer-copyright">
+        <div>
+            <p> 版权所有 <a href>doyo </a> @ 2019</p>
+            <p>设计: <i class="fas fa-paint-brush"></i> <a href="https://moober.cn">Moober</a> 和 <i class="fas fa-graduation-cap"></i> <a href="https://qutang.github.io">Qu Tang</a> &bull; 主题: <a href="https://qutang.github.io/cutie/">Cutie 2.1.3-Taurus</a> &bull; 由 <a href="http://hexo.io">Hexo.</a> 强力驱动</p>
+        </div>
+    </div>
+    
+    <div class="footer-social">
+        
+            
+                
+                    <div class="footer-social-item"><a href="https://github.com/doooyo" target="_blank"><i class="fab fa-github fa-2x" aria-hidden="true"></i></a></div>
+                
+            
+        
+    </div>
+</footer>
+
+  <br>
+
+  <div id="footer-nav" class='footer-nav'>
+		
+
+
+
+<nav id="nav">
+	
+	
+	
+	<div class="nav-item" id="nav-item-archive">
+		
+				<div class="nav-icon">
+				
+			<a href="/archives/" title="归档">
+			<img src="/images/icons/own/archive.svg" alt>
+			</a>
+		</div>
+	</div>
+	<div class="nav-item" id="nav-item-search">
+		
+		<div class="nav-icon active_dot">
+		
+			<a href="/search/" title="搜索">
+			<img src="/images/icons/own/search.svg" alt>
+			</a>
+		</div>
+	</div>
+	<div class="nav-item" id="nav-item-more">
+		<div class="nav-icon">
+				<a href="#" onclick="onClickMenuIcon(event);" ontouchstart="onClickMenuIcon(event);">
+				<img src="/images/icons/own/menu.svg" alt>
+				</a>
+		</div>
+		<div class="nav-more-menu">
+				<i class="far fa-times-circle" id="nav-more-menu-close" onclick="onClickNavMenuClose(event);" ontouchstart="onClickNavMenuClose(event);"></i>
+		
+		
+	</div>
+	</div>
+</nav>
+
+	</div>
+
+  
+
+
+
+    
+
+
+
+
+
+
+  <script>
+  var gitment = new Gitment({
+    id: window.location.pathname, // optional
+    owner: 'doooyo',
+    repo: 'https://github.com/doooyo',
+    oauth: {
+      client_id: '4320b9f63ad425418eb5',
+      client_secret: '9c0cb6fffad72917fe8416c9ac2066dc70127d9b',
+    },
+    // ...
+    // For more available options, check out the documentation below
+  })
+
+  gitment.render('gitment')
+  </script>
+
+
+
+
+
+
+
+    <script src="/js/lightgallery.min.js"></script>
+<script src="/js/lg-zoom.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#lightgallery").lightGallery(); 
+        $(".article-content img").each(function(){
+            console.log($(this).attr('src'))
+            $(this).attr('data-src', $(this).attr('src')).lightGallery({
+                selector: 'this'
+            })
+        });
+    });
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+
+  
+</script>
+
+
+
+<!-- <script src="/js/post.js"></script> -->
+
+<script src="/js/headroom.min.js"></script>
+
+<script data-no-instant type="text/javascript">
+
+initHeadroom();
+
+changeLayoutOnTouchScreen();
+
+// 
+</script>
+
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
