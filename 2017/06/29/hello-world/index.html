@@ -16,7 +16,7 @@
   
   
   <meta name="description" content="java node 微服务 大数据 数据结构">
-  <meta name="author" content="doyo">
+  <meta name="author" content="duyu">
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -28,6 +28,9 @@
 <link rel="stylesheet" href="/libs/animate.css/animate.min.css">
   <!-- load lightgallery -->
 <link rel="stylesheet" href="/css/lightgallery.css">
+
+
+
 <link rel="stylesheet" href="/libs/noty/lib/noty.css">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   
@@ -76,79 +79,66 @@
 </head>
 <body style="display: flex; flex-direction: column; min-height: 100vh;">
 
- 
 
-<header id="header" class="header">
+
+<header class="header">
 	<div class="header-title">
 		
-		<div class="header-logo">
-			<a href="/">
-				<img src="/images/lion.svg">
-			</a>
-		</div>
-		<div class="header-text">
-			<h1>
-				<a href="/">N 27°59′′</a>
-			</h1>
-			<subtitle>
-				
-			</subtitle>
-		</div>
-		
-	</div>
-	<div id="header-nav">
-		
-
-
-
-<nav id="nav">
-	
-	
-	
-	<div class="nav-item" id="nav-item-toc">
-		
-
-
-<div class="toc-container">
-<i class="far fa-times-circle" id="toc-close" onclick="closeTOC(event);" ontouchstart="closeTOC(event);"></i>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a></li></ol>
-</div>
-<div class="toc-button" onclick="toggleTOC(event);" ontouchstart="toggleTOC(event);">
-    <img src="/images/icons/own/toc.svg" alt>
-</div>
-
-	</div>
-	
-	<div class="nav-item" id="nav-item-archive">
-		
-				<div class="nav-icon">
-				
-			<a href="/archives/" title="归档">
-			<img src="/images/icons/own/archive.svg" alt>
-			</a>
-		</div>
-	</div>
-	<div class="nav-item" id="nav-item-search">
-		
-		<div class="nav-icon">
-		
-			<a href="/search/" title="搜索">
-			<img src="/images/icons/own/search.svg" alt>
-			</a>
-		</div>
-	</div>
-	<div class="nav-item" id="nav-item-more">
-		<div class="nav-icon">
-				<a href="#" onclick="onClickMenuIcon(event);" ontouchstart="onClickMenuIcon(event);">
-				<img src="/images/icons/own/menu.svg" alt>
+			<div class="header-logo">
+				<a href="/">
+					<img class="grow" src="/images/lion.svg">
 				</a>
+			</div>
+			<div class="header-text">
+				<h1 style="font-family: sketch;">
+					<a href="/">N 27°59′′</a>
+				</h1>
+				<p>
+					<small>
+						duyu
+					</small>
+				</p>
+			</div>
+		
+	</div>
+	<div id="header-menu-container">
+		
+
+
+
+<nav class="menu">
+	
+	
+		
+		
+		
+		
+		
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/archives/" title="归档">
+					<img src="/images/icons/own/archive.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/archives/">
+					<span>归档</span>
+				</a>
+			</div>
 		</div>
-		<div class="nav-more-menu">
-				<i class="far fa-times-circle" id="nav-more-menu-close" onclick="onClickNavMenuClose(event);" ontouchstart="onClickNavMenuClose(event);"></i>
-		
-		
-	</div>
-	</div>
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/search/" title="搜索">
+					<img src="/images/icons/own/search.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/search/">
+					<span>搜索</span>
+				</a>
+			</div>
+		</div>
+
 </nav>
 
 	</div>
@@ -205,13 +195,13 @@
 
 
 
-<article class="article" id="/2019/04/20/hello-world/" data-name="Hello World" data-version>
+<article class="article" id="/2017/06/29/hello-world/" data-name="Hello World" data-version>
 
     <!-- Title -->
     <div class="article-header">
          
          <h1 class="article-title">
-            <a href="/2019/04/20/hello-world/">
+            <a href="/2017/06/29/hello-world/">
                 Hello World
             </a>
         </h1>
@@ -220,12 +210,29 @@
     </div>
     
     <!-- Date and Author -->
-    <div class="article-meta">
-    <ul>
-            <li><i class="fa fa-calendar"></i> 2019年04月20日</li>
+    <p>
+        <i style="margin: 2em 0.4em 1em 0em" class="fa fa-calendar"></i>2017年06月29日
+        <i style="margin: 1em 0.4em 1em 1em" class="fa fa-user"></i> duyu
+    </p>
+
+    <p>
+        
+    </p>
+    <hr>
+
+    
+    
             
-            <li><i class="fa fa-user"></i> doyo</li>
-            <li><i class="fas fa-copyright"></i>
+            
+            
+            
+            
+            
+            
+            
+            
+                
+                
             
                 
                 
@@ -234,12 +241,15 @@
                 
                     
                 
-                <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh">CC BY-NC-ND 4.0</a>
+                
             
-            </li>
-    </ul>
+                
+            
+            
     
-    </div>
+    
+    
+
     <div class="article-cards">
         <!-- Author Card -->
         <!---
@@ -253,7 +263,7 @@
                                 <img src="" alt="">
                             </div>
                             <div class='author-name'>
-                                doyo
+                                duyu
                             </div>
                         </div>
                         <div class="author-ai">
@@ -315,10 +325,14 @@ Run server
         
 
 
-<div class="toc-container">
-<i class="far fa-times-circle" id="toc-close" onclick="closeTOC(event);" ontouchstart="closeTOC(event);"></i>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a></li></ol>
-</div>
+
+
+
+
+
+<ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#quick-start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a></li></ol>
+</ol>
 <div class="toc-button" onclick="toggleTOC(event);" ontouchstart="toggleTOC(event);">
     <img src="/images/icons/own/toc.svg" alt>
 </div>
@@ -326,18 +340,18 @@ Run server
     </div>
     <div class="article-content">
     <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2>Quick Start</h2>
-<h3>Create a new post</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3>Run server</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></p>
+<h3 id="run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3>Generate static files</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></p>
+<h3 id="generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3>Deploy to remote sites</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></p>
+<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
     
@@ -361,14 +375,11 @@ Run server
 
   
 
-<footer id="footer">
-    <div class="footer-copyright">
-        <div>
-            <p> 版权所有 <a href>doyo </a> @ 2019</p>
-            <p>设计: <i class="fas fa-paint-brush"></i> <a href="https://moober.cn">Moober</a> 和 <i class="fas fa-graduation-cap"></i> <a href="https://qutang.github.io">Qu Tang</a> &bull; 主题: <a href="https://qutang.github.io/cutie/">Cutie 2.1.3-Taurus</a> &bull; 由 <a href="http://hexo.io">Hexo.</a> 强力驱动</p>
-        </div>
+<footer class="footer">
+    <div class="footer-logo">
+        <span>just do it</span>
     </div>
-    
+
     <div class="footer-social">
         
             
@@ -378,63 +389,60 @@ Run server
             
         
     </div>
+    <p>
+        版权所有 <a href>duyu </a> @ 2019
+    </p>
+    <p>
+        Icons by <a href="http://www.iconfont.cn" title="Iconfont">Iconfont</a>
+        
+    </p>
+    
+    
+    
+    
 </footer>
+
 
   <br>
 
-  <div id="footer-nav" class='footer-nav'>
+  <div id="footer-menu-container">
 		
 
 
 
-<nav id="nav">
+<nav class="menu">
 	
 	
-	
-	<div class="nav-item" id="nav-item-toc">
 		
-
-
-<div class="toc-container">
-<i class="far fa-times-circle" id="toc-close" onclick="closeTOC(event);" ontouchstart="closeTOC(event);"></i>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a></li></ol>
-</div>
-<div class="toc-button" onclick="toggleTOC(event);" ontouchstart="toggleTOC(event);">
-    <img src="/images/icons/own/toc.svg" alt>
-</div>
-
-	</div>
-	
-	<div class="nav-item" id="nav-item-archive">
 		
-				<div class="nav-icon">
-				
-			<a href="/archives/" title="归档">
-			<img src="/images/icons/own/archive.svg" alt>
-			</a>
-		</div>
-	</div>
-	<div class="nav-item" id="nav-item-search">
 		
-		<div class="nav-icon">
 		
-			<a href="/search/" title="搜索">
-			<img src="/images/icons/own/search.svg" alt>
-			</a>
-		</div>
-	</div>
-	<div class="nav-item" id="nav-item-more">
-		<div class="nav-icon">
-				<a href="#" onclick="onClickMenuIcon(event);" ontouchstart="onClickMenuIcon(event);">
-				<img src="/images/icons/own/menu.svg" alt>
+		
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/archives/" title="归档">
+					<img src="/images/icons/own/archive.svg" alt>
 				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/archives/">
+					<span>归档</span>
+				</a>
+			</div>
 		</div>
-		<div class="nav-more-menu">
-				<i class="far fa-times-circle" id="nav-more-menu-close" onclick="onClickNavMenuClose(event);" ontouchstart="onClickNavMenuClose(event);"></i>
-		
-		
-	</div>
-	</div>
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/search/" title="搜索">
+					<img src="/images/icons/own/search.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/search/">
+					<span>搜索</span>
+				</a>
+			</div>
+		</div>
+
 </nav>
 
 	</div>
@@ -498,7 +506,7 @@ Run server
   loadjs(['/libs/jshashes/hashes.min.js', '/libs/js-cookie/src/js.cookie.js', '/js/post.v2.js'], 'post-version');
   loadjs.ready('post-version', function(){
     
-    new Postv2('hashit_2be76789b3e2de3b901dcabe4a7b46f6008a43d4524bc46a3bfadcc441a2b10c').update('hashit_6c47287f89fe38e1bd6065b79b2cf9a6b4698220384aca1be97ed18d29579fe5', function(){});
+    new Postv2('hashit_29487ea3bf8ca44c3a551b8481be7d0f0a596d86042699422d73e425e664fa12').update('hashit_6c47287f89fe38e1bd6065b79b2cf9a6b4698220384aca1be97ed18d29579fe5', function(){});
   });
   
 </script>
