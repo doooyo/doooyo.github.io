@@ -5,15 +5,26 @@
   
 
   
-  <title>Hexo</title>
+  <title>多线程(二) | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="多线程(二) 多线程(二)写此篇只记录一些自己觉得比较重要的知识点, 其余查阅之前的篇幅     - 分类 - 知识点     Thread/Runable 线程状态机  join/wait  sleep  suspend/resume  interupt/interrupted/isInterrupted  notify/notifyAll  yield    java内存模型 原子性/CAS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多线程(二)">
+<meta property="og:url" content="http://yoursite.com/2016/04/20/多线程-二/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="多线程(二) 多线程(二)写此篇只记录一些自己觉得比较重要的知识点, 其余查阅之前的篇幅     - 分类 - 知识点     Thread/Runable 线程状态机  join/wait  sleep  suspend/resume  interupt/interrupted/isInterrupted  notify/notifyAll  yield    java内存模型 原子性/CAS">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/Users/apple/Desktop/test/LongAdder.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7432604-ad2ff581127ba8cc.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/806/format/webp">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181209234109898.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Y2NDEzODU3MTI=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://dl.iteye.com/upload/attachment/234119/4f7cd1b0-9f58-306f-9590-87499929861d.jpg">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/14019352-0c530b046636edd0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp">
+<meta property="og:image" content="http://dl.iteye.com/upload/attachment/234124/8703a34a-9f05-37a5-bb08-c135bb5bffc8.jpg">
+<meta property="og:updated_time" content="2019-04-20T04:10:33.405Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="多线程(二)">
+<meta name="twitter:description" content="多线程(二) 多线程(二)写此篇只记录一些自己觉得比较重要的知识点, 其余查阅之前的篇幅     - 分类 - 知识点     Thread/Runable 线程状态机  join/wait  sleep  suspend/resume  interupt/interrupted/isInterrupted  notify/notifyAll  yield    java内存模型 原子性/CAS">
+<meta name="twitter:image" content="http://yoursite.com/Users/apple/Desktop/test/LongAdder.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -60,54 +71,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/20/hello-world/" class="article-date">
-  <time datetime="2019-04-20T03:12:19.806Z" itemprop="datePublished">2019-04-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/20/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/20/hello-world/" data-id="cjuozjp3f0000gpjcn0ji4s8n" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-多线程-二" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-多线程-二" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/04/20/多线程-二/" class="article-date">
   <time datetime="2016-04-20T04:08:16.000Z" itemprop="datePublished">2016-04-20</time>
@@ -120,8 +84,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/20/多线程-二/">多线程(二)</a>
+    <h1 class="article-title" itemprop="name">
+      多线程(二)
     </h1>
   
 
@@ -296,11 +260,23 @@
     </footer>
   </div>
   
-</article>
-
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/20/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+</nav>
 
   
-
+</article>
 
 </section>
         
