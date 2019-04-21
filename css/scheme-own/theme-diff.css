@@ -70,7 +70,7 @@ body {
 h1, h2, h3, h4, h5, h6{
     font-weight: 400;
     margin: 0.83em 0;
-    color: rgb(21, 153, 87);
+    color: rgb(21, 153, 87) ;
     line-height: 1.35;
 }
 
@@ -252,7 +252,7 @@ img {
 
 /* Header */
 /* ------------------------------------------ */
-.header {
+.my-header {
     background-color: white;
     padding: 1.2em 0;
     box-shadow: 0px 1px 10px 1px #ddd;
@@ -271,13 +271,13 @@ img {
     animation-delay: 0.5s;
 }
 
-.header .header-logo{
+.my-header .header-logo{
     text-align: center;
     float: left;
     margin-left: 3rem;
 }
 
-.header .header-logo img {
+.my-header .header-logo img {
     width: 6em;
     height: auto;
     margin-top: 3rem;
@@ -287,7 +287,7 @@ img {
     background-color: white;
 }
 
-.header .header-title {
+.my-header .header-title {
     flex: 1;
     flex-grow:2;
     font-size: 1.2em;
@@ -297,12 +297,12 @@ img {
     /*font-style: italic;*/
 }
 
-.header .header-text {
+.my-header .header-text {
     text-align: left;
     margin: 4.5rem 0rem 0rem 12rem;
 }
 
-.header .header-text-no-image {
+.my-header .header-text-no-image {
     margin-left: 5rem;
     text-align: left;
 }
@@ -509,79 +509,11 @@ img {
 .grow:hover { transform: scale(1.1); }
 
 
-#search {
-    width: 100%;
-    display: flex;
-}
-
-#search input {
-    flex: 1;
-    margin-right: 0.5em;
-}
-
-.search-container {
-    margin: 12em auto 0 auto;
-    position: relative;
-    width: 100%;
-    max-width: 860px;
-    padding: 0 20px;
-    box-sizing: border-box;
-    animation-name: fadeInLeft;
-    animation-duration: 0.5s;
-    animation-fill-mode: both;
-    animation-delay: 0.5s;
-}
-
-.search-container form {
-    background-color: white;
-    border-radius: 5px;
-    height: 38px;
-}
-
-.search {
-    background-color: white;
-    border-radius: 5px;
-    height: 38px;
-    display: flex;
-}
-
-.search input {
-    flex: 1;
-}
-
-.search-container button {
-    border-radius: 0px;
-    background-color: white;
-    border: none;
-    margin: 0;
-    padding: 0 1em;
-}
-
-
-.search-container input {
-    border-radius: 0px;
-    background-color: white;
-    border: none;
-    padding: 6px 10px;
-    box-shadow: none;
-    margin: 0;
-}
-
-.search-container input:focus {
-    border-radius: 0px;
-    background-color: white;
-    border: none;
-}
-
-.search-container button:focus {
-    border-radius: 0px;
-    background-color: white;
-    border: none;
-}
-
+/** toc **/
 .article .article-toc, .page .article-toc {
     position: fixed;
     top: 10em;
+    left: auto;  /*覆盖taurus样式*/
     right: 4em;
     z-index: 100;
 }
@@ -599,178 +531,6 @@ img {
 
 #article-toc:hover .toc-button {
     display: none;
-}
-
-
-/* Article */
-/* ------------------------------------------ */
-.article {
-    width: 55%;
-    margin: 9em auto 0 auto;
-    animation-name: fadeInLeft;
-    animation-duration: 0.5s;
-    animation-fill-mode: both;
-    animation-delay: 0.5s;
-}
-
-.article a {
-    color: #D63E0A;
-}
-
-.article-content img {
-    width: auto;
-    display: inline-block;
-    max-width:94%; height:auto;
-    border: #eee 1px solid;
-    border-radius: 5px;
-    box-shadow: 0.5px 0.5px 0.5px -0.5px rgba(170, 175, 173, 0.61);
-}
-
-.article-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.article-logo {
-    margin-right: 1em;
-}
-
-.article-logo img {
-    width: 2.5em;
-    height: 2.5em;
-    object-fit: cover;
-}
-
-.article-title{
-    flex: 1;
-    font-family: Palatino,"Palatino Linotype","Palatino LT STD","Book Antiqua",Georgia,serif;
-}
-
-h1.article-title{
-    margin-bottom: 1.2em;
-}
-
-.article-title a{
-    color: #333;
-}
-
-.article-categories li{
-    display: block;
-    float:left;
-    padding-left: 0.5em;
-}
-
-.article-categories img{
-    width: 2.5em;
-    height: auto;
-    object-fit: cover;
-}
-
-@media (max-width: 1000px) {
-    .article {
-        width: 90%;
-        margin: 9em auto;
-    }
-}
-
-.article p, .page p{
-    margin-bottom: 1em;
-}
-
-/* Page */
-
-.page {
-    width: 45%;
-    margin: 9em auto;
-    animation-name: fadeInLeft;
-    animation-duration: 0.5s;
-    animation-fill-mode: both;
-    animation-delay: 0.5s;
-}
-
-.page .article-content {
-    text-align: justify;
-}
-
-.page .page-meta{
-    float: right;
-    text-align: right;
-    margin-top: 1em;
-    width: 150px;
-}
-
-.page-meta p {
-    margin-bottom: 0;
-}
-
-.page a {
-    color: #D63E0A;
-}
-
-
-.page li {
-    margin-top: 0.35em;
-    margin-bottom: 0.35em;
-    line-height: 1.4em;
-}
-
-@media print {
-    @page { margin: 0;}
-    .header {
-        box-shadow: none;
-    }
-    .page {
-        width: 95%;
-        margin: 9em auto;
-        text-align: justify;
-    }
-
-    .page .page-meta{
-        display: none;
-    }
-
-    .page-meta p {
-        margin-bottom: 0;
-    }
-
-    .page a {
-        color: #D63E0A;
-    }
-}
-
-@media (max-width: 1023px) {
-    .page {
-        width: 90%;
-        margin: 9em auto;
-        text-align: justify;
-    }
-}
-
-
-/* Pagination */
-/* ------------------------------------------ */
-
-.pagination {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.pagination-item a, .pagination-item span{
-    border-radius: 50%;
-    box-shadow: 0.5px 0.5px 3px -0.5px rgba(170, 175, 173, 0.61);
-    text-align: center;
-    height: 1.7em;
-    width: 1.7em;
-    display: inline-block;
-    vertical-align: middle;
-    padding: 0.25em;
-    margin: 0 4px;
-}
-
-.pagination-item a{
-    color: #D63E0A;
 }
 
 .toc {
@@ -799,8 +559,56 @@ h1.article-title{
     padding: 0;
 }
 
+.toc-item a {
+    color: cyan;
+}
+.toc-item a:hover{
+    color: #D63E0A;
+}
+
 .article .article-toc .toc-button img, .page .article-toc .toc-button img {
     width: 2em;
     height: auto;
     object-fit: cover;
+}
+
+/** 样式覆盖 **/
+.article .article-meta ul, .page .article-meta ul {
+    padding-left: 1.5em !important;
+    text-align: left !important;
+}
+
+.article .article-meta .tags, .page .article-meta .tags {
+    clear: both;
+    justify-content: start !important;
+}
+
+.article .article-meta, .page .article-meta {
+    margin-left: 0 !important;
+    margin-top: 2em !important;
+    margin-bottom: 2.5em;
+}
+
+.article .article-categories, .page .article-categories {
+    vertical-align: middle !important;
+}
+
+.page .article-content, .article .article-content {
+    color: #333;
+    line-height: 1.6 !important;
+    font-size: 16px !important;
+}
+
+.page .article-content table th, .article .article-content table th, .page .article-content table td, .article .article-content table td {
+    border: 1px solid #e1e1e1;
+}
+
+.highlight table th, .highlight table td {
+    border: none !important;
+}
+
+
+h1, h2, h3, h4, h5, h6{
+    font-weight: 700;
+    color: rgb(21, 153, 87) !important;
 }

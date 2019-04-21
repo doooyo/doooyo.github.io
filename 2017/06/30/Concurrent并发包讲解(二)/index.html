@@ -10,7 +10,7 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
   
-      <title>多线程(二) - N 27°59′′</title>
+      <title>concurrent并发包讲解(二) - N 27°59′′</title>
   
 
   
@@ -28,9 +28,6 @@
 <link rel="stylesheet" href="/libs/animate.css/animate.min.css">
   <!-- load lightgallery -->
 <link rel="stylesheet" href="/css/lightgallery.css">
-
-
-
 <link rel="stylesheet" href="/libs/noty/lib/noty.css">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   
@@ -81,7 +78,7 @@
 
 
 
-<header class="header">
+<header class="my-header">
 	<div class="header-title">
 		
 			<div class="header-logo">
@@ -90,7 +87,7 @@
 				</a>
 			</div>
 			<div class="header-text">
-				<h1 style="font-family: sketch;">
+				<h1 style="font-family: sketch; font-weight: 400">
 					<a href="/">N 27°59′′</a>
 				</h1>
 				<p>
@@ -199,14 +196,20 @@
 
 
 
-<article class="article" id="/2017/06/30/多线程-二/" data-name="多线程(二)" data-version>
+<article class="article" id="/2017/06/30/Concurrent并发包讲解(二)/" data-name="concurrent并发包讲解(二)" data-version>
 
     <!-- Title -->
     <div class="article-header">
          
+         
+            
+                
+            
+         
+         
          <h1 class="article-title">
-            <a href="/2017/06/30/多线程-二/">
-                多线程(二)
+            <a href="/2017/06/30/Concurrent并发包讲解(二)/">
+                Concurrent并发包讲解(二)
             </a>
         </h1>
         <!-- TODO: support nested categories,display them nicely -->
@@ -223,59 +226,33 @@
     </div>
     
     <!-- Date and Author -->
-    <p>
-        <i style="margin: 2em 0.4em 1em 0em" class="fa fa-calendar"></i>2017年06月30日
-        <i style="margin: 1em 0.4em 1em 1em" class="fa fa-user"></i> duyu
-    </p>
+    <div class="article-meta">
+    <ul>
+            <li><i class="fa fa-calendar"></i> 2017年06月30日</li>
+            
+            <li><i class="fa fa-user"></i> duyu</li>
 
-    <p>
-        
-            
-            
-                <label class="tag-1"><a href="/tags/线程池/">#线程池</a></label>
-            
-            
-            
-                <label class="tag-2"><a href="/tags/锁/">#锁</a></label>
-            
-            
-            
-                <label class="tag-3"><a href="/tags/队列/">#队列</a></label>
-            
-            
-        
-    </p>
+    </ul>
+    
+<div class="tags">
+	
+		
+			<label class="tag-1"><a href="/tags/线程池/">线程池</a></label>
+		
+	
+		
+			<label class="tag-2"><a href="/tags/锁/">锁</a></label>
+		
+	
+		
+			<label class="tag-3"><a href="/tags/队列/">队列</a></label>
+		
+	
+	</div>
+
+    </div>
+    <!-- 分割线 -->
     <hr>
-
-    
-    
-            
-            
-            
-            
-            
-            
-            
-            
-            
-                
-                
-            
-                
-                
-            
-            
-                
-                    
-                
-                
-            
-                
-            
-            
-    
-    
-    
 
     <div class="article-cards">
         <!-- Author Card -->
@@ -330,12 +307,13 @@
   <h3>Quick Read</h3>
 </div>
 <div class="card-text">
-  <p id="text-post-summary">写此篇只记录一些自己觉得比较重要的知识点, 其余查阅之前的篇幅
+  <p id="text-post-summary">知识要点
+写此篇只记录一些自己觉得比较重要的知识点, 其余查阅之前的篇幅
 
 
 
-- 分类
-- 知识点
+分类
+知识点
 
 
 
@@ -370,21 +348,22 @@ AtomicInteger  AtomicReference ...</p>
 
 
 
-<ol>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#thread-runable"><span class="toc-number">1.</span> <span class="toc-text">Thread/Runable</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#java内存模型"><span class="toc-number">2.</span> <span class="toc-text">Java内存模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#atomic包-cas"><span class="toc-number">3.</span> <span class="toc-text">Atomic包/CAS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#concurrent并发包"><span class="toc-number">4.</span> <span class="toc-text">Concurrent并发包</span></a></li></ol>
-</ol>
-<div class="toc-button" onclick="toggleTOC(event);" ontouchstart="toggleTOC(event);">
+
+    
+
+<div class="toc-button">
     <img src="/images/icons/own/toc.svg" alt>
 </div>
 
     </div>
     <div class="article-content">
-    <p><strong><font color="orange">写此篇只记录一些自己觉得比较重要的知识点, 其余查阅之前的篇幅</font></strong></p>
+    <h2 id="知识要点">知识要点</h2>
+<p>写此篇只记录一些自己觉得比较重要的知识点, 其余查阅之前的篇幅</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:center">- 分类</th>
-<th style="text-align:left">- 知识点</th>
+<th style="text-align:center">分类</th>
+<th style="text-align:left">知识点</th>
 </tr>
 </thead>
 <tbody>
@@ -406,33 +385,47 @@ AtomicInteger  AtomicReference ...</p>
 </tr>
 <tr>
 <td style="text-align:center"><code>Concurrent并发包</code></td>
-<td style="text-align:left"><code>ReentrantLock</code><br> <code>Condition</code><br> <code>Semaphore</code><br> <code>ReadWriteLock</code>,<code>ReentrantReadWriteLock</code><br> <code>CountDownLatch</code><br> <code>CyclicBarrier</code><br> <code>LockSupport</code><br> <code>CountDownLatch</code><br><code>ForkJoin</code><br></td>
+<td style="text-align:left"><code>ReentrantLock</code><br> <code>Condition</code><br> <code>Semaphore</code><br> <code>ReadWriteLock</code>,<code>ReentrantReadWriteLock</code><br> <code>CountDownLatch</code><br> <code>CyclicBarrier</code><br> <code>CountDownLatch</code><br><code>ForkJoin</code><br><code>AQS</code><br><code>LockSupport</code></td>
 </tr>
 <tr>
 <td style="text-align:center"><code>Amino(并发线程组件)</code></td>
 <td style="text-align:left"><code>Master-Worker模式</code> <br> <code>Map-reduce模式</code> <br> <code>Divide and conquer模式</code> <br> <code>Pipeline模式</code> <br></td>
 </tr>
+<tr>
+<td style="text-align:center"><code>JCTool</code></td>
+<td style="text-align:left"><code>增强型数据结构</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>Guava Concurrent</code></td>
+<td style="text-align:left"><code>谷歌并发编程工具包</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>Disruptor</code></td>
+<td style="text-align:left"><code>高并发循环事件队列</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>Reactor与Proactor</code></td>
+<td style="text-align:left"><code>涉及操作系统IO模型, 同步与异步/阻塞与非阻塞</code></td>
+</tr>
 </tbody>
 </table>
-<h2 id="thread-runable">Thread/Runable</h2>
-<p>Thread只能单继承, Runable可以多继承, 内部都是重写run()方法</p>
-<ul>
-<li>状态机<br>
-线程有6种状态, 请查阅<code>java多线程基础（一）</code>  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> State &#123;</span><br><span class="line">    NEW,      <span class="comment">//初始态</span></span><br><span class="line">    RUNNABLE, <span class="comment">//就绪态/运行态</span></span><br><span class="line">    BLOCKED,  <span class="comment">//阻塞态</span></span><br><span class="line">    WAITING,  <span class="comment">//等待态</span></span><br><span class="line">    TIMED_WAITING, <span class="comment">//超时等待态</span></span><br><span class="line">    TERMINATED; <span class="comment">//终止态</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<blockquote>
-<ol>
-<li><code>RUNNABLE</code>状态在jvm里可以认为是运行态, 但对于操作系统来说, <code>RUNNABLE</code>=<code>Runnable</code>+<code>Running</code>; 只有分配到cpu时间片才叫Running, 对于java来说不用关心</li>
-<li>线程有三个队列
-<code>1. 就绪队列</code>:
+<h2 id="thread-runnable">Thread/Runnable</h2>
+<p>Thread只能单继承, Runnable可以多继承, 内部都是重写run()方法</p>
+<h3 id="状态机">状态机</h3>
+<p>线程有6种状态, 请查阅<code>java多线程基础（一）</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> State &#123;</span><br><span class="line">    NEW,      <span class="comment">//初始态</span></span><br><span class="line">    RUNNABLE, <span class="comment">//就绪态/运行态</span></span><br><span class="line">    BLOCKED,  <span class="comment">//阻塞态</span></span><br><span class="line">    WAITING,  <span class="comment">//等待态</span></span><br><span class="line">    TIMED_WAITING, <span class="comment">//超时等待态</span></span><br><span class="line">    TERMINATED; <span class="comment">//终止态</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>RUNNABLE</code>状态在jvm里可以认为是运行态, 但对于操作系统来说, <code>RUNNABLE</code>=<code>Runnable</code>+<code>Running</code>; 只有分配到cpu时间片才叫Running, 对于java来说不用关心</p>
+<h3 id="同时线程有三个队列">同时线程有三个队列:</h3>
+<p><code>1. 就绪队列</code>:
 处于Runnable状态, 随时等待cpu调度; 调用<code>yelid</code>, <code>sleep到期</code>, <code>join等待完毕</code>后即处于此状态;
 <font color="red">注意:yelid是谦让cpu时间片; sleep和join也不会释放锁, 更不会进入「等待队列」。难理解的地方在于join, 它是由wait实现的, 居然不进入「等待队列」?这是由于join的是当前主线程, 而非调用线程, 主线程等待子线程调用完毕后由内部native方法去notify唤醒</font>
 参考: <a href="https://segmentfault.com/q/1010000007260477" target="_blank" rel="noopener">Java多线程里面join方法会使被阻塞线程释放对象锁吗？</a>
 <code>2. 锁池队列</code>:
 处于竞争锁状态, <code>synchorized</code>, <code>Lock</code>, <code>...</code>
 <code>3. 等待队列</code>:
-wait调用后即进入此队列, 一旦被唤醒则进入<code>锁池队列</code>去竞争锁, 一旦竞争到锁则进入<code>等待队列</code>, 等待被cpu时间片调度</li>
+wait调用后即进入此队列, 一旦被唤醒则进入<code>锁池队列</code>去竞争锁, 一旦竞争到锁则进入<code>等待队列</code>, 等待被cpu时间片调度</p>
+<blockquote>
+<ol start="3">
 <li>notify/notifyAll, wait
 notify是随机唤醒阻塞在锁(monitor)上的线程, 有可能会出现唤醒的线程竞争不到锁资源(进入临界区)而失败;
 notifyAll则是唤醒所有阻塞在其上的线程, 也可能出现<code>惊群效应</code>, 可以理解为活锁, 大家都竞争不到锁而往复的释放自己持有的资源</li>
@@ -499,7 +492,7 @@ notifyAll则是唤醒所有阻塞在其上的线程, 也可能出现<code>惊群
 <li><code>AtomicIntegerArray</code>
 保证数组的每个元素操作都是线程安全, 比起<code>Collections.synchronizedList</code>使用<code>syncthorized</code>悲观锁性能要好一些。</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getAndSet</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> newValue)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> unsafe.getAndSetInt(array, checkedByteOffset(i), newValue);</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 最终使用了如下代码</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">byteOffset</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * - base为数组在内存的基地址</span></span><br><span class="line"><span class="comment">     * int base = unsafe.arrayBaseOffset(int[].class);</span></span><br><span class="line"><span class="comment">     * - shift为数组每个元素在内存的偏移量bit</span></span><br><span class="line"><span class="comment">     * - scale指Integer的宽度, 4个字节(byte)</span></span><br><span class="line"><span class="comment">     * int scale = unsafe.arrayIndexScale(int[].class);</span></span><br><span class="line"><span class="comment">     * numberOfLeadingZeros计算前导零的个数</span></span><br><span class="line"><span class="comment">     * shift = 31 - Integer.numberOfLeadingZeros(scale);</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">return</span> ((<span class="keyword">long</span>) i &lt;&lt; shift) + base;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getAndSet</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> newValue)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> unsafe.getAndSetInt(array, checkedByteOffset(i), newValue);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 最终使用了如下代码</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">byteOffset</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * - base为数组在内存的基地址</span></span><br><span class="line"><span class="comment">     * int base = unsafe.arrayBaseOffset(int[].class);</span></span><br><span class="line"><span class="comment">     * - shift为数组每个元素在内存的偏移量bit</span></span><br><span class="line"><span class="comment">     * - scale指Integer的宽度, 4个字节(byte)</span></span><br><span class="line"><span class="comment">     * int scale = unsafe.arrayIndexScale(int[].class);</span></span><br><span class="line"><span class="comment">     * numberOfLeadingZeros计算前导零的个数</span></span><br><span class="line"><span class="comment">     * shift = 31 - Integer.numberOfLeadingZeros(scale);</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">return</span> ((<span class="keyword">long</span>) i &lt;&lt; shift) + base;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><code>AtomicIntegerFieldUpdater</code>
 主要用于普通变量的原子操作, 但是它有四点前提:
@@ -583,7 +576,7 @@ ThreadLocalRandom重写了nextInt, 利用ThreadLocal, 初始化Thread线程实�
 <font color="orange">这个比较难理解, 我们看如下分析:</font></li>
 </ol>
 </blockquote>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">0x80000000 32位如下:</span><br><span class="line">1000 0000 0000 0000 0000 0000 0000 0000</span><br><span class="line">无符号右移动zeroNumPos位(pos的前导零个数)</span><br><span class="line">比如pos=17,代表第二个数组的第一位,坐标为(1,0)</span><br><span class="line">17已进位,则前导零个数为27,无符号右移27位,高位补27个零:</span><br><span class="line">0000 0000 0000 0000 0000 0000 0001 0000</span><br><span class="line">^异或pos (相等为0, 不等为1): </span><br><span class="line">0000 0000 0000 0000 0000 0000 0001 0001</span><br><span class="line">结果为:</span><br><span class="line">0000 0000 0000 0000 0000 0000 0000 0001</span><br><span class="line">表明可以存入的索引为1 (注意索引从0开始, 即第二位)</span><br><span class="line">=======================================</span><br><span class="line">比如pos=13, 代表第一个数组第五位, 坐标为(0,4)</span><br><span class="line">前导零个数为28,无符号右移28位,高位补28个零:</span><br><span class="line">0000 0000 0000 0000 0000 0000 0000 1000</span><br><span class="line">^异或pos</span><br><span class="line">0000 0000 0000 0000 0000 0000 0000 1101</span><br><span class="line">结果为:</span><br><span class="line">0000 0000 0000 0000 0000 0000 0000 0101</span><br><span class="line">表明可以存入的索引为5 (注意索引从0开始, 即第六位)</span><br><span class="line">=======================================</span><br><span class="line">比如pos=15, 代表第一个数组第七位, 坐标为(0,6)</span><br><span class="line">前导零个数为28,无符号右移28位,高位补28个零:</span><br><span class="line">0000 0000 0000 0000 0000 0000 0000 1000</span><br><span class="line">^异或pos</span><br><span class="line">0000 0000 0000 0000 0000 0000 0000 1111</span><br><span class="line">结果为:</span><br><span class="line">0000 0000 0000 0000 0000 0000 0000 0111</span><br><span class="line">表明可以存入的索引为7 (注意索引从0开始, 即第八位)</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">0x80000000 32位如下:</span><br><span class="line">1000 0000 0000 0000 0000 0000 0000 0000</span><br><span class="line">无符号右移动zeroNumPos位(pos的前导零个数)</span><br><span class="line">比如pos=17,代表第二个数组的第一位,坐标为(1,0)</span><br><span class="line">17已进位,则前导零个数为27,无符号右移27位,高位补27个零:</span><br><span class="line">0000 0000 0000 0000 0000 0000 0001 0000</span><br><span class="line">^异或pos (相等为0, 不等为1):</span><br><span class="line">0000 0000 0000 0000 0000 0000 0001 0001</span><br><span class="line">结果为:</span><br><span class="line">0000 0000 0000 0000 0000 0000 0000 0001</span><br><span class="line">表明可以存入的索引为1 (注意索引从0开始, 即第二位)</span><br><span class="line">=======================================</span><br><span class="line">比如pos=13, 代表第一个数组第五位, 坐标为(0,4)</span><br><span class="line">前导零个数为28,无符号右移28位,高位补28个零:</span><br><span class="line">0000 0000 0000 0000 0000 0000 0000 1000</span><br><span class="line">^异或pos</span><br><span class="line">0000 0000 0000 0000 0000 0000 0000 1101</span><br><span class="line">结果为:</span><br><span class="line">0000 0000 0000 0000 0000 0000 0000 0101</span><br><span class="line">表明可以存入的索引为5 (注意索引从0开始, 即第六位)</span><br><span class="line">=======================================</span><br><span class="line">比如pos=15, 代表第一个数组第七位, 坐标为(0,6)</span><br><span class="line">前导零个数为28,无符号右移28位,高位补28个零:</span><br><span class="line">0000 0000 0000 0000 0000 0000 0000 1000</span><br><span class="line">^异或pos</span><br><span class="line">0000 0000 0000 0000 0000 0000 0000 1111</span><br><span class="line">结果为:</span><br><span class="line">0000 0000 0000 0000 0000 0000 0000 0111</span><br><span class="line">表明可以存入的索引为7 (注意索引从0开始, 即第八位)</span><br></pre></td></tr></table></figure>
 <p><font color="red">为何这样设计? 这个需要对二进制数据结构比较敏感, 可能10进制已经固化到思维, 二进制反而很不直观, 采用二进制进位和前导零的关系, 可以直接映射坐标</font></p>
 <blockquote>
 <ol start="4">
@@ -609,11 +602,11 @@ ReentrantLock和synchronized都是可重入的, 意思是同一个获得锁的�
 可重入机制: 每一个锁(monitor)关联一个线程持有者和计数器，当计数器为 0 时表示该锁没有被任何线程持有，那么任何线程都可能获得该锁而调用相应的方法；当某一线程请求成功后，JVM会记下锁的持有线程，并且将计数器置为 1；此时其它线程请求该锁，则必须等待；而该持有锁的线程如果再次请求这个锁，就可以再次拿到这个锁，同时计数器会递增；当线程退出同步代码块时，计数器会递减，如果计数器为 0，则释放该锁。
 </font></p>
 <p>我们来模拟不可重入锁</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 不可重入锁 (使用CAS实现)</span><br><span class="line"> * 同一线程, 当两次调用lock, 而不调用unlock时, 会产生死锁</span><br><span class="line"> * 原因是第二次lock会永远更新不成功, 则永远在死循环</span><br><span class="line"> */</span><br><span class="line">public class UnreentrantLockByCAS &#123;</span><br><span class="line">      private AtomicReference&lt;Thread&gt; owner = new AtomicReference&lt;&gt;();</span><br><span class="line">      //AtomicInteger</span><br><span class="line">  </span><br><span class="line">      public void lock() &#123;</span><br><span class="line">          Thread current = Thread.currentThread();</span><br><span class="line">          //这句是很经典的“自旋”语法</span><br><span class="line">          for (; ; ) &#123;</span><br><span class="line">              if (owner.compareAndSet(null, current)) &#123;</span><br><span class="line">                  return;</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  </span><br><span class="line">      public void unlock() &#123;</span><br><span class="line">          Thread current = Thread.currentThread();</span><br><span class="line">          owner.compareAndSet(current, null);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 不可重入锁 (使用CAS实现)</span></span><br><span class="line"><span class="comment"> * 同一线程, 当两次调用lock, 而不调用unlock时, 会产生死锁</span></span><br><span class="line"><span class="comment"> * 原因是第二次lock会永远更新不成功, 则永远在死循环</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UnreentrantLockByCAS</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> AtomicReference&lt;Thread&gt; owner = <span class="keyword">new</span> AtomicReference&lt;&gt;();</span><br><span class="line">        <span class="comment">//AtomicInteger</span></span><br><span class="line">    </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            Thread current = Thread.currentThread();</span><br><span class="line">            <span class="comment">//这句是很经典的“自旋”语法</span></span><br><span class="line">            <span class="keyword">for</span> (; ; ) &#123;</span><br><span class="line">                <span class="keyword">if</span> (owner.compareAndSet(<span class="keyword">null</span>, current)) &#123;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unlock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            Thread current = Thread.currentThread();</span><br><span class="line">            owner.compareAndSet(current, <span class="keyword">null</span>);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 不可重入锁 (使用CAS实现)</span><br><span class="line"> * 同一线程, 当两次调用lock, 而不调用unlock时, 会产生死锁</span><br><span class="line"> * 原因是第二次lock会永远更新不成功, 则永远在死循环</span><br><span class="line"> */</span><br><span class="line">public class UnreentrantLockByCAS &#123;</span><br><span class="line">      private AtomicReference&lt;Thread&gt; owner = new AtomicReference&lt;&gt;();</span><br><span class="line">      //AtomicInteger</span><br><span class="line"></span><br><span class="line">      public void lock() &#123;</span><br><span class="line">          Thread current = Thread.currentThread();</span><br><span class="line">          //这句是很经典的“自旋”语法</span><br><span class="line">          for (; ; ) &#123;</span><br><span class="line">              if (owner.compareAndSet(null, current)) &#123;</span><br><span class="line">                  return;</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      public void unlock() &#123;</span><br><span class="line">          Thread current = Thread.currentThread();</span><br><span class="line">          owner.compareAndSet(current, null);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 不可重入锁 (使用CAS实现)</span></span><br><span class="line"><span class="comment"> * 同一线程, 当两次调用lock, 而不调用unlock时, 会产生死锁</span></span><br><span class="line"><span class="comment"> * 原因是第二次lock会永远更新不成功, 则永远在死循环</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UnreentrantLockByCAS</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> AtomicReference&lt;Thread&gt; owner = <span class="keyword">new</span> AtomicReference&lt;&gt;();</span><br><span class="line">        <span class="comment">//AtomicInteger</span></span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            Thread current = Thread.currentThread();</span><br><span class="line">            <span class="comment">//这句是很经典的“自旋”语法</span></span><br><span class="line">            <span class="keyword">for</span> (; ; ) &#123;</span><br><span class="line">                <span class="keyword">if</span> (owner.compareAndSet(<span class="keyword">null</span>, current)) &#123;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unlock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            Thread current = Thread.currentThread();</span><br><span class="line">            owner.compareAndSet(current, <span class="keyword">null</span>);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>当然我们改动一下, 增加Thread判断, 同时增加计数</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 可重入 (synchronized实现)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReentrantLockBySync</span> </span>&#123;</span><br><span class="line">      <span class="keyword">boolean</span> isLocked = <span class="keyword">false</span>;</span><br><span class="line">      Thread lockedBy = <span class="keyword">null</span>;</span><br><span class="line">      <span class="keyword">int</span> lockedCount = <span class="number">0</span>;</span><br><span class="line">  </span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">lock</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">          Thread thread = Thread.currentThread();</span><br><span class="line">          <span class="keyword">while</span> (isLocked &amp;&amp; lockedBy != thread) &#123;</span><br><span class="line">              wait();</span><br><span class="line">          &#125;</span><br><span class="line">          isLocked = <span class="keyword">true</span>;</span><br><span class="line">          lockedCount++;</span><br><span class="line">          lockedBy = thread;</span><br><span class="line">      &#125;</span><br><span class="line">  </span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">unlock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">          <span class="keyword">if</span> (Thread.currentThread() == <span class="keyword">this</span>.lockedBy) &#123;</span><br><span class="line">              lockedCount--;</span><br><span class="line">              <span class="keyword">if</span> (lockedCount == <span class="number">0</span>) &#123;</span><br><span class="line">                  isLocked = <span class="keyword">false</span>;</span><br><span class="line">                  notify();</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 可重入 (使用CAS实现)</span></span><br><span class="line"><span class="comment"> * 两要素: 若是当前线程, 重入时state计数器加1, 释放时减1</span></span><br><span class="line"><span class="comment"> *  1.持有当前线程</span></span><br><span class="line"><span class="comment"> *  2.计数器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReentrantLockByCAS</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> AtomicReference&lt;Thread&gt; owner = <span class="keyword">new</span> AtomicReference&lt;&gt;();</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> state = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            Thread current = Thread.currentThread();</span><br><span class="line">            <span class="keyword">if</span> (current == owner.get()) &#123;</span><br><span class="line">                state++;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//这句是很经典的“自旋”语法</span></span><br><span class="line">            <span class="keyword">for</span> (; ; ) &#123;</span><br><span class="line">                <span class="keyword">if</span> (owner.compareAndSet(<span class="keyword">null</span>, current)) &#123;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unlock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            Thread current = Thread.currentThread();</span><br><span class="line">            <span class="keyword">if</span> (current == owner.get()) &#123;</span><br><span class="line">                <span class="keyword">if</span> (state != <span class="number">0</span>) &#123;</span><br><span class="line">                    state--;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    owner.compareAndSet(current, <span class="keyword">null</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 可重入 (synchronized实现)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReentrantLockBySync</span> </span>&#123;</span><br><span class="line">      <span class="keyword">boolean</span> isLocked = <span class="keyword">false</span>;</span><br><span class="line">      Thread lockedBy = <span class="keyword">null</span>;</span><br><span class="line">      <span class="keyword">int</span> lockedCount = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">lock</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">          Thread thread = Thread.currentThread();</span><br><span class="line">          <span class="keyword">while</span> (isLocked &amp;&amp; lockedBy != thread) &#123;</span><br><span class="line">              wait();</span><br><span class="line">          &#125;</span><br><span class="line">          isLocked = <span class="keyword">true</span>;</span><br><span class="line">          lockedCount++;</span><br><span class="line">          lockedBy = thread;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">unlock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">          <span class="keyword">if</span> (Thread.currentThread() == <span class="keyword">this</span>.lockedBy) &#123;</span><br><span class="line">              lockedCount--;</span><br><span class="line">              <span class="keyword">if</span> (lockedCount == <span class="number">0</span>) &#123;</span><br><span class="line">                  isLocked = <span class="keyword">false</span>;</span><br><span class="line">                  notify();</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 可重入 (使用CAS实现)</span></span><br><span class="line"><span class="comment"> * 两要素: 若是当前线程, 重入时state计数器加1, 释放时减1</span></span><br><span class="line"><span class="comment"> *  1.持有当前线程</span></span><br><span class="line"><span class="comment"> *  2.计数器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReentrantLockByCAS</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> AtomicReference&lt;Thread&gt; owner = <span class="keyword">new</span> AtomicReference&lt;&gt;();</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> state = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            Thread current = Thread.currentThread();</span><br><span class="line">            <span class="keyword">if</span> (current == owner.get()) &#123;</span><br><span class="line">                state++;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//这句是很经典的“自旋”语法</span></span><br><span class="line">            <span class="keyword">for</span> (; ; ) &#123;</span><br><span class="line">                <span class="keyword">if</span> (owner.compareAndSet(<span class="keyword">null</span>, current)) &#123;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unlock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            Thread current = Thread.currentThread();</span><br><span class="line">            <span class="keyword">if</span> (current == owner.get()) &#123;</span><br><span class="line">                <span class="keyword">if</span> (state != <span class="number">0</span>) &#123;</span><br><span class="line">                    state--;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    owner.compareAndSet(current, <span class="keyword">null</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>总结:</p>
 </li>
 </ul>
@@ -653,7 +646,7 @@ Semaphore和Lock的区别:</p>
 </ol>
 </blockquote>
 <p>我们来看一个例子:</p>
-  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SemaphoreTest</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">final</span> Semaphore semaphore = <span class="keyword">new</span> Semaphore(<span class="number">5</span>);</span><br><span class="line">  </span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">          <span class="keyword">try</span> &#123;</span><br><span class="line">              <span class="comment">// 获取一个permission许可(可以多个, 但消费一个则少一个)</span></span><br><span class="line">              semaphore.acquire();</span><br><span class="line">  </span><br><span class="line">              <span class="comment">//模拟2s耗时操作</span></span><br><span class="line">              Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">  </span><br><span class="line">              System.out.println(<span class="string">"Thread_"</span> + Thread.currentThread().getId() + <span class="string">" done!"</span>);</span><br><span class="line">  </span><br><span class="line">          &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">              e.printStackTrace();</span><br><span class="line">          &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">              semaphore.release();</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  </span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">          <span class="comment">// 创建容量固定为20的线程池</span></span><br><span class="line">          ExecutorService excutorService = Executors.newFixedThreadPool(<span class="number">20</span>);</span><br><span class="line">  </span><br><span class="line">          <span class="keyword">final</span> SemaphoreTest semaphoreTask = <span class="keyword">new</span> SemaphoreTest();</span><br><span class="line">  </span><br><span class="line">          <span class="comment">/**</span></span><br><span class="line"><span class="comment">           * 20个线程任务立马提交完毕, 但是任务里有2s耗时操作, 所以一次最多允许执行5个线程, 2s后再执行5个线程, 依次之</span></span><br><span class="line"><span class="comment">           * 注意: execute 和 submit 区别</span></span><br><span class="line"><span class="comment">           *      1. submit有三个重载</span></span><br><span class="line"><span class="comment">           *         &lt;T&gt; Future&lt;T&gt; submit(Callable&lt;T&gt; task)</span></span><br><span class="line"><span class="comment">           *         &lt;T&gt; Future&lt;T&gt; submit(Runnable task, T result)</span></span><br><span class="line"><span class="comment">           *         Future&lt;?&gt; submit(Runnable task)</span></span><br><span class="line"><span class="comment">           *      2. submit有返回值, 但execute没有</span></span><br><span class="line"><span class="comment">           *      3. submit可以处理Exception异常, 捕获Future.get()即可</span></span><br><span class="line"><span class="comment">           *</span></span><br><span class="line"><span class="comment">           *</span></span><br><span class="line"><span class="comment">           */</span></span><br><span class="line">          <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">20</span>; i++)&#123;</span><br><span class="line">              excutorService.<span class="comment">/*execute*/</span>submit(semaphoreTask);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SemaphoreTest</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">final</span> Semaphore semaphore = <span class="keyword">new</span> Semaphore(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">          <span class="keyword">try</span> &#123;</span><br><span class="line">              <span class="comment">// 获取一个permission许可(可以多个, 但消费一个则少一个)</span></span><br><span class="line">              semaphore.acquire();</span><br><span class="line"></span><br><span class="line">              <span class="comment">//模拟2s耗时操作</span></span><br><span class="line">              Thread.sleep(<span class="number">2000</span>);</span><br><span class="line"></span><br><span class="line">              System.out.println(<span class="string">"Thread_"</span> + Thread.currentThread().getId() + <span class="string">" done!"</span>);</span><br><span class="line"></span><br><span class="line">          &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">              e.printStackTrace();</span><br><span class="line">          &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">              semaphore.release();</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">          <span class="comment">// 创建容量固定为20的线程池</span></span><br><span class="line">          ExecutorService excutorService = Executors.newFixedThreadPool(<span class="number">20</span>);</span><br><span class="line"></span><br><span class="line">          <span class="keyword">final</span> SemaphoreTest semaphoreTask = <span class="keyword">new</span> SemaphoreTest();</span><br><span class="line"></span><br><span class="line">          <span class="comment">/**</span></span><br><span class="line"><span class="comment">           * 20个线程任务立马提交完毕, 但是任务里有2s耗时操作, 所以一次最多允许执行5个线程, 2s后再执行5个线程, 依次之</span></span><br><span class="line"><span class="comment">           * 注意: execute 和 submit 区别</span></span><br><span class="line"><span class="comment">           *      1. submit有三个重载</span></span><br><span class="line"><span class="comment">           *         &lt;T&gt; Future&lt;T&gt; submit(Callable&lt;T&gt; task)</span></span><br><span class="line"><span class="comment">           *         &lt;T&gt; Future&lt;T&gt; submit(Runnable task, T result)</span></span><br><span class="line"><span class="comment">           *         Future&lt;?&gt; submit(Runnable task)</span></span><br><span class="line"><span class="comment">           *      2. submit有返回值, 但execute没有</span></span><br><span class="line"><span class="comment">           *      3. submit可以处理Exception异常, 捕获Future.get()即可</span></span><br><span class="line"><span class="comment">           *</span></span><br><span class="line"><span class="comment">           *</span></span><br><span class="line"><span class="comment">           */</span></span><br><span class="line">          <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">20</span>; i++)&#123;</span><br><span class="line">              excutorService.<span class="comment">/*execute*/</span>submit(semaphoreTask);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><code>ReentrantReadWriteLock读写锁</code></li>
 </ul>
@@ -855,33 +848,41 @@ invoke会阻塞调用线程 (主线程), 直到有结果并返回</font></p>
 
   
 
-<footer class="footer">
-    <div class="footer-logo">
-        <span>just do it</span>
+<footer id="footer">
+    <div class="footer-copyright">
+        <div>
+            <p style="font-family: sketch; font-size: 28px;">just do it</p>
+            <p> 版权所有 <a href>duyu </a> @ 2019</p>
+            
+        </div>
     </div>
-
+    
     <div class="footer-social">
         
             
                 
-                    <div class="footer-social-item"><a href="https://github.com/doooyo" target="_blank"><i class="fab fa-github fa-2x" aria-hidden="true"></i></a></div>
+                    <div class="footer-social-item">
+                        <a href="https://github.com/doooyo" target="_blank">
+                        
+                            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+                        
+                        </a>
+                    </div>
+                
+            
+                
+                    <div class="footer-social-item">
+                        <a href="/atom.xml" target="_blank">
+                        
+                             <i class="fa fa-rss fa-2x" aria-hidden="true"></i>
+                        
+                        </a>
+                    </div>
                 
             
         
     </div>
-    <p>
-        版权所有 <a href>duyu </a> @ 2019
-    </p>
-    <p>
-        Icons by <a href="http://www.iconfont.cn" title="Iconfont">Iconfont</a>
-        
-    </p>
-    
-    
-    
-    
 </footer>
-
 
   <br>
 
@@ -986,7 +987,7 @@ invoke会阻塞调用线程 (主线程), 直到有结果并返回</font></p>
   loadjs(['/libs/jshashes/hashes.min.js', '/libs/js-cookie/src/js.cookie.js', '/js/post.v2.js'], 'post-version');
   loadjs.ready('post-version', function(){
     
-    new Postv2('hashit_f48a9d0fcc9cd38ecb81077f97cc3877bea4e90846eba5291f489a134a64e2fd').update('hashit_f34ddbf7dae9cbeab57217b00caa2cf5702472ee6b7d0746f69cb23b4e69627e', function(){});
+    new Postv2('hashit_a52647aaefd95ede8c1d7de6ab6f577204e3828093c9ffd2d78f6e29e240994a').update('hashit_47db02321d991ccd26f5bf709bbf3743498bbc77ede0ea5e9a70e5bcdb42eac9', function(){});
   });
   
 </script>

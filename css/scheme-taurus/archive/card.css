@@ -6,6 +6,7 @@
   max-width: 27%;
 for_breakpoint(mobile)
   margin: 1em 1%;
+  display: flex;
   flex-wrap: wrap;
   border-radius: 10px;
   box-shadow: 0.5px 0.5px 3px -0.5px rgba(170,175,173,0.61);

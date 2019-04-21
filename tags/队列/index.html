@@ -28,9 +28,6 @@
 <link rel="stylesheet" href="/libs/animate.css/animate.min.css">
   <!-- load lightgallery -->
 <link rel="stylesheet" href="/css/lightgallery.css">
-
-
-
 <link rel="stylesheet" href="/libs/noty/lib/noty.css">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   
@@ -81,7 +78,7 @@
 
 
 
-<header class="header">
+<header class="my-header">
 	<div class="header-title">
 		
 			<div class="header-logo">
@@ -90,7 +87,7 @@
 				</a>
 			</div>
 			<div class="header-text">
-				<h1 style="font-family: sketch;">
+				<h1 style="font-family: sketch; font-weight: 400">
 					<a href="/">N 27°59′′</a>
 				</h1>
 				<p>
@@ -156,93 +153,64 @@
 
 
 	
-		
-		
-							
-				
+		<h2 class="archive-title">#   队列</h2>
 	
-	
-		
-	
-	
-	
-		
-	
-	
-
-
-
-
-	<div class="grid-4_sm-1 grid-equalHeight">
-
+	<div class="archive-cards">
 	
 		
 
 
 
 
-
-	
+<div class="Card-archive" id="hashit_a52647aaefd95ede8c1d7de6ab6f577204e3828093c9ffd2d78f6e29e240994a" data-name="concurrent并发包讲解(二)" data-version>
+	<mark class="Card-badge"></mark>
+	<div class="Card-body">
+		<h3 class="Card-title">
+			
+				<a href="/2017/06/30/Concurrent并发包讲解(二)/">
+			
+			Concurrent并发包讲解(二)</a>
+		</h3>
+		<div class="Card-meta">
+			<div class="Card-tags">
+<div class="tags">
 	
 		
 			
-				
-			
-				
-			
-			
-		
-		
-			
-			
-					
-						
-							
-						
-					
-					
-						
-					
-					
-					
-						
-							
-						
-					
-					
-						
-					
-					
-					
+				<label class="tag-1"><a href="/tags/线程池/">线程池</a></label>
 			
 		
 	
-
-
-
-<div class="col" id="hashit_f48a9d0fcc9cd38ecb81077f97cc3877bea4e90846eba5291f489a134a64e2fd" data-name="多线程(二)" data-version>
-	<div class="Card-archive">
-		<div class="Card-body">
-			<p class="Card-title">
-
-				
-				<a href="/2017/06/30/多线程-二/">
-				
-				多线程(二)</a>
-
-			</p>
-			<small class="Card-meta">
-				<a href="/archives/">
-					<i class="fa fa-calendar"></i> Jun 30, 2017
-				</a>
-			</small>
+		
+			
+				<label class="tag-2"><a href="/tags/锁/">锁</a></label>
+			
+		
+	
+		
+			
+				<label class="tag-3"><a href="/tags/队列/">队列</a></label>
+			
+		
+	
+	</div>
+</div>
+			<ul>
+					<li>
+						<a href="/archives/">
+							<i class="fa fa-calendar"></i> Jun 30, 2017
+						</a>
+					</li>
+					
+					
+					
+			</ul>
 		</div>
 	</div>
 </div>
+
 	
 	</div>
-
-
 
 
 
@@ -269,33 +237,41 @@
 
   
 
-<footer class="footer">
-    <div class="footer-logo">
-        <span>just do it</span>
+<footer id="footer">
+    <div class="footer-copyright">
+        <div>
+            <p style="font-family: sketch; font-size: 28px;">just do it</p>
+            <p> 版权所有 <a href>duyu </a> @ 2019</p>
+            
+        </div>
     </div>
-
+    
     <div class="footer-social">
         
             
                 
-                    <div class="footer-social-item"><a href="https://github.com/doooyo" target="_blank"><i class="fab fa-github fa-2x" aria-hidden="true"></i></a></div>
+                    <div class="footer-social-item">
+                        <a href="https://github.com/doooyo" target="_blank">
+                        
+                            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+                        
+                        </a>
+                    </div>
+                
+            
+                
+                    <div class="footer-social-item">
+                        <a href="/atom.xml" target="_blank">
+                        
+                             <i class="fa fa-rss fa-2x" aria-hidden="true"></i>
+                        
+                        </a>
+                    </div>
                 
             
         
     </div>
-    <p>
-        版权所有 <a href>duyu </a> @ 2019
-    </p>
-    <p>
-        Icons by <a href="http://www.iconfont.cn" title="Iconfont">Iconfont</a>
-        
-    </p>
-    
-    
-    
-    
 </footer>
-
 
   <br>
 
@@ -405,22 +381,22 @@
           
           
           // show/hide post unread badage
-          var postLinks = document.querySelectorAll('#hashit_f48a9d0fcc9cd38ecb81077f97cc3877bea4e90846eba5291f489a134a64e2fd .Card-title a, #hashit_f48a9d0fcc9cd38ecb81077f97cc3877bea4e90846eba5291f489a134a64e2fd .Card-excerpt a, #hashit_f48a9d0fcc9cd38ecb81077f97cc3877bea4e90846eba5291f489a134a64e2fd .Card-figure a');
-          new Postv2('hashit_f48a9d0fcc9cd38ecb81077f97cc3877bea4e90846eba5291f489a134a64e2fd').showUnreadNotification('hashit_f34ddbf7dae9cbeab57217b00caa2cf5702472ee6b7d0746f69cb23b4e69627e', function(){
-            console.log('show badge for 2017/06/30/多线程-二/ : hashit_f48a9d0fcc9cd38ecb81077f97cc3877bea4e90846eba5291f489a134a64e2fd');
-            var postBadge = document.querySelector('#hashit_f48a9d0fcc9cd38ecb81077f97cc3877bea4e90846eba5291f489a134a64e2fd mark.Card-badge');
+          var postLinks = document.querySelectorAll('#hashit_a52647aaefd95ede8c1d7de6ab6f577204e3828093c9ffd2d78f6e29e240994a .Card-title a, #hashit_a52647aaefd95ede8c1d7de6ab6f577204e3828093c9ffd2d78f6e29e240994a .Card-excerpt a, #hashit_a52647aaefd95ede8c1d7de6ab6f577204e3828093c9ffd2d78f6e29e240994a .Card-figure a');
+          new Postv2('hashit_a52647aaefd95ede8c1d7de6ab6f577204e3828093c9ffd2d78f6e29e240994a').showUnreadNotification('hashit_47db02321d991ccd26f5bf709bbf3743498bbc77ede0ea5e9a70e5bcdb42eac9', function(){
+            console.log('show badge for 2017/06/30/Concurrent并发包讲解(二)/ : hashit_a52647aaefd95ede8c1d7de6ab6f577204e3828093c9ffd2d78f6e29e240994a');
+            var postBadge = document.querySelector('#hashit_a52647aaefd95ede8c1d7de6ab6f577204e3828093c9ffd2d78f6e29e240994a mark.Card-badge');
             $(postBadge).fadeIn();
           }, function(){
-            console.log('hide badge for 2017/06/30/多线程-二/ : hashit_f48a9d0fcc9cd38ecb81077f97cc3877bea4e90846eba5291f489a134a64e2fd');
-            var postBadge = document.querySelector('#hashit_f48a9d0fcc9cd38ecb81077f97cc3877bea4e90846eba5291f489a134a64e2fd mark.Card-badge');
+            console.log('hide badge for 2017/06/30/Concurrent并发包讲解(二)/ : hashit_a52647aaefd95ede8c1d7de6ab6f577204e3828093c9ffd2d78f6e29e240994a');
+            var postBadge = document.querySelector('#hashit_a52647aaefd95ede8c1d7de6ab6f577204e3828093c9ffd2d78f6e29e240994a mark.Card-badge');
             $(postBadge).fadeOut();
           }); 
           // update cookie upon click the post and hide badge immediately
           for(var i = 0;i < postLinks.length; i++){
             postLinks[i].onclick = function(){
-              new Postv2('hashit_f48a9d0fcc9cd38ecb81077f97cc3877bea4e90846eba5291f489a134a64e2fd').update('hashit_f34ddbf7dae9cbeab57217b00caa2cf5702472ee6b7d0746f69cb23b4e69627e', function(){
+              new Postv2('hashit_a52647aaefd95ede8c1d7de6ab6f577204e3828093c9ffd2d78f6e29e240994a').update('hashit_47db02321d991ccd26f5bf709bbf3743498bbc77ede0ea5e9a70e5bcdb42eac9', function(){
                 console.log('called');
-                var postBadge = document.querySelector('#hashit_f48a9d0fcc9cd38ecb81077f97cc3877bea4e90846eba5291f489a134a64e2fd mark.Card-badge');
+                var postBadge = document.querySelector('#hashit_a52647aaefd95ede8c1d7de6ab6f577204e3828093c9ffd2d78f6e29e240994a mark.Card-badge');
                 $(postBadge).fadeOut();
               });
             }
