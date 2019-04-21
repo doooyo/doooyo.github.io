@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  
+      <title>线程安全集合，数据结构 - N 27°59′′</title>
+  
+
+  
+  
+  <meta name="description" content="java node 微服务 大数据 数据结构">
+  <meta name="author" content="duyu">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- load loadjs.js -->
+  <script src="/libs/loadjs/dist/loadjs.min.js"></script>
+
+<link rel="stylesheet" href="/libs/animate.css/animate.min.css">
+  <!-- load lightgallery -->
+<link rel="stylesheet" href="/css/lightgallery.css">
+<link rel="stylesheet" href="/libs/noty/lib/noty.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+    <link rel="stylesheet" href="/css/taurus.css">
+    
+        <link rel="stylesheet" href="/css/scheme-taurus/animations.css">
+    
+
+
+<link rel="stylesheet" href="/.css">
+
+  <!-- load font awesome 5 -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+  </script>
+  <!-- load mathjax -->
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax//libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <!-- load js-cookie -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="/js/social-share.min.js"></script>
+    <script src="/js/theme.js"></script>
+
+  <!-- include cookie.js -->
+  
+  
+
+  <!-- include comment system code -->
+  
+    <link rel="stylesheet" href="/css/gitment/default.css">
+<script src="/js/gitment.browser.js"></script>
+  
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+
+
+
+<header class="my-header">
+	<div class="header-title">
+		
+			<div class="header-logo">
+				<a href="/">
+					<img class="grow" src="/images/lion.svg">
+				</a>
+			</div>
+			<div class="header-text">
+				<h1 style="font-family: sketch; font-weight: 400">
+					<a href="/">N 27°59′′</a>
+				</h1>
+				<p>
+					<small>
+						duyu
+					</small>
+				</p>
+			</div>
+		
+	</div>
+	<div id="header-menu-container">
+		
+
+
+
+<nav class="menu">
+	
+	
+		
+		
+		
+		
+		
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/archives/" title="归档">
+					<img src="/images/icons/own/archive.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/archives/">
+					<span>归档</span>
+				</a>
+			</div>
+		</div>
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/search/" title="搜索">
+					<img src="/images/icons/own/search.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/search/">
+					<span>搜索</span>
+				</a>
+			</div>
+		</div>
+
+</nav>
+
+	</div>
+</header>
+
+ 
+
+  
+
+
+
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div style="flex: 1;">
+      <style>
+    body {
+        background-color: white;
+    }
+</style>
+
+
+
+
+	
+	
+	
+	
+
+
+
+    
+    
+
+
+
+
+
+
+    
+    
+        
+    
+
+    
+        
+    
+
+
+
+
+
+
+
+
+
+<article class="article" id="/2019/04/22/线程安全集合，数据结构/" data-name="线程安全集合，数据结构" data-version>
+
+    <!-- Title -->
+    <div class="article-header">
+         
+         
+            
+                
+            
+         
+         
+         <h1 class="article-title">
+            <a href="/2019/04/22/线程安全集合，数据结构/">
+                线程安全集合，数据结构
+            </a>
+        </h1>
+        <!-- TODO: support nested categories,display them nicely -->
+        
+    </div>
+    
+    <!-- Date and Author -->
+    <div class="article-meta">
+    <ul>
+            <li><i class="fa fa-calendar"></i> 2019年04月22日</li>
+            
+            <li><i class="fa fa-user"></i> duyu</li>
+
+    </ul>
+    
+    </div>
+    <!-- 分割线 -->
+    <hr>
+
+    <div class="article-cards">
+        <!-- Author Card -->
+        <!---
+        <div class='Card-article Card-author'>
+            <div class='card-title'>
+                <h3></h3>
+            </div>
+            <div class='card-content'>
+                    <div class="author-meta">
+                            <div class='author-figure'>
+                                <img src="" alt="">
+                            </div>
+                            <div class='author-name'>
+                                duyu
+                            </div>
+                        </div>
+                        <div class="author-ai">
+                            <div class='author-intro'>
+                                <!-- TODO: auto generating author description -->
+                                <!-- 
+                            </div>
+                            <div class="author-articles">
+                                <!-- TODO: auto generating author articles -->
+                                <!-- <ul>
+                                    <li>Article 1</li>
+                                    <li>Article 2</li>
+                                    <li>Article 3</li>
+                                    <li>Article 4</li>
+                                    <li>Article 5</li>
+                                    <li>Article 6</li>
+                                </ul>
+                            </div>
+                        </div>
+            </div>
+            
+        </div> -->
+
+        <!-- Visit Card -->
+        <!-- <div class="Card-article Card-visit"> -->
+            <!-- <div class="card-title">
+  <h3>Post Visit</h3>
+</div>
+<div class="card-chart">
+  <div id="chart-post-visit"></div>
+</div> -->
+        <!-- </div> -->
+        
+        <!-- Auto Excerpt Card -->
+        <!-- <div class="Card-article Card-excerpt">
+            <div class="card-title">
+  <h3>Quick Read</h3>
+</div>
+<div class="card-text">
+  <p id="text-post-summary">因为讲数据集合容器就必须涉及数据结构, 以及查找算法, 排序算法; 所以这里就一起讲述了。
+
+
+HashMap/ConcurrentHashMap
+链表与红黑树的转化, Segment分段锁(和LongAdder类似)
+CopyOnWriteArrayList/CopyOnWriteMap/CopyOnWriteArraySet
+2.1 fail-fast机制的解决方案; 某一个线程A通过iterator去遍历某集合的过程中，若该集合的内容被其他线程所改变了；那么线程A访问集合时，就会抛出ConcurrentModificationException异常
+2.2...</p>
+</div>
+        </div> -->
+    </div>
+    
+    <!-- Gallery -->
+    <!-- TODO: add a slider to gallery -->
+    
+
+    <!-- Content -->
+    <!-- TODO: support table of content -->
+    <div class="article-toc" id="article-toc">
+    
+        
+
+
+
+
+
+
+
+
+    
+
+<div class="toc-button">
+    <img src="/images/icons/own/toc.svg" alt>
+</div>
+
+    </div>
+    <div class="article-content">
+    <p>因为讲数据集合容器就必须涉及数据结构, 以及查找算法, 排序算法; 所以这里就一起讲述了。</p>
+<blockquote>
+<ol>
+<li><strong><code>HashMap/ConcurrentHashMap</code></strong>
+链表与红黑树的转化, Segment分段锁(和LongAdder类似)</li>
+<li><strong><code>CopyOnWriteArrayList/CopyOnWriteMap/CopyOnWriteArraySet</code></strong>
+2.1 fail-fast机制的解决方案; 某一个线程A通过iterator去遍历某集合的过程中，若该集合的内容被其他线程所改变了；那么线程A访问集合时，就会抛出ConcurrentModificationException异常
+2.2 适用场景为多读少写的集合, 且能容忍脏读(无业务影响); 比如黑白名单,注册中心,商品类目
+2.3 由于每次add都会进行一次数组复制并扩容一位, 所以尽量避免使用addAll</li>
+<li><strong>阻塞队列</strong>
+<font color="pink">生产消费模型的典型场景就是线程池
+add/remove: 是Collection接口的方法 (队列已空/满会抛异常)
+offer/poll : 是Queue接口方法 (队列已空/满会返回false)
+put/take: 是BlockingQueue接口方法, 空/满会各自阻塞
+</font>
+<code>ArrayBlockingQueue</code>: 由数组支持的有界队列(单锁), 类似循环队列, 与Buffer或者ByteBuf类似
+<code>LinkedBlockingQueue</code>: 由链接节点支持的可选有界队列(双锁)
+<code>PriorityBlockingQueue</code>: 带优先级的无界有序阻塞队列, 由数组二叉排序树(堆)支持的无界优先级队列(完全二叉树)
+<code>DelayQueue</code>: 由优先级二叉排序树(堆)支持的、基于时间的调度队列(延期阻塞无界队列), 时间到了就会移动到队头并唤醒阻塞的线程来执行任务; 由于它是可扩容的, 所以无界
+添加或删除需要排序, siftUp(插入排序)/siftDown(删除排序)
+<code>SynchronousQueue</code>: 并发同步队列, 类似管道pipeline; 这是最复杂的队列, 它不存储数据
+参考: <a href="https://www.jianshu.com/p/587901245c95" target="_blank" rel="noopener">DelayedWorkQueue原理分析</a></li>
+<li><strong>跳表</strong>
+本质是一个链表, 使用&quot;<code>先大步查找确定范围，再逐渐缩小迫近</code>&quot;的思想, 效率和二叉排序树(红黑树/VAL)差不多, 和B+树一样, 有Level个索引层级
+<a href="https://www.cnblogs.com/a8457013/p/8251967.html" target="_blank" rel="noopener">SkipList跳表基本原理</a>
+<font color="pink">完全二叉树: HashMap使用数组+单链表, 索引位置通过hash取模得到, 所以无序; 我们通常将TreeMap/ConcurrentHashMap/ConcurrentSkipListMap三者进行比较;
+ConcurrentHashMap: 无序,且
+TreeMap: 使用红黑树,所以有序(可指定排序器), 但线程不安全
+ConcurrentSkipListMap: 使用跳表(本质是链表,使用跳跃式查找,空间换时间O(logn))</font>
+<code>ConcurrentSkipListMap</code>
+<code>ConcurrentSkipListSet</code></li>
+<li><strong><font color="orange">Amino无锁并行框架</font></strong>
+提供免锁集合,基于CAS
+<code>LockFreeVector</code>
+<code>LockFreeList</code>/<code>LockFreeOrderedList</code>/<code>LockFreeSet</code>
+<code>LockFreeBlockQueue</code>/<code>LockFreeDeque</code>/<code>LockFreePriorityQueue</code>
+<code>LockFreeDictionary</code>
+<code>树 / 图</code>
+同时提供并行计算模式
+<code>Master-Worker</code>、<code>Map-reduce</code>、<code>Divide and conquer</code>, <code>Pipeline</code></li>
+<li><strong><font color="orange">JCTools map/queue增强</font></strong>
+主要提供了map以及queue的增强数据结构;
+原来netty还是自己写的MpscLinkedQueueNode, 后来新版本就换成使用JCTools的增强并发队列
+6.1 增强Map:
+<code>ConcurrentAutoTable(后面几个map/set结构的基础)</code>
+<code>NonBlockingHashMap</code>
+<code>NonBlockingHashMapLong</code>
+<code>NonBlockingHashSet</code>
+<code>NonBlockingIdentityHashMap</code>
+<code>NonBlockingSetInt</code>
+6.2 增强队列:
+SPSC - 单生产者/单消费者 (Wait Free, bounded and unbounded)
+MPSC - 多生产者/单消费者 (Lock less, bounded and unbounded)
+SPMC - 单生产者/多消费者 (Lock less, bounded)
+MPMC - 多生产者/多消费者 (Lock less, bounded)</li>
+<li><strong>TreeMap</strong>
+<font color="pink">由于链表LinkedList是基于链表,是乱序的, TreeMap使用堆(完全二叉树), 但是添加节点有rebalance操作, 对高并发效率很低, 同时没选择VAL也是折中的表现, 后面会对比; 所以才有上面的跳表出现;
+java的实现类似链表, 只是Entry&lt;K,V&gt;内部有三个引用 (parent/left/right), 操作有: 着色/左旋/右旋</font>
+<font color="#FF2400">7.1 满二叉树:
+<code>度为2, 且达到最满</code>
+7.2 完全二叉树:
+<code>比完全二叉树'弱'一点, 允许最后一层不满, 且左边一定连续集中; 它是一种效率很高的数据结构, 迪杰斯特拉,普里姆算法,二叉排序树等 都使用了此结构; 堆就是一种完全二叉树, 但不是二叉排序树</code>
+7.3 二叉排序树:
+<code>所有节点遵循左中右依次增大, 且没有键值相等的节点 中序遍历即可得到有序数列, 高度决定查找效率O(logn) 在有序(中序遍历)情况下会退化为链表O(n)</code>
+7.4 平衡二叉树-VAL:
+<code>二叉排序树删除节点会导致树向左偏沉, 破坏类完全二叉树的平衡性; 所以引出平衡二叉树(自旋)</code>
+7.5 平衡二叉树-红黑树:
+<code>类似VAL平衡二叉排序树, 但它不是严格的高度平衡树; VAL查询更稳定, 红黑树插入/删除更稳定;</code>
+7.6 2-3树/2-3-4树/B树/B+树/B*树:
+<code>和平衡二叉树不一样, 它们度允许大于2, 可称之为多路查找树 2-3树要么有2个子节点, 要么有3个子节点, 2-3-4树同理; 多路查找树可以在常数次找到目标(依赖树高度), 比如对于10亿个节点的2-3树，树的高度为18-30之间; 问题在于查找到后的插入和删除会导致自平衡的代价极高, 所以才有红黑树来折中 B+树,因为比较'规整', 非叶子节点为稀疏索引, 叶子节点存储值, 叶子节点有链表指针, 非常适合文件索引系统 B*树为非叶子结点也增加链表指针，将结点的最低利用率从1/2提高到2/3, 其实就是节省空间</code>
+<a href="https://www.cnblogs.com/yangecnu/p/Introduce-2-3-Search-Tree.html" target="_blank" rel="noopener">平衡查找树之2-3树</a>
+<a href="https://www.cnblogs.com/vincently/p/4526560.html" target="_blank" rel="noopener">B树与B+树</a>
+<a href="https://blog.csdn.net/u013411246/article/details/81088914" target="_blank" rel="noopener">B树、B-树、B+树、B*树之间的关系</a>
+<a href="http://blog.codinglabs.org/articles/theory-of-mysql-index.html" target="_blank" rel="noopener">MySQL索引背后的数据结构及算法原理</a>
+7.7 字典树(Trie):
+7.6 哈夫曼树: 带权路径长度最短的树(最优)
+7.7 深度遍历(前序/中序/后序):
+<code>树的定义本身就是递归定义,所以使用递归算法实现更易于理解 前序遍历：根结点 ---&gt; 左子树 ---&gt; 右子树 中序遍历：左子树---&gt; 根结点 ---&gt; 右子树 (二叉排序树) 后序遍历：左子树 ---&gt; 右子树 ---&gt; 根结点</code>
+7.8 广度遍历(层次遍历):
+<code>从上往下, 从左到右</code>
+7.9 堆
+<code>堆是完全二叉树, 但不是二叉排序树; 因为它不遵循左&lt;父&lt;右 它遵循的是左&lt;父, 父&gt;右, 所以小值在下, 大值在上, 查找效率低(因为不知道从左节点开始查找还是从右节点开始) 一般使用数组来实现, 由于是完全二叉树, 所以不存在数组空间的浪费</code>
+7.10 应用
+<code>d</code>
+</font></li>
+</ol>
+</blockquote>
+<hr>
+<h2 id="tree-查找算法-排序算法概念">Tree, 查找算法, 排序算法概念</h2>
+<h3 id="二叉堆">二叉堆</h3>
+<ul>
+<li>特性</li>
+</ul>
+<blockquote>
+<ol>
+<li>是完全二叉树, 即除了最后一层节点不是满的, 其他层节点都是满的</li>
+<li>它不是二叉搜索树, 它要求父节点的值不能小于子节点的值, 所以堆遍历和查找都比较低效, 平均O(n)</li>
+<li>它可以实现快速的插入和删除, 效率都在(logN)左右; 所以它可以实现优先级队列</li>
+<li><font color="pink">堆是为了排序而设计的数据结构 [查找:<strong>O(n)</strong>, 插入删除:<strong>O(logN)</strong>]
+二叉排序树是面向动态查找的数据结构 [查找:<strong>O(logN)</strong>, 插入删除: <strong>需要额外的旋转进行自平衡</strong>]</font></li>
+</ol>
+</blockquote>
+<ul>
+<li>堆的操作</li>
+</ul>
+<p>堆主要就是插入和删除, 前提是:</p>
+<ol>
+<li>是完全二叉树</li>
+<li>父节点的值不能小于子节点的值</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 对于n位置的节点来说：</span></span><br><span class="line"><span class="keyword">int</span> left = <span class="number">2</span> * n + <span class="number">1</span>; <span class="comment">// 左子节点</span></span><br><span class="line"><span class="keyword">int</span> right = <span class="number">2</span> * n + <span class="number">2</span>; <span class="comment">// 右子节点</span></span><br><span class="line"><span class="keyword">int</span> parent = (n - <span class="number">1</span>) / <span class="number">2</span>; <span class="comment">// 父节点，当然n要大于0，根节点是没有父节点的</span></span><br></pre></td></tr></table></figure>
+<p>插入</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">     <span class="comment">// 第一步将插入的值，直接放在最后一个位置。并将长度加一</span></span><br><span class="line">     store[size++] = value;</span><br><span class="line">     <span class="comment">// 得到新插入值所在位置。</span></span><br><span class="line">     <span class="keyword">int</span> index = size - <span class="number">1</span>;</span><br><span class="line">     <span class="keyword">while</span>(index &gt; <span class="number">0</span>) &#123;</span><br><span class="line">         <span class="comment">// 它的父节点位置坐标(index - 1) / 2</span></span><br><span class="line">         <span class="keyword">int</span> parentIndex = (index - <span class="number">1</span>)&gt;&gt;&gt;<span class="number">2</span>;</span><br><span class="line">         <span class="comment">// 如果父节点的值小于子节点的值，你不满足堆的条件，那么就交换值</span></span><br><span class="line">         <span class="keyword">if</span> (store[index] &gt; store[parentIndex]) &#123;</span><br><span class="line">             swap(store, index, parentIndex);</span><br><span class="line">             index = parentIndex;</span><br><span class="line">         &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">             <span class="comment">// 否则表示这条路径上的值已经满足降序，跳出循环</span></span><br><span class="line">             <span class="keyword">break</span>;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>删除</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="comment">// 将根的值记录，最后返回</span></span><br><span class="line">      <span class="keyword">int</span> result = store[<span class="number">0</span>];</span><br><span class="line">      <span class="comment">// 将最后位置的值放到根节点位置</span></span><br><span class="line">      store[<span class="number">0</span>] = store[--size];</span><br><span class="line">      <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">      <span class="comment">// 通过循环，保证父节点的值不能小于子节点。</span></span><br><span class="line">      <span class="keyword">while</span>(<span class="keyword">true</span>) &#123;</span><br><span class="line">          <span class="keyword">int</span> leftIndex = index&lt;&lt;<span class="number">1</span> + <span class="number">1</span>; <span class="comment">// 左子节点</span></span><br><span class="line">          <span class="keyword">int</span> rightIndex = index&lt;&lt;<span class="number">1</span> + <span class="number">2</span>; <span class="comment">// 右子节点</span></span><br><span class="line">          <span class="comment">// leftIndex &gt;= size 表示这个子节点还没有值。</span></span><br><span class="line">          <span class="keyword">if</span> (leftIndex &gt;= size) <span class="keyword">break</span>;</span><br><span class="line">          <span class="keyword">int</span> maxIndex = leftIndex;</span><br><span class="line">          <span class="keyword">if</span> (store[leftIndex] &lt; store[rightIndex]) maxIndex = rightIndex;</span><br><span class="line">          <span class="keyword">if</span> (store[index] &lt; store[maxIndex]) &#123;</span><br><span class="line">              swap(store, index, maxIndex);</span><br><span class="line">              index = maxIndex;</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">              <span class="keyword">break</span>;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> result;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="skiplist跳表">SkipList跳表</h3>
+<p>其实RB-tree的性能和SkipList相差无几, 但是在并发环境就不同了;
+红黑树有一个自平衡(rebalance)过程, 涉及节点较多, 所以竞争锁的代价较高(当然还是比VAL要好, 因为删除节点波及的范围可能会更大);
+<strong>skiplist的操作显然更加局部性一些，锁需要盯住的节点更少</strong></p>
+<p>核心思想如下图:
+主要是思想就是提取一些节点作为索引, <strong>“先大步查找确定范围，再逐渐缩小迫近”</strong>
+<img src="http://s14.sinaimg.cn/middle/72995dcc07ad698ab8d8d&amp;690" alt>
+从上图可以看出, 跳表具有如下性质:</p>
+<blockquote>
+<ol>
+<li>由很多层结构组成</li>
+<li>每一层都是一个有序的链表</li>
+<li>最底层(Level 1)的链表包含所有元素</li>
+<li>如果一个元素出现在 Level i 的链表中，则它在 Level i 之下的链表也都会出现。</li>
+<li>每个节点包含两个指针，一个指向同一链表中的下一个元素，一个指向下面一层的元素。</li>
+</ol>
+</blockquote>
+<p>来看看查找过程:
+<img src="http://s9.sinaimg.cn/middle/72995dcc4cc61f6bff808&amp;690" alt></p>
+<p>插入很简单, 主要是要决定元素要占据的(索引)层K, 需要完全随机采用丢硬币的形式，这里就不讲述, 可参考: <a href="https://www.cnblogs.com/a8457013/p/8251967.html" target="_blank" rel="noopener">SkipList跳表基本原理</a></p>
+<h3 id="二叉排序树">二叉排序树</h3>
+<p>它不是完全二叉树, 但它满足中序遍历(<code>左-&gt;根-&gt;右</code>)结果是排好序的</p>
+<blockquote>
+<p><font color="purple">插入:
+插入顺序不同, 树结构是不一样的, 但中序遍历结果一样</font></p>
+</blockquote>
+<ol>
+<li>树为空, 则插入root根节点</li>
+<li>小于根节点, 则插入左子树</li>
+<li>大于根节点, 则插入右子树</li>
+</ol>
+<blockquote>
+<p><font color="purple">删除: </font></p>
+</blockquote>
+<ol>
+<li>为叶子节点, 直接删除</li>
+<li>为单支节点, 和单链表类似, parent.next = node.next; 即node的父节点指向node的子节点, 同时断开node的引用并删除</li>
+<li>左右子节点均不空, 将中序遍历的后继节点移动并覆盖掉需要被移除的节点, 因为其特性导致后继节点肯定没有左子树, 所以移动后继节点后可参考步骤2; 如下图</li>
+</ol>
+<blockquote>
+<p><font color="purple">特点:</font></p>
+</blockquote>
+<ol>
+<li>因为删除操作移动右子树, 右节点减少从而导致树偏左沉, 使之成为非完全二叉树(平衡性被破坏), 引出了平衡二叉树VAL(自平衡-旋转)</li>
+<li>二叉排序树查找的时间复杂度为O(log2n), 极端情况下, 比如是插入是有序的(中序), 则会退化为链表O(n), 也即树高度为n, 需要递归查询n次;  所以通常随机化建立二叉树排序树
+</li>
+</ol>
+<p>二叉排序树删除节点 (左右子节点不为空)
+<img src="http://jbcdn2.b0.upaiyun.com/2017/07/2c51f44d9bfb87f38f9bf040552b6b31.png" alt></p>
+<p>参考:
+<a href="http://blog.jobbole.com/111680/" target="_blank" rel="noopener">数据结构中各种树</a></p>
+<h3 id="平衡二叉树-val">平衡二叉树-VAL</h3>
+<p>查找效率: O(1) &gt; O(logn) &gt; O(n) &gt; O(n^2)</p>
+<p><font color="purple">1. 首先, 平衡二叉树类似完全二叉树, 只是不一定满足叶子节点左边连续, 但是高度差最大还是1; 所以叫高度平衡树</font></p>
+<ol start="2">
+<li>其次, VAL和红黑树添加时都至多2次旋转, 但是删除则不同。 VAL在极端情况下需要维护从被删node到root这条路径上所有node的平衡性, 因此需要旋转的量级O(logN), 即树高; 红黑树至多3次旋转</li>
+<li>再者, 红黑树不是绝对的高度相差1, 但保证基本是高度平衡树, 所以查询效率可能略低于VAL, 但几乎可以忽略不计</li>
+<li>最后, VAL是高度平衡树, 插入删除更易引起自平衡rebalance, 所以红黑树适合增删频繁, VAL更适合不变的数据查询。但是查询的那点效率损耗和频繁插入删除比起来不在一个量级, 所以计算机领域基本都使用红黑树作为数据结构</li>
+</ol>
+<blockquote>
+<ol>
+<li>优点:
+二叉排序树每次增删节点都会进行自旋进行重新平衡, 所以O(n)退化为链表的极端情况永远不会发生</li>
+<li>缺点:
+频繁的自平衡(旋转)会浪费一定时间, VAL是高度平衡树</li>
+</ol>
+</blockquote>
+<p>一. 旋转操作, 首先需要知道不平衡的四种姿态</p>
+<blockquote>
+<ol>
+<li>左左/右右: 进行单旋转 (LL / RR)</li>
+<li>左右/右左: 进行双旋转 (RR-&gt;LL / LL-&gt;RR)</li>
+</ol>
+</blockquote>
+<p><img src="http://jbcdn2.b0.upaiyun.com/2017/07/bbc1d195a4adf1a9cc10bb85b0f1c2c6.jpg" alt></p>
+<p>二. LL单旋转操作(RR单旋转同理)
+只需要旋转一次, 可以用一种平衡玩具来联想
+<img src="http://jbcdn2.b0.upaiyun.com/2017/07/61ee0c83b3783cb05eac2ed3528eae3b.jpg" alt></p>
+<p>三. LR双旋转操作(RL双旋转同理)
+<font color="purple">即需要把子树先给&quot;掰&quot;成向一个方向&quot;沉&quot;, 统一方向后再向另外一个方向整体&quot;掰&quot;
+先左子树K1进行RR旋转, 再K2进行LL旋转</font></p>
+<p><img src="http://jbcdn2.b0.upaiyun.com/2017/07/2ad609dadbff982036a8e32c792436d7.jpg" alt></p>
+<h3 id="平衡二叉树-红黑树">平衡二叉树-红黑树</h3>
+<p><font color="purple">它是计算机科学中用到的一种数据结构, 和VAL树一样保证最坏都是O(logn), 上面已经讲述了VAL和红黑树的对比</font></p>
+<blockquote>
+<ol>
+<li>节点是红色或黑色</li>
+<li>根是黑色</li>
+<li>所有叶子都是黑色</li>
+<li>每个红色节点必须有两个黑色的子节点</li>
+<li>从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点 (保证最长路径不超过最短路径的2倍, 而且每条路径的黑色个数&gt; h/2)</li>
+</ol>
+</blockquote>
+<p><strong>插入步骤</strong></p>
+<blockquote>
+<ol>
+<li>将红黑树当作一颗二叉查找树, 将节点插入</li>
+<li>将插入节点着色为红色
+<font color="pink">注意插入节点必须为红色, 为黑色会违背性质5; 但是添加红色节点后，可能会导致出现两个连续红色节点的冲突, 那么可以通过颜色调换（color flips）和树旋转来调整</font></li>
+<li>通过旋转和重新着色等方法来修正该树,旋转分为左旋/右旋</li>
+</ol>
+<blockquote>
+<ol>
+<li>空树; 则插入的是根节点, 直接涂为黑色</li>
+<li>被插入节点父节点为黑色; 符合红黑树</li>
+<li>被插入节点父节点与叔父节点为红色, 违反性质4; 此时需要递归变色, 但无须旋转</li>
+<li>被插入节点父节点红色, 叔父节点黑色(或缺少), 且是其父节点的左子节点, 而父节点又是其祖父节点的左子节点; 此时需要旋转;</li>
+<li>被插入节点父节点红色, 叔父节点黑色(或缺少), 且是其父节点的右子节点, 而父节点又是其祖父节点的左子节点</li>
+</ol>
+</blockquote>
+</blockquote>
+<p>插入-情形3
+<img src="http://jbcdn2.b0.upaiyun.com/2017/07/dc3747336812e9055f958c56ade89eb8.png" alt>
+插入-情形4
+<img src="http://jbcdn2.b0.upaiyun.com/2017/07/4986c959603100e41cba2669d9e3ce0c.png" alt>
+插入-情形5
+<img src="http://jbcdn2.b0.upaiyun.com/2017/07/9cfbf62dfdefe5891347de95a976758f.png" alt></p>
+<p><strong>旋转步骤</strong>
+参考:
+<a href="http://blog.jobbole.com/111680" target="_blank" rel="noopener">数据结构中各种树</a>
+<a href="https://www.cnblogs.com/chenssy/p/3746600.html" target="_blank" rel="noopener">TreeMap</a></p>
+<h3 id="b树">B树</h3>
+<p>待续</p>
+<h3 id="b-树">B+树</h3>
+<p>待续</p>
+<h3 id="b-树-v2">B*树</h3>
+<p>待续</p>
+<h3 id="tire字典树">Tire字典树</h3>
+<h3 id="哈夫曼树">哈夫曼树</h3>
+<hr>
+<h2 id="数据容器的实现">数据容器的实现</h2>
+<h3 id="hashmap">HashMap</h3>
+<p>主要采用拉链法, 每个数组元素为Entry单链表</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 初始容量为16, 即数组长度为16</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_INITIAL_CAPACITY = <span class="number">1</span> &lt;&lt; <span class="number">4</span>;</span><br><span class="line"><span class="comment">// 数组最大长度</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAXIMUM_CAPACITY = <span class="number">1</span> &lt;&lt; <span class="number">30</span>;</span><br><span class="line"><span class="comment">// 填充因子, 因为数组不允许装满, 否则冲突概率很大, 0.75是实验出来的最好填充因子</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">float</span> DEFAULT_LOAD_FACTOR = <span class="number">0.75f</span>;</span><br><span class="line"><span class="comment">// 链表长度过大, 会造成查找链表节点效率低下, 所以限制链表长度为8, 超过则转化为红黑树</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TREEIFY_THRESHOLD = <span class="number">8</span>;</span><br><span class="line"><span class="comment">// 链表长度低于6, 红黑树又退化为链表</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> UNTREEIFY_THRESHOLD = <span class="number">6</span>;</span><br><span class="line"><span class="comment">// 转为红黑树前的第二重判断条件, 同时键值对数量超过64才允许转化红黑树, 避免hash函数不合理造成初期就会转化为树</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MIN_TREEIFY_CAPACITY = <span class="number">64</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="concurrenthashmap">ConcurrentHashMap</h3>
+<p>待续…</p>
+
+    
+    </div>
+    
+    
+        <div class="article-comment" id="article-comment">
+            
+
+<h1>评论</h1>
+
+  
+    <div id="gitment"></div>
+  
+
+
+        </div>
+        
+</article>
+  </div>
+
+  
+
+<footer id="footer">
+    <div class="footer-copyright">
+        <div>
+            <p style="font-family: sketch; font-size: 28px;">just do it</p>
+            <p> 版权所有 <a href>duyu </a> @ 2019</p>
+            
+        </div>
+    </div>
+    
+    <div class="footer-social">
+        
+            
+                
+                    <div class="footer-social-item">
+                        <a href="https://github.com/doooyo" target="_blank">
+                        
+                            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+                        
+                        </a>
+                    </div>
+                
+            
+                
+                    <div class="footer-social-item">
+                        <a href="/atom.xml" target="_blank">
+                        
+                             <i class="fa fa-rss fa-2x" aria-hidden="true"></i>
+                        
+                        </a>
+                    </div>
+                
+            
+        
+    </div>
+</footer>
+
+  <br>
+
+  <div id="footer-menu-container">
+		
+
+
+
+<nav class="menu">
+	
+	
+		
+		
+		
+		
+		
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/archives/" title="归档">
+					<img src="/images/icons/own/archive.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/archives/">
+					<span>归档</span>
+				</a>
+			</div>
+		</div>
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/search/" title="搜索">
+					<img src="/images/icons/own/search.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/search/">
+					<span>搜索</span>
+				</a>
+			</div>
+		</div>
+
+</nav>
+
+	</div>
+
+  
+
+
+
+    
+
+
+
+
+
+
+  <script>
+  var gitment = new Gitment({
+    id: window.location.pathname, // optional
+    owner: 'doooyo',
+    repo: 'https://github.com/doooyo',
+    oauth: {
+      client_id: '4320b9f63ad425418eb5',
+      client_secret: '9c0cb6fffad72917fe8416c9ac2066dc70127d9b',
+    },
+    // ...
+    // For more available options, check out the documentation below
+  })
+
+  gitment.render('gitment')
+  </script>
+
+
+
+
+
+
+
+    <script src="/js/lightgallery.min.js"></script>
+<script src="/js/lg-zoom.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#lightgallery").lightGallery(); 
+        $(".article-content img").each(function(){
+            console.log($(this).attr('src'))
+            $(this).attr('data-src', $(this).attr('src')).lightGallery({
+                selector: 'this'
+            })
+        });
+    });
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+
+  
+  // update cookie if this page is opened (directly)
+  loadjs(['/libs/jshashes/hashes.min.js', '/libs/js-cookie/src/js.cookie.js', '/js/post.v2.js'], 'post-version');
+  loadjs.ready('post-version', function(){
+    
+    new Postv2('hashit_111a53cd92fd46dabd0f7874bc014ace96be4e85392988dea261d76812757410').update('hashit_b9f61ab04d5e53ef347d5f67067efb0fbecc9d8fd678c90b5185e91c9210993e', function(){});
+  });
+  
+</script>
+
+
+
+<!-- <script src="/js/post.js"></script> -->
+
+<script src="/js/headroom.min.js"></script>
+
+<script data-no-instant type="text/javascript">
+
+initHeadroom();
+
+changeLayoutOnTouchScreen();
+
+// 
+// var post = new Post('', '');
+// post.getCommentCount(window.location.pathname, function(count){
+//     $('#article-comment-count').text(count);
+// });
+// post.addVisitRecord(window.location.pathname, userip);
+// post.getVisitCount(window.location.pathname, function(count){
+//     $('#article-visit-count').text(count);
+// });
+
+// 
+</script>
+
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

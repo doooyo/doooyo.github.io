@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  
+      <title>FastDFS Linux 单节点安装 - N 27°59′′</title>
+  
+
+  
+  
+  <meta name="description" content="java node 微服务 大数据 数据结构">
+  <meta name="author" content="duyu">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- load loadjs.js -->
+  <script src="/libs/loadjs/dist/loadjs.min.js"></script>
+
+<link rel="stylesheet" href="/libs/animate.css/animate.min.css">
+  <!-- load lightgallery -->
+<link rel="stylesheet" href="/css/lightgallery.css">
+<link rel="stylesheet" href="/libs/noty/lib/noty.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+    <link rel="stylesheet" href="/css/taurus.css">
+    
+        <link rel="stylesheet" href="/css/scheme-taurus/animations.css">
+    
+
+
+<link rel="stylesheet" href="/.css">
+
+  <!-- load font awesome 5 -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+  </script>
+  <!-- load mathjax -->
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax//libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <!-- load js-cookie -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="/js/social-share.min.js"></script>
+    <script src="/js/theme.js"></script>
+
+  <!-- include cookie.js -->
+  
+  
+
+  <!-- include comment system code -->
+  
+    <link rel="stylesheet" href="/css/gitment/default.css">
+<script src="/js/gitment.browser.js"></script>
+  
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+
+
+
+<header class="my-header">
+	<div class="header-title">
+		
+			<div class="header-logo">
+				<a href="/">
+					<img class="grow" src="/images/lion.svg">
+				</a>
+			</div>
+			<div class="header-text">
+				<h1 style="font-family: sketch; font-weight: 400">
+					<a href="/">N 27°59′′</a>
+				</h1>
+				<p>
+					<small>
+						duyu
+					</small>
+				</p>
+			</div>
+		
+	</div>
+	<div id="header-menu-container">
+		
+
+
+
+<nav class="menu">
+	
+	
+		
+		
+		
+		
+		
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/archives/" title="归档">
+					<img src="/images/icons/own/archive.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/archives/">
+					<span>归档</span>
+				</a>
+			</div>
+		</div>
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/search/" title="搜索">
+					<img src="/images/icons/own/search.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/search/">
+					<span>搜索</span>
+				</a>
+			</div>
+		</div>
+
+</nav>
+
+	</div>
+</header>
+
+ 
+
+  
+
+
+
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div style="flex: 1;">
+      <style>
+    body {
+        background-color: white;
+    }
+</style>
+
+
+
+
+	
+	
+	
+	
+
+
+
+    
+    
+
+
+
+
+
+
+    
+    
+        
+    
+
+    
+        
+    
+
+
+
+
+
+
+
+
+
+<article class="article" id="/2019/04/22/FastDFS Linux 单节点安装/" data-name="FastDFS Linux 单节点安装" data-version>
+
+    <!-- Title -->
+    <div class="article-header">
+         
+         
+            
+                
+            
+         
+         
+         <h1 class="article-title">
+            <a href="/2019/04/22/FastDFS Linux 单节点安装/">
+                FastDFS Linux 单节点安装
+            </a>
+        </h1>
+        <!-- TODO: support nested categories,display them nicely -->
+        
+    </div>
+    
+    <!-- Date and Author -->
+    <div class="article-meta">
+    <ul>
+            <li><i class="fa fa-calendar"></i> 2019年04月22日</li>
+            
+            <li><i class="fa fa-user"></i> duyu</li>
+
+    </ul>
+    
+    </div>
+    <!-- 分割线 -->
+    <hr>
+
+    <div class="article-cards">
+        <!-- Author Card -->
+        <!---
+        <div class='Card-article Card-author'>
+            <div class='card-title'>
+                <h3></h3>
+            </div>
+            <div class='card-content'>
+                    <div class="author-meta">
+                            <div class='author-figure'>
+                                <img src="" alt="">
+                            </div>
+                            <div class='author-name'>
+                                duyu
+                            </div>
+                        </div>
+                        <div class="author-ai">
+                            <div class='author-intro'>
+                                <!-- TODO: auto generating author description -->
+                                <!-- 
+                            </div>
+                            <div class="author-articles">
+                                <!-- TODO: auto generating author articles -->
+                                <!-- <ul>
+                                    <li>Article 1</li>
+                                    <li>Article 2</li>
+                                    <li>Article 3</li>
+                                    <li>Article 4</li>
+                                    <li>Article 5</li>
+                                    <li>Article 6</li>
+                                </ul>
+                            </div>
+                        </div>
+            </div>
+            
+        </div> -->
+
+        <!-- Visit Card -->
+        <!-- <div class="Card-article Card-visit"> -->
+            <!-- <div class="card-title">
+  <h3>Post Visit</h3>
+</div>
+<div class="card-chart">
+  <div id="chart-post-visit"></div>
+</div> -->
+        <!-- </div> -->
+        
+        <!-- Auto Excerpt Card -->
+        <!-- <div class="Card-article Card-excerpt">
+            <div class="card-title">
+  <h3>Quick Read</h3>
+</div>
+<div class="card-text">
+  <p id="text-post-summary">备注: mac安装由于SIP(System Integrity Protection, 系统完整性保护功能), 无法在/usr/目录下创建文件, 所以需要关闭SIP
+
+重启 Mac, 按住 Command + R, 进入 recovery 模式
+选择打开 Utilities下的终端, 输入 csrutil disable 并回车
+重启 Mac 即可
+
+
+1.准备
+
+libfastcommon: 从 FastDFS和FastDHT中提取出来的公共C 函数库，基础环境
+https://github.com/happyfish100/libfastcommon.git
+fastdfs:...</p>
+</div>
+        </div> -->
+    </div>
+    
+    <!-- Gallery -->
+    <!-- TODO: add a slider to gallery -->
+    
+
+    <!-- Content -->
+    <!-- TODO: support table of content -->
+    <div class="article-toc" id="article-toc">
+    
+        
+
+
+
+
+
+
+
+
+    
+
+<div class="toc-button">
+    <img src="/images/icons/own/toc.svg" alt>
+</div>
+
+    </div>
+    <div class="article-content">
+    <blockquote>
+<p>备注: mac安装由于SIP(System Integrity Protection, 系统完整性保护功能), 无法在/usr/目录下创建文件, 所以需要关闭SIP</p>
+<ul>
+<li>重启 Mac, 按住 Command + R, 进入 recovery 模式</li>
+<li>选择打开 Utilities下的终端, 输入 csrutil disable 并回车</li>
+<li>重启 Mac 即可</li>
+</ul>
+</blockquote>
+<h3 id="1-准备">1.准备</h3>
+<ul>
+<li>libfastcommon: 从 FastDFS和FastDHT中提取出来的公共C 函数库，基础环境
+<a href="https://github.com/happyfish100/libfastcommon.git" target="_blank" rel="noopener">https://github.com/happyfish100/libfastcommon.git</a></li>
+<li>fastdfs: 主程序
+<a href="https://github.com/happyfish100/fastdfs.git" target="_blank" rel="noopener">https://github.com/happyfish100/fastdfs.git</a></li>
+<li>fastdfs-nginx-module: nginx扩展支持模块
+<a href="https://github.com/happyfish100/fastdfs-nginx-module.git" target="_blank" rel="noopener">https://github.com/happyfish100/fastdfs-nginx-module.git</a></li>
+</ul>
+<h3 id="2-编译安装">2.编译安装</h3>
+<ul>
+<li>libfastcommon安装</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">yum -y install libevent</span><br><span class="line"><span class="meta">#</span> 首先安装libfastcommon，是一些公共库函数</span><br><span class="line">./make</span><br><span class="line">./make install</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> uname查看linux系统 Centos为Linux</span><br><span class="line"><span class="meta">#</span> 会将库函数安装进/usr/lib64，需要将libfastcommon.so 拷贝到/usr/lib; 最新版本已经拷贝到/usr/lib并软链到/usr/lib64</span><br><span class="line">cd /usr/lib64</span><br><span class="line">cp libfastcommon.so /usr/lib</span><br></pre></td></tr></table></figure>
+<ul>
+<li>fastdfs安装</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 1.安装</span><br><span class="line">./make</span><br><span class="line">./make install</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 会安装在/usr/bin目录下</span><br><span class="line">cd /usr/bin</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 查看可执行文件</span><br><span class="line">ll fdfs*</span><br><span class="line"><span class="meta">#</span>fdfs_append_file</span><br><span class="line"><span class="meta">#</span>fdfs_appender_test</span><br><span class="line"><span class="meta">#</span>fdfs_appender_test1</span><br><span class="line"><span class="meta">#</span>fdfs_crc32</span><br><span class="line"><span class="meta">#</span>fdfs_delete_file</span><br><span class="line"><span class="meta">#</span>fdfs_download_file</span><br><span class="line"><span class="meta">#</span>fdfs_file_info</span><br><span class="line"><span class="meta">#</span>fdfs_monitor</span><br><span class="line"><span class="meta">#</span>fdfs_storaged</span><br><span class="line"><span class="meta">#</span>fdfs_test</span><br><span class="line"><span class="meta">#</span>fdfs_test1</span><br><span class="line"><span class="meta">#</span>fdfs_trackerd</span><br><span class="line"><span class="meta">#</span>fdfs_upload_appender</span><br><span class="line"><span class="meta">#</span>fdfs_upload_file</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 生成的配置文件在/etc/fdfs</span><br><span class="line">cd /etc/fdfs</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 2.将fastdfs源码目录下的conf里的配置文件拷贝到/etc/fdfs</span><br><span class="line">cp -r /home/fastdfs/fastdfs-5.11/conf/* /etc/fdfs/</span><br></pre></td></tr></table></figure>
+<h3 id="3-修改-etc-fdfs配置文件">3.修改/etc/fdfs配置文件</h3>
+<ul>
+<li>修改 tracker.conf</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> tracker 服务端口</span><br><span class="line">  port=22122 ####注意开放tracker的22122端口</span><br><span class="line"><span class="meta">#</span> base_path 数据及日志存储路径</span><br><span class="line"><span class="meta">#</span> /fastdfs/tracker，/fastdfs/storage，/fastdfs/client</span><br><span class="line">  base_path=/fastdfs/tracker</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改 storage.conf</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> storage 服务端口</span><br><span class="line">port=23000 ####注意开放storage的23000端口</span><br><span class="line"><span class="meta">#</span> base_path 数据及日志存储路径</span><br><span class="line">base_path=/fastdfs/storage</span><br><span class="line"><span class="meta">#</span> group_name 逻辑分组名</span><br><span class="line">group_name=doyo</span><br><span class="line"><span class="meta">#</span> store_path0 实际存放文件路径</span><br><span class="line">store_path0=/fastdfs/storage</span><br><span class="line"><span class="meta">#</span> tracker_server tracker服务地址</span><br><span class="line">tracker_server=&#123;本机公网地址&#125;:22122 ####注意此处必须是公网地址（教程上说必须是内网地址，但实际部署是公网地址也能访问，只是需要开放相应端口）</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改 client.conf</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> base_path 数据及日志存储路径</span><br><span class="line">base_path=/fastdfs/client</span><br><span class="line"><span class="meta">#</span> tracker_server tracker服务地址</span><br><span class="line">tracker_server=&#123;本机公网地址/内网地址&#125;:22122</span><br></pre></td></tr></table></figure>
+<h3 id="4-启动tracker和storage">4.启动tracker和storage</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 1. 启动tracker服务，指定配置文件</span><br><span class="line">/usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf</span><br><span class="line"><span class="meta">#</span> 重启</span><br><span class="line">/usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf restart</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 2. 启动storage服务，指定配置文件</span><br><span class="line">/usr/bin/fdfs_storaged /etc/fdfs/storage.conf</span><br><span class="line"><span class="meta">#</span> 重启</span><br><span class="line">/usr/bin/fdfs_storaged /etc/fdfs/storage.conf restart</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 3. 查看是否启动成功</span><br><span class="line">ps aux|grep tracker</span><br><span class="line">ps aux|grep storage</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 4. 测试上传文件</span><br><span class="line">/usr/bin/fdfs_test /etc/fdfs/client.conf upload &#123;文件路径&#125;</span><br><span class="line"><span class="meta">#</span> 得到上传地址 http://172.31.248.16/doyo/M00/00/00/rB_4EFwjukSAIVoiAAAIiUi81wg307_big.svg</span><br><span class="line"><span class="meta">#</span> 查看/fastdfs/storage，发现会有2层目录，每层256个，一共65536个文件夹；第三版避免小文件占用大量inode，采用合并小文件方式解决，但删除文件后不能compact，但可重新利用空间</span><br></pre></td></tr></table></figure>
+<h3 id="5-添加nginx扩展模块">5.添加nginx扩展模块</h3>
+<ul>
+<li>修改src/config配置(nginx编译会用到)</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 主要是将/usr/local/include 改为 /usr/include/fastdfs /usr/include/fastcommon/</span><br><span class="line"><span class="meta">#</span> 低版本改为/usr/include就可以了，但是高版本会在编译nginx的时候报 【common_define.h：没有那个文件或目录】</span><br></pre></td></tr></table></figure>
+<ul>
+<li>拷贝fastdfs-nginx-module扩展模块下的mod_fastdfs.conf到/etc/fdfs目录，并修改</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 拷贝</span><br><span class="line">cp src/mod_fastdfs.conf /etc/fdfs</span><br><span class="line"><span class="meta">#</span> 修改内容</span><br><span class="line">base_path=/fastdfs/tmp</span><br><span class="line">tracker_server=&#123;本机公网地址/内网地址&#125;:22122 #mod——fastdfs.conf 的tracker_server必须是内网地址</span><br><span class="line">group_name=doyo #分组</span><br><span class="line">url_have_group_name = true #url加上doyo分组前缀</span><br><span class="line">store_path0=/fastdfs/storage #必须和/etc/fdfs/storage.conf中配置的一样</span><br></pre></td></tr></table></figure>
+<h3 id="6-安装与配置nginx">6.安装与配置nginx</h3>
+<ul>
+<li>安装</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 1.安装nginx的依赖包</span><br><span class="line">yum -y install gcc automake autoconf libtool make # 安装make</span><br><span class="line">yum install -y gcc-c++ # c与c++编译器</span><br><span class="line">yum install -y pcre pcre-devel # 正则表达式库</span><br><span class="line">yum install -y zlib zlib-devel # 数据压缩函数库</span><br><span class="line">yum install -y openssl openssl-devel # 是实现了SSL的工具集，一般用于加密通信；HTTPS=HTTP+TLS</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 2. ./config</span><br><span class="line">./configure \</span><br><span class="line">--prefix=/usr/local/nginx \</span><br><span class="line">--add-module=/home/fastdfs/fastdfs-nginx-module-1.20/src \</span><br><span class="line">--with-http_stub_status_module \</span><br><span class="line">--with-http_gzip_static_module \</span><br><span class="line">--with-http_ssl_module</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 3. 编译与安装</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 4. 配置nginx.conf</span><br><span class="line">server &#123;</span><br><span class="line">    listen 88; #80端口给其他网站使用</span><br><span class="line">    server_name localhost;</span><br><span class="line">    location /doyo/M00 &#123;</span><br><span class="line">        ngx_fastdfs_module; # fastdfs模块</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 5. 测试nginx配置并启动/重启</span><br><span class="line">cd sbin/ #进入可执行文件目录</span><br><span class="line">./nginx -t #检测配置是否正确</span><br><span class="line">./nginx -c /usr/local/nginx/conf/nginx.conf #指定配置文件启动</span><br><span class="line">./nginx -s reload #重启</span><br><span class="line">./nginx -s stop #快速停止</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>########## 注意 ##########</span><br><span class="line">如果之前通过yum安装了nginx，会全局注册nginx命令，所以启动nginx时需要到/usr/local/nginx/sbin目录下执行「./nginx」</span><br><span class="line"><span class="meta">#</span>##########################</span><br></pre></td></tr></table></figure>
+<p>###7. 全部重启(由于添加了fastdfs-nginx扩展模块)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 重启tracker</span><br><span class="line">/usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf restart</span><br><span class="line"><span class="meta">#</span> 重启storage</span><br><span class="line">/usr/bin/fdfs_storaged /etc/fdfs/storage.conf restart</span><br><span class="line"><span class="meta">#</span> 重启nginx</span><br><span class="line">/usr/local/nginx/sbin/nginx -s reload</span><br></pre></td></tr></table></figure>
+<p>###8.部署</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 配置nginx反向代理</span><br><span class="line"></span><br><span class="line">upstream servers &#123;</span><br><span class="line">    server 47.244.137.61:8088;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        server_name localhost;</span><br><span class="line"></span><br><span class="line">        #charset koi8-r;</span><br><span class="line"></span><br><span class="line">        #access_log logs/host.access.log main;</span><br><span class="line"></span><br><span class="line">        # 博客地址已经占用80端口</span><br><span class="line">        location / &#123;</span><br><span class="line">            root /home/doyo-blog/public/;</span><br><span class="line">            index index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        # 聊天室服务</span><br><span class="line">        location /chat &#123;</span><br><span class="line">            proxy_pass http://servers; # 代理到upstream集群</span><br><span class="line">            index index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        # fastdfs图片服务地址,也使用80端口</span><br><span class="line">        location /doyo/M00 &#123;</span><br><span class="line">            ngx_fastdfs_module;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    
+    </div>
+    
+    
+        <div class="article-comment" id="article-comment">
+            
+
+<h1>评论</h1>
+
+  
+    <div id="gitment"></div>
+  
+
+
+        </div>
+        
+</article>
+  </div>
+
+  
+
+<footer id="footer">
+    <div class="footer-copyright">
+        <div>
+            <p style="font-family: sketch; font-size: 28px;">just do it</p>
+            <p> 版权所有 <a href>duyu </a> @ 2019</p>
+            
+        </div>
+    </div>
+    
+    <div class="footer-social">
+        
+            
+                
+                    <div class="footer-social-item">
+                        <a href="https://github.com/doooyo" target="_blank">
+                        
+                            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+                        
+                        </a>
+                    </div>
+                
+            
+                
+                    <div class="footer-social-item">
+                        <a href="/atom.xml" target="_blank">
+                        
+                             <i class="fa fa-rss fa-2x" aria-hidden="true"></i>
+                        
+                        </a>
+                    </div>
+                
+            
+        
+    </div>
+</footer>
+
+  <br>
+
+  <div id="footer-menu-container">
+		
+
+
+
+<nav class="menu">
+	
+	
+		
+		
+		
+		
+		
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/archives/" title="归档">
+					<img src="/images/icons/own/archive.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/archives/">
+					<span>归档</span>
+				</a>
+			</div>
+		</div>
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/search/" title="搜索">
+					<img src="/images/icons/own/search.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/search/">
+					<span>搜索</span>
+				</a>
+			</div>
+		</div>
+
+</nav>
+
+	</div>
+
+  
+
+
+
+    
+
+
+
+
+
+
+  <script>
+  var gitment = new Gitment({
+    id: window.location.pathname, // optional
+    owner: 'doooyo',
+    repo: 'https://github.com/doooyo',
+    oauth: {
+      client_id: '4320b9f63ad425418eb5',
+      client_secret: '9c0cb6fffad72917fe8416c9ac2066dc70127d9b',
+    },
+    // ...
+    // For more available options, check out the documentation below
+  })
+
+  gitment.render('gitment')
+  </script>
+
+
+
+
+
+
+
+    <script src="/js/lightgallery.min.js"></script>
+<script src="/js/lg-zoom.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#lightgallery").lightGallery(); 
+        $(".article-content img").each(function(){
+            console.log($(this).attr('src'))
+            $(this).attr('data-src', $(this).attr('src')).lightGallery({
+                selector: 'this'
+            })
+        });
+    });
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+
+  
+  // update cookie if this page is opened (directly)
+  loadjs(['/libs/jshashes/hashes.min.js', '/libs/js-cookie/src/js.cookie.js', '/js/post.v2.js'], 'post-version');
+  loadjs.ready('post-version', function(){
+    
+    new Postv2('hashit_4c5cfca4a9ccf29e38825d42b4cd1f8116a255e8d6aa58a2b5a75d9b5448a53d').update('hashit_99fb3dfc79bcd9eb3734f5797e7debedf619c120af949e2caa8d5b245e05f240', function(){});
+  });
+  
+</script>
+
+
+
+<!-- <script src="/js/post.js"></script> -->
+
+<script src="/js/headroom.min.js"></script>
+
+<script data-no-instant type="text/javascript">
+
+initHeadroom();
+
+changeLayoutOnTouchScreen();
+
+// 
+// var post = new Post('', '');
+// post.getCommentCount(window.location.pathname, function(count){
+//     $('#article-comment-count').text(count);
+// });
+// post.addVisitRecord(window.location.pathname, userip);
+// post.getVisitCount(window.location.pathname, function(count){
+//     $('#article-visit-count').text(count);
+// });
+
+// 
+</script>
+
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

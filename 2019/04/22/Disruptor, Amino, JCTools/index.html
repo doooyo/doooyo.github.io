@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  
+      <title>Disruptor, Amino, JCTools - N 27°59′′</title>
+  
+
+  
+  
+  <meta name="description" content="java node 微服务 大数据 数据结构">
+  <meta name="author" content="duyu">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- load loadjs.js -->
+  <script src="/libs/loadjs/dist/loadjs.min.js"></script>
+
+<link rel="stylesheet" href="/libs/animate.css/animate.min.css">
+  <!-- load lightgallery -->
+<link rel="stylesheet" href="/css/lightgallery.css">
+<link rel="stylesheet" href="/libs/noty/lib/noty.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+    <link rel="stylesheet" href="/css/taurus.css">
+    
+        <link rel="stylesheet" href="/css/scheme-taurus/animations.css">
+    
+
+
+<link rel="stylesheet" href="/.css">
+
+  <!-- load font awesome 5 -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+  </script>
+  <!-- load mathjax -->
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax//libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <!-- load js-cookie -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="/js/social-share.min.js"></script>
+    <script src="/js/theme.js"></script>
+
+  <!-- include cookie.js -->
+  
+  
+
+  <!-- include comment system code -->
+  
+    <link rel="stylesheet" href="/css/gitment/default.css">
+<script src="/js/gitment.browser.js"></script>
+  
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+
+
+
+<header class="my-header">
+	<div class="header-title">
+		
+			<div class="header-logo">
+				<a href="/">
+					<img class="grow" src="/images/lion.svg">
+				</a>
+			</div>
+			<div class="header-text">
+				<h1 style="font-family: sketch; font-weight: 400">
+					<a href="/">N 27°59′′</a>
+				</h1>
+				<p>
+					<small>
+						duyu
+					</small>
+				</p>
+			</div>
+		
+	</div>
+	<div id="header-menu-container">
+		
+
+
+
+<nav class="menu">
+	
+	
+		
+		
+		
+		
+		
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/archives/" title="归档">
+					<img src="/images/icons/own/archive.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/archives/">
+					<span>归档</span>
+				</a>
+			</div>
+		</div>
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/search/" title="搜索">
+					<img src="/images/icons/own/search.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/search/">
+					<span>搜索</span>
+				</a>
+			</div>
+		</div>
+
+</nav>
+
+	</div>
+</header>
+
+ 
+
+  
+
+
+
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div style="flex: 1;">
+      <style>
+    body {
+        background-color: white;
+    }
+</style>
+
+
+
+
+	
+	
+	
+	
+
+
+
+    
+    
+
+
+
+
+
+
+    
+    
+        
+    
+
+    
+        
+    
+
+
+
+
+
+
+
+
+
+<article class="article" id="/2019/04/22/Disruptor, Amino, JCTools/" data-name="Disruptor, Amino, JCTools" data-version>
+
+    <!-- Title -->
+    <div class="article-header">
+         
+         
+            
+                
+            
+         
+         
+         <h1 class="article-title">
+            <a href="/2019/04/22/Disruptor, Amino, JCTools/">
+                Disruptor, Amino, JCTools
+            </a>
+        </h1>
+        <!-- TODO: support nested categories,display them nicely -->
+        
+    </div>
+    
+    <!-- Date and Author -->
+    <div class="article-meta">
+    <ul>
+            <li><i class="fa fa-calendar"></i> 2019年04月22日</li>
+            
+            <li><i class="fa fa-user"></i> duyu</li>
+
+    </ul>
+    
+    </div>
+    <!-- 分割线 -->
+    <hr>
+
+    <div class="article-cards">
+        <!-- Author Card -->
+        <!---
+        <div class='Card-article Card-author'>
+            <div class='card-title'>
+                <h3></h3>
+            </div>
+            <div class='card-content'>
+                    <div class="author-meta">
+                            <div class='author-figure'>
+                                <img src="" alt="">
+                            </div>
+                            <div class='author-name'>
+                                duyu
+                            </div>
+                        </div>
+                        <div class="author-ai">
+                            <div class='author-intro'>
+                                <!-- TODO: auto generating author description -->
+                                <!-- 
+                            </div>
+                            <div class="author-articles">
+                                <!-- TODO: auto generating author articles -->
+                                <!-- <ul>
+                                    <li>Article 1</li>
+                                    <li>Article 2</li>
+                                    <li>Article 3</li>
+                                    <li>Article 4</li>
+                                    <li>Article 5</li>
+                                    <li>Article 6</li>
+                                </ul>
+                            </div>
+                        </div>
+            </div>
+            
+        </div> -->
+
+        <!-- Visit Card -->
+        <!-- <div class="Card-article Card-visit"> -->
+            <!-- <div class="card-title">
+  <h3>Post Visit</h3>
+</div>
+<div class="card-chart">
+  <div id="chart-post-visit"></div>
+</div> -->
+        <!-- </div> -->
+        
+        <!-- Auto Excerpt Card -->
+        <!-- <div class="Card-article Card-excerpt">
+            <div class="card-title">
+  <h3>Quick Read</h3>
+</div>
+<div class="card-text">
+  <p id="text-post-summary">Disruptor
+
+看一个例子
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103/** * * 高并发且线程安全的生产消费环形缓冲队列, 且基于发布订阅模式(Event) * * 性能:...</p>
+</div>
+        </div> -->
+    </div>
+    
+    <!-- Gallery -->
+    <!-- TODO: add a slider to gallery -->
+    
+
+    <!-- Content -->
+    <!-- TODO: support table of content -->
+    <div class="article-toc" id="article-toc">
+    
+        
+
+
+
+
+
+
+
+
+    
+
+<div class="toc-button">
+    <img src="/images/icons/own/toc.svg" alt>
+</div>
+
+    </div>
+    <div class="article-content">
+    <h2 id="disruptor">Disruptor</h2>
+<p><img src="https://upload-images.jianshu.io/upload_images/3370771-b0549337cee52d41.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/774/format/webp" alt></p>
+<p>看一个例子</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 高并发且线程安全的生产消费环形缓冲队列, 且基于发布订阅模式(Event)</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 性能: Disruptor是高性能异步处理框架,是线程间通信的高效低延时的内存消息组件; 其LMAX架构可以获得每秒6百万订单</span></span><br><span class="line"><span class="comment"> * 1. 环形数据结构 RingBuffer --&gt; 避免垃圾回收</span></span><br><span class="line"><span class="comment"> * 2. 元素索引定位 --&gt; 2^N次幂使得可通过位运算, 加快索引计算速度; 下标递增,且为long型是[百亿亿]级别, 几百万年都不会溢出</span></span><br><span class="line"><span class="comment"> * 3. 无锁设计 --&gt;</span></span><br><span class="line"><span class="comment"> *    读(生产者)写(消费者)线程会先申请可以操作的元素在数组中的位置, 申请到后直接CAS写入</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 分如下几个步骤:</span></span><br><span class="line"><span class="comment"> * 1. 启动disruptor</span></span><br><span class="line"><span class="comment"> *   1.1 定义元素, 也可以称为Event事件 (即Event可携带何种数据结构)  --&gt; LongEvent</span></span><br><span class="line"><span class="comment"> *   1.2 定义元素的创建工厂, 定义如何创建Event元素</span></span><br><span class="line"><span class="comment"> *   1.3 指定线程池, 比如newSingleThreadExecutor缓存线程池</span></span><br><span class="line"><span class="comment"> *       但也可以直接传入ThreadFactory, 定义如何创建线程, 内部使用BasicExecutor来创建线程池(类似ThreadPoolExecutor)</span></span><br><span class="line"><span class="comment"> *   1.4 定义环形缓冲RingBuffer的大小, 注意必须是2的N次幂, 主要是为了计算</span></span><br><span class="line"><span class="comment"> *   1.5 消费者等待策略(没有事件Event到来的策略)</span></span><br><span class="line"><span class="comment"> *       BlockingWaitStrategy:       | 加锁                     | 性能最差</span></span><br><span class="line"><span class="comment"> *       BusySpinWaitStrategy:       | 自旋                     |</span></span><br><span class="line"><span class="comment"> *       PhasedBackoffWaitStrategy:  | 自旋 + yield + 自定义策略  |</span></span><br><span class="line"><span class="comment"> *       SleepingWaitStrategy:       | 自旋 + yield + sleep     |</span></span><br><span class="line"><span class="comment"> *       TimeoutBlockingWaitStrategy:| 加锁, 有超时限制           |</span></span><br><span class="line"><span class="comment"> *       YieldingWaitStrategy:       | 自旋 + yield + 自旋       | 性能最好</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *   1.6 指定单生产者/多生产者</span></span><br><span class="line"><span class="comment"> * 2. 生产者 publish Event</span></span><br><span class="line"><span class="comment"> * 3. 消费者处理Event, 定义Handler处理器</span></span><br><span class="line"><span class="comment"> * 4. 关闭disruptor</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DisruptorTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> EventFactory&lt;LongEvent&gt; eventFactory;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> ExecutorService executor;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> <span class="keyword">int</span> ringBufferSize = <span class="number">2</span> &lt;&lt; <span class="number">4</span>; <span class="comment">// 必须是2的N次幂</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Disruptor&lt;LongEvent&gt; disruptor;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Translator translator = <span class="keyword">new</span> Translator();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        eventFactory = <span class="keyword">new</span> LongEventFactory();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 也可以传入线程工厂, 内部会创建线程池</span></span><br><span class="line">        executor = Executors.newSingleThreadExecutor();</span><br><span class="line"></span><br><span class="line">        disruptor = <span class="keyword">new</span> Disruptor&lt;LongEvent&gt;(</span><br><span class="line">                eventFactory, <span class="comment">//Event工厂</span></span><br><span class="line">                ringBufferSize, <span class="comment">//环形缓冲大小</span></span><br><span class="line">                executor, <span class="comment">// 执行线程池, 也可以直接传入ThreadFactory, 内部使用BasicExecutor来创建线程池</span></span><br><span class="line">                ProducerType.SINGLE,</span><br><span class="line">                <span class="keyword">new</span> YieldingWaitStrategy()); <span class="comment">// 策略</span></span><br><span class="line">        EventHandler&lt;LongEvent&gt; handler = <span class="keyword">new</span> LongEventHandler();</span><br><span class="line"></span><br><span class="line">        disruptor.handleEventsWith(handler);</span><br><span class="line">        disruptor.setDefaultExceptionHandler(<span class="keyword">new</span> LongExceptionHandler());</span><br><span class="line"></span><br><span class="line">        disruptor.start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 发布必须在finally中 (所以要求EventHandler处理器来判断是否有数据, 以及正确性)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">publishV1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        RingBuffer&lt;LongEvent&gt; ringBuffer = disruptor.getRingBuffer();</span><br><span class="line">        <span class="keyword">long</span> sequence = ringBuffer.next(); <span class="comment">// 请求下一个事件序号</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            LongEvent event = ringBuffer.get(sequence); <span class="comment">//获取该序号对应的事件对象</span></span><br><span class="line">            <span class="keyword">long</span> data = ThreadLocalRandom.current().nextLong(<span class="number">1000</span>);</span><br><span class="line">            event.setValue(data); <span class="comment">// 填充数据</span></span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            ringBuffer.publish(sequence); <span class="comment">// 发布必须在finally中确保发送, 如果某个请求的sequence未被提交, 会堵塞后续publish或者其他producer</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 使用translator确保发布 (所以要求EventHandler处理器来判断是否有数据, 以及正确性)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">publishV2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        RingBuffer&lt;LongEvent&gt; ringBuffer = disruptor.getRingBuffer();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">long</span> data = ThreadLocalRandom.current().nextLong(<span class="number">1000</span>); <span class="comment">// 需要填充的数据</span></span><br><span class="line"></span><br><span class="line">        ringBuffer.publishEvent(translator, data);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">shutdown</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        disruptor.shutdown(); <span class="comment">//方法会堵塞直到所有事件都得到处理</span></span><br><span class="line">        executor.shutdown(); <span class="comment">//如果有线程池, 则必须手动关闭, 因为disruptor.shutdown不会自动关闭线程池</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        start(); <span class="comment">//启动Disruptor</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 每500毫秒向RingBuffer生产一个event</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; ; i++) &#123;</span><br><span class="line">            publishV2();</span><br><span class="line">            Thread.sleep(<span class="number">500</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>待续</p>
+<h2 id="amino">Amino</h2>
+<p>待续</p>
+<h2 id="jctool">JcTool</h2>
+<p>待续</p>
+
+    
+    </div>
+    
+    
+        <div class="article-comment" id="article-comment">
+            
+
+<h1>评论</h1>
+
+  
+    <div id="gitment"></div>
+  
+
+
+        </div>
+        
+</article>
+  </div>
+
+  
+
+<footer id="footer">
+    <div class="footer-copyright">
+        <div>
+            <p style="font-family: sketch; font-size: 28px;">just do it</p>
+            <p> 版权所有 <a href>duyu </a> @ 2019</p>
+            
+        </div>
+    </div>
+    
+    <div class="footer-social">
+        
+            
+                
+                    <div class="footer-social-item">
+                        <a href="https://github.com/doooyo" target="_blank">
+                        
+                            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+                        
+                        </a>
+                    </div>
+                
+            
+                
+                    <div class="footer-social-item">
+                        <a href="/atom.xml" target="_blank">
+                        
+                             <i class="fa fa-rss fa-2x" aria-hidden="true"></i>
+                        
+                        </a>
+                    </div>
+                
+            
+        
+    </div>
+</footer>
+
+  <br>
+
+  <div id="footer-menu-container">
+		
+
+
+
+<nav class="menu">
+	
+	
+		
+		
+		
+		
+		
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/archives/" title="归档">
+					<img src="/images/icons/own/archive.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/archives/">
+					<span>归档</span>
+				</a>
+			</div>
+		</div>
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/search/" title="搜索">
+					<img src="/images/icons/own/search.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/search/">
+					<span>搜索</span>
+				</a>
+			</div>
+		</div>
+
+</nav>
+
+	</div>
+
+  
+
+
+
+    
+
+
+
+
+
+
+  <script>
+  var gitment = new Gitment({
+    id: window.location.pathname, // optional
+    owner: 'doooyo',
+    repo: 'https://github.com/doooyo',
+    oauth: {
+      client_id: '4320b9f63ad425418eb5',
+      client_secret: '9c0cb6fffad72917fe8416c9ac2066dc70127d9b',
+    },
+    // ...
+    // For more available options, check out the documentation below
+  })
+
+  gitment.render('gitment')
+  </script>
+
+
+
+
+
+
+
+    <script src="/js/lightgallery.min.js"></script>
+<script src="/js/lg-zoom.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#lightgallery").lightGallery(); 
+        $(".article-content img").each(function(){
+            console.log($(this).attr('src'))
+            $(this).attr('data-src', $(this).attr('src')).lightGallery({
+                selector: 'this'
+            })
+        });
+    });
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+
+  
+  // update cookie if this page is opened (directly)
+  loadjs(['/libs/jshashes/hashes.min.js', '/libs/js-cookie/src/js.cookie.js', '/js/post.v2.js'], 'post-version');
+  loadjs.ready('post-version', function(){
+    
+    new Postv2('hashit_6978b029e60551308dea1d8550229426bd07db1b9475cd783179fcbf32e190c3').update('hashit_c2df7e62ed850a4e515bb76ec97f59ffcf92d42a5a3df4585f73b11234d6b30a', function(){});
+  });
+  
+</script>
+
+
+
+<!-- <script src="/js/post.js"></script> -->
+
+<script src="/js/headroom.min.js"></script>
+
+<script data-no-instant type="text/javascript">
+
+initHeadroom();
+
+changeLayoutOnTouchScreen();
+
+// 
+// var post = new Post('', '');
+// post.getCommentCount(window.location.pathname, function(count){
+//     $('#article-comment-count').text(count);
+// });
+// post.addVisitRecord(window.location.pathname, userip);
+// post.getVisitCount(window.location.pathname, function(count){
+//     $('#article-visit-count').text(count);
+// });
+
+// 
+</script>
+
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

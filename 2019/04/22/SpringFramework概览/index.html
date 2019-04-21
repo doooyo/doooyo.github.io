@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  
+      <title>SpringFramework概览 - N 27°59′′</title>
+  
+
+  
+  
+  <meta name="description" content="java node 微服务 大数据 数据结构">
+  <meta name="author" content="duyu">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- load loadjs.js -->
+  <script src="/libs/loadjs/dist/loadjs.min.js"></script>
+
+<link rel="stylesheet" href="/libs/animate.css/animate.min.css">
+  <!-- load lightgallery -->
+<link rel="stylesheet" href="/css/lightgallery.css">
+<link rel="stylesheet" href="/libs/noty/lib/noty.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+    <link rel="stylesheet" href="/css/taurus.css">
+    
+        <link rel="stylesheet" href="/css/scheme-taurus/animations.css">
+    
+
+
+<link rel="stylesheet" href="/.css">
+
+  <!-- load font awesome 5 -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+  </script>
+  <!-- load mathjax -->
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax//libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <!-- load js-cookie -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="/js/social-share.min.js"></script>
+    <script src="/js/theme.js"></script>
+
+  <!-- include cookie.js -->
+  
+  
+
+  <!-- include comment system code -->
+  
+    <link rel="stylesheet" href="/css/gitment/default.css">
+<script src="/js/gitment.browser.js"></script>
+  
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+
+
+
+<header class="my-header">
+	<div class="header-title">
+		
+			<div class="header-logo">
+				<a href="/">
+					<img class="grow" src="/images/lion.svg">
+				</a>
+			</div>
+			<div class="header-text">
+				<h1 style="font-family: sketch; font-weight: 400">
+					<a href="/">N 27°59′′</a>
+				</h1>
+				<p>
+					<small>
+						duyu
+					</small>
+				</p>
+			</div>
+		
+	</div>
+	<div id="header-menu-container">
+		
+
+
+
+<nav class="menu">
+	
+	
+		
+		
+		
+		
+		
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/archives/" title="归档">
+					<img src="/images/icons/own/archive.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/archives/">
+					<span>归档</span>
+				</a>
+			</div>
+		</div>
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/search/" title="搜索">
+					<img src="/images/icons/own/search.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/search/">
+					<span>搜索</span>
+				</a>
+			</div>
+		</div>
+
+</nav>
+
+	</div>
+</header>
+
+ 
+
+  
+
+
+
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div style="flex: 1;">
+      <style>
+    body {
+        background-color: white;
+    }
+</style>
+
+
+
+
+	
+	
+	
+	
+
+
+
+    
+    
+
+
+
+
+
+
+    
+    
+        
+    
+
+    
+        
+    
+
+
+
+
+
+
+
+
+
+<article class="article" id="/2019/04/22/SpringFramework概览/" data-name="SpringFramework概览" data-version>
+
+    <!-- Title -->
+    <div class="article-header">
+         
+         
+            
+                
+            
+         
+         
+         <h1 class="article-title">
+            <a href="/2019/04/22/SpringFramework概览/">
+                SpringFramework概览
+            </a>
+        </h1>
+        <!-- TODO: support nested categories,display them nicely -->
+        
+    </div>
+    
+    <!-- Date and Author -->
+    <div class="article-meta">
+    <ul>
+            <li><i class="fa fa-calendar"></i> 2019年04月22日</li>
+            
+            <li><i class="fa fa-user"></i> duyu</li>
+
+    </ul>
+    
+    </div>
+    <!-- 分割线 -->
+    <hr>
+
+    <div class="article-cards">
+        <!-- Author Card -->
+        <!---
+        <div class='Card-article Card-author'>
+            <div class='card-title'>
+                <h3></h3>
+            </div>
+            <div class='card-content'>
+                    <div class="author-meta">
+                            <div class='author-figure'>
+                                <img src="" alt="">
+                            </div>
+                            <div class='author-name'>
+                                duyu
+                            </div>
+                        </div>
+                        <div class="author-ai">
+                            <div class='author-intro'>
+                                <!-- TODO: auto generating author description -->
+                                <!-- 
+                            </div>
+                            <div class="author-articles">
+                                <!-- TODO: auto generating author articles -->
+                                <!-- <ul>
+                                    <li>Article 1</li>
+                                    <li>Article 2</li>
+                                    <li>Article 3</li>
+                                    <li>Article 4</li>
+                                    <li>Article 5</li>
+                                    <li>Article 6</li>
+                                </ul>
+                            </div>
+                        </div>
+            </div>
+            
+        </div> -->
+
+        <!-- Visit Card -->
+        <!-- <div class="Card-article Card-visit"> -->
+            <!-- <div class="card-title">
+  <h3>Post Visit</h3>
+</div>
+<div class="card-chart">
+  <div id="chart-post-visit"></div>
+</div> -->
+        <!-- </div> -->
+        
+        <!-- Auto Excerpt Card -->
+        <!-- <div class="Card-article Card-excerpt">
+            <div class="card-title">
+  <h3>Quick Read</h3>
+</div>
+<div class="card-text">
+  <p id="text-post-summary">概览
+SpringFramework3的框架结构图 (重要的里程碑版本)
+(SpringFramework4去掉了Struts, 增加了WebSocket, Messaging)
+(SpringFramework5增加了WebFlux, 最低java8, 所以支持响应式编程)
+
+参考:
+Spring Framework5中的新特性
+Spring Framework架构
+SpringFramework一共分为五部分
+
+
+Core springframework核心
+AOP 面向切面部分
+DataAccess  数据访问整合部分
+Web webmvc部分
+Test...</p>
+</div>
+        </div> -->
+    </div>
+    
+    <!-- Gallery -->
+    <!-- TODO: add a slider to gallery -->
+    
+
+    <!-- Content -->
+    <!-- TODO: support table of content -->
+    <div class="article-toc" id="article-toc">
+    
+        
+
+
+
+
+
+
+
+
+    
+
+<div class="toc-button">
+    <img src="/images/icons/own/toc.svg" alt>
+</div>
+
+    </div>
+    <div class="article-content">
+    <h2 id="概览">概览</h2>
+<p>SpringFramework3的框架结构图 (重要的里程碑版本)
+<em>(SpringFramework4去掉了Struts, 增加了WebSocket, Messaging)</em>
+<em>(SpringFramework5增加了WebFlux, 最低java8, 所以支持响应式编程)</em>
+<img src="https://upload-images.jianshu.io/upload_images/7896890-a7c003d175bd41af.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>参考:
+<a href="https://www.cnblogs.com/dhcn/p/8905904.html" target="_blank" rel="noopener">Spring Framework5中的新特性</a>
+<a href="https://blog.csdn.net/wd2014610/article/details/80061808" target="_blank" rel="noopener">Spring Framework架构</a></p>
+<p><strong>SpringFramework一共分为五部分</strong></p>
+<blockquote>
+<ol>
+<li><code>Core</code> springframework核心</li>
+<li><code>AOP</code> 面向切面部分</li>
+<li><code>DataAccess</code>  数据访问整合部分</li>
+<li><code>Web</code> webmvc部分</li>
+<li><code>Test</code> 测试部分</li>
+</ol>
+</blockquote>
+<p>最核心(IOC)就<code>Core模块</code>中的三个 <strong><code>Core</code>, <code>Beans</code>, <code>Context</code></strong>
+它通过DI注入方式, 解决了Bean的生命周期统一管理
+<font color="orange">图中每个块即为一个jar包, <code>instrumentation</code>有两个包, <code>spring-context-support</code>未在图中列出, 一共19个jar包
+4.0版本取消了Struts, 增加了WebSocket和Messaging, 所以有20个jar包</font></p>
+<p>下面我们就以各个包的作用以及依赖关系做出解释</p>
+<h2 id="core核心模块-ioc依赖注入">Core核心模块 (IOC依赖注入)</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">- Core核心模块</th>
+<th style="text-align:left">- 特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>spring-core</code></td>
+<td style="text-align:left">依赖注入IoC与DI的最基本实现, 只依赖<code>common-logging</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>spring-beans</code></td>
+<td style="text-align:left">Bean工厂与bean的装配, 只依赖性<code>spring-core</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>spring-expression</code></td>
+<td style="text-align:left">spring表达式语言, 只依赖性<code>spring-core</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>spring-context</code></td>
+<td style="text-align:left">spring的context上下文即IoC容器, 它依赖了4个模块<code>spring-core</code>,<code>spring-beans</code>,<code>spring-expression</code>,<code>spring-aop</code></td>
+</tr>
+</tbody>
+</table>
+<p><img src="http://pic4.zhimg.com/v2-05b6565ecd67276d34d85d8c6ace61bb_b.png" alt></p>
+<p>所以, 依赖了<code>spring-context</code>就相当于可以使用Spring的<code>IOC</code>和<code>AOP</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-context<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.17.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">            注意spring-core默认依赖了jdk默认的日志框架common-logging</span></span><br><span class="line"><span class="comment">            如果使用了slf4j的门面日志logback, 则可以去掉common-logging</span></span><br><span class="line"><span class="comment">            如果去掉了, 但是没有依赖其他任何日志实现, 则会抛出异常</span></span><br><span class="line"><span class="comment">        --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-logging<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-logging<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="aop面向切面模块-动态代理">AOP面向切面模块 (动态代理)</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">- AOP模块</th>
+<th style="text-align:left">- 特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>spring-aop</code></td>
+<td style="text-align:left">面向切面编程 (动态代理), 依赖<code>spring-core</code>, <code>spring-beans</code>, <code>aopalliance</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>spring-aspects</code></td>
+<td style="text-align:left">集成AspectJ (编译期静态代理)</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>spring-instrument</code></td>
+<td style="text-align:left">提供一些类级的工具支持和ClassLoader级的实现, 用于服务器; <font color="red">instrument是jdk5引入,jdk6发扬光大的, <code>ASM,CGLIB,javassist,jdk动态代理</code>之流只能通过反射或字节码方式创建一个新类, 但javaAgent是 <strong>JVM虚拟机级别的动态AOP代理</strong>, 在载入jvm前动态修改class的字节码, 注意是在原始字节码基础上做修改, 不会生成一个新的字节码文件, 也没有必须有接口等限制</font> 参考: <a href="https://www.jianshu.com/p/9f4e8dcb3e2f" target="_blank" rel="noopener">Java Instrument原理</a></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>spring-instrument-tomcat</code></td>
+<td style="text-align:left">针对tomcat的instrument实现</td>
+</tr>
+</tbody>
+</table>
+<p><img src="http://pic4.zhimg.com/v2-4e8213b319d657a270fa456bbfc55643_b.png" alt></p>
+<p>需要注意<code>aspectj</code>的支持需要单独依赖<code>spring-aspects</code></p>
+<h2 id="dataaccess数据访问模块">DataAccess数据访问模块</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">- 数据访问模块</th>
+<th style="text-align:left">- 特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>spring-jdbc</code></td>
+<td style="text-align:left">jdbc的支持</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>spring-tx</code></td>
+<td style="text-align:left">事务控制, <font color="red">定义了七种事务传播行为</font></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>spring-orm</code></td>
+<td style="text-align:left">对象关系映射，集成orm框架; 主要针对<code>JDO</code> ,<code>ibatis</code>, <code>hibernate</code>…</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>spring-oxm</code></td>
+<td style="text-align:left">对象xml映射, 用以支持xml方式</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>spring-jms</code></td>
+<td style="text-align:left">java消息服务</td>
+</tr>
+</tbody>
+</table>
+<p><img src="http://pic3.zhimg.com/v2-16c0fb6c425aef8c373925fc79d1aada_b.png" alt></p>
+<h2 id="web模块">Web模块</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">- 数据访问模块</th>
+<th style="text-align:left">- 特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>spring-web</code></td>
+<td style="text-align:left">基础web功能, 如文件上传, servlet等</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>spring-webmvc</code></td>
+<td style="text-align:left">mvc实现, 通过策略模式, 所有都变成可配置, 视图技术支持包括<code>JSP、Velocity、Tiles、iText、POI、FreeMarker</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>spring-webmvc-portlet</code></td>
+<td style="text-align:left">基于portlet的mvc实现, 类似<code>Fragment</code>片段组成的单页后端web应用, 与安卓<code>Fragment</code>, 前端单页<code>SPA</code>相对应</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>~~spring-struts~~</code></td>
+<td style="text-align:left">与struts的集成, 不推荐, spring4已移除</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>spring-websocket</code></td>
+<td style="text-align:left">springframework4开始支持</td>
+</tr>
+</tbody>
+</table>
+<p><img src="http://pic1.zhimg.com/v2-c53a936dcef5b2e337a48ad95d1c8840_b.png" alt></p>
+<p>附注 :
+<code>protlet</code>类似<code>fragment</code>片段, 可以理解为服务端的单页面web应用, 和<code>servlet</code>传统模式有本质区别
+WebSphere容器支持了 JSR 168 Portlet API 的 Portlet 容器
+<img src="http://dl2.iteye.com/upload/attachment/0104/1719/6a43f993-c1e0-3d8b-983b-ea50912576d8.png" alt></p>
+<h2 id="test测试模块">Test测试模块</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">- 测试模块</th>
+<th style="text-align:left">- 特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>spring-test</code></td>
+<td style="text-align:left">spring测试, 提供junit与mock测试功能</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>spring-context-support</code></td>
+<td style="text-align:left">spring额外支持包,  比如邮件服务、视图解析等</td>
+</tr>
+</tbody>
+</table>
+<h2 id="springframework4-0">springframework4.0</h2>
+<p>去掉<code>spring-struts</code>的支持, 新增<code>spring-websocket</code>, <code>spring-messaging</code>两个模块
+(还支持groovy, <code>spring-beans-groovy</code>)</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">- 4.0新增模块</th>
+<th style="text-align:left">- 特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>spring-websocket</code></td>
+<td style="text-align:left">为web应用提供的高效通信工具</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>spring-messaging</code></td>
+<td style="text-align:left">用于构建基于消息的应用程序</td>
+</tr>
+</tbody>
+</table>
+<p><img src="http://pic4.zhimg.com/v2-8d03bdf11aa484ff373bf7d35d9c095b_b.png" alt></p>
+<h2 id="总结">总结</h2>
+<p>根据以上的模块的依赖关系</p>
+<ol>
+<li>若只想使用sping的IOC和AOP, 则只需要引用<code>spring-context</code></li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-context<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.17.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">            注意spring-core默认依赖了jdk默认的日志框架common-logging</span></span><br><span class="line"><span class="comment">            如果使用了slf4j的门面日志logback, 则可以去掉common-logging</span></span><br><span class="line"><span class="comment">            如果去掉了, 但是没有依赖其他任何日志实现, 则会抛出异常</span></span><br><span class="line"><span class="comment">        --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-logging<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-logging<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>若想使用spingmvc, 则只需要引用<code>spring-webmvc</code></li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.17.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+    
+    </div>
+    
+    
+        <div class="article-comment" id="article-comment">
+            
+
+<h1>评论</h1>
+
+  
+    <div id="gitment"></div>
+  
+
+
+        </div>
+        
+</article>
+  </div>
+
+  
+
+<footer id="footer">
+    <div class="footer-copyright">
+        <div>
+            <p style="font-family: sketch; font-size: 28px;">just do it</p>
+            <p> 版权所有 <a href>duyu </a> @ 2019</p>
+            
+        </div>
+    </div>
+    
+    <div class="footer-social">
+        
+            
+                
+                    <div class="footer-social-item">
+                        <a href="https://github.com/doooyo" target="_blank">
+                        
+                            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+                        
+                        </a>
+                    </div>
+                
+            
+                
+                    <div class="footer-social-item">
+                        <a href="/atom.xml" target="_blank">
+                        
+                             <i class="fa fa-rss fa-2x" aria-hidden="true"></i>
+                        
+                        </a>
+                    </div>
+                
+            
+        
+    </div>
+</footer>
+
+  <br>
+
+  <div id="footer-menu-container">
+		
+
+
+
+<nav class="menu">
+	
+	
+		
+		
+		
+		
+		
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/archives/" title="归档">
+					<img src="/images/icons/own/archive.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/archives/">
+					<span>归档</span>
+				</a>
+			</div>
+		</div>
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/search/" title="搜索">
+					<img src="/images/icons/own/search.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/search/">
+					<span>搜索</span>
+				</a>
+			</div>
+		</div>
+
+</nav>
+
+	</div>
+
+  
+
+
+
+    
+
+
+
+
+
+
+  <script>
+  var gitment = new Gitment({
+    id: window.location.pathname, // optional
+    owner: 'doooyo',
+    repo: 'https://github.com/doooyo',
+    oauth: {
+      client_id: '4320b9f63ad425418eb5',
+      client_secret: '9c0cb6fffad72917fe8416c9ac2066dc70127d9b',
+    },
+    // ...
+    // For more available options, check out the documentation below
+  })
+
+  gitment.render('gitment')
+  </script>
+
+
+
+
+
+
+
+    <script src="/js/lightgallery.min.js"></script>
+<script src="/js/lg-zoom.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#lightgallery").lightGallery(); 
+        $(".article-content img").each(function(){
+            console.log($(this).attr('src'))
+            $(this).attr('data-src', $(this).attr('src')).lightGallery({
+                selector: 'this'
+            })
+        });
+    });
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+
+  
+  // update cookie if this page is opened (directly)
+  loadjs(['/libs/jshashes/hashes.min.js', '/libs/js-cookie/src/js.cookie.js', '/js/post.v2.js'], 'post-version');
+  loadjs.ready('post-version', function(){
+    
+    new Postv2('hashit_a0b956528fd5652840b32114d7b4a7979f1e97f0318b72c1f6da993dab70a31c').update('hashit_661f191151c77e046a1a1cc7bde9f155f5d5def64c66fc9f37df2c9f1faf3980', function(){});
+  });
+  
+</script>
+
+
+
+<!-- <script src="/js/post.js"></script> -->
+
+<script src="/js/headroom.min.js"></script>
+
+<script data-no-instant type="text/javascript">
+
+initHeadroom();
+
+changeLayoutOnTouchScreen();
+
+// 
+// var post = new Post('', '');
+// post.getCommentCount(window.location.pathname, function(count){
+//     $('#article-comment-count').text(count);
+// });
+// post.addVisitRecord(window.location.pathname, userip);
+// post.getVisitCount(window.location.pathname, function(count){
+//     $('#article-visit-count').text(count);
+// });
+
+// 
+</script>
+
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

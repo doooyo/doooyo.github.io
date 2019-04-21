@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  
+      <title>JVM - N 27°59′′</title>
+  
+
+  
+  
+  <meta name="description" content="java node 微服务 大数据 数据结构">
+  <meta name="author" content="duyu">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- load loadjs.js -->
+  <script src="/libs/loadjs/dist/loadjs.min.js"></script>
+
+<link rel="stylesheet" href="/libs/animate.css/animate.min.css">
+  <!-- load lightgallery -->
+<link rel="stylesheet" href="/css/lightgallery.css">
+<link rel="stylesheet" href="/libs/noty/lib/noty.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+    <link rel="stylesheet" href="/css/taurus.css">
+    
+        <link rel="stylesheet" href="/css/scheme-taurus/animations.css">
+    
+
+
+<link rel="stylesheet" href="/.css">
+
+  <!-- load font awesome 5 -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+  </script>
+  <!-- load mathjax -->
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax//libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <!-- load js-cookie -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="/js/social-share.min.js"></script>
+    <script src="/js/theme.js"></script>
+
+  <!-- include cookie.js -->
+  
+  
+
+  <!-- include comment system code -->
+  
+    <link rel="stylesheet" href="/css/gitment/default.css">
+<script src="/js/gitment.browser.js"></script>
+  
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+
+
+
+<header class="my-header">
+	<div class="header-title">
+		
+			<div class="header-logo">
+				<a href="/">
+					<img class="grow" src="/images/lion.svg">
+				</a>
+			</div>
+			<div class="header-text">
+				<h1 style="font-family: sketch; font-weight: 400">
+					<a href="/">N 27°59′′</a>
+				</h1>
+				<p>
+					<small>
+						duyu
+					</small>
+				</p>
+			</div>
+		
+	</div>
+	<div id="header-menu-container">
+		
+
+
+
+<nav class="menu">
+	
+	
+		
+		
+		
+		
+		
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/archives/" title="归档">
+					<img src="/images/icons/own/archive.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/archives/">
+					<span>归档</span>
+				</a>
+			</div>
+		</div>
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/search/" title="搜索">
+					<img src="/images/icons/own/search.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/search/">
+					<span>搜索</span>
+				</a>
+			</div>
+		</div>
+
+</nav>
+
+	</div>
+</header>
+
+ 
+
+  
+
+
+
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div style="flex: 1;">
+      <style>
+    body {
+        background-color: white;
+    }
+</style>
+
+
+
+
+	
+	
+	
+	
+
+
+
+    
+    
+
+
+
+
+
+
+    
+    
+        
+    
+
+    
+        
+    
+
+
+
+
+
+
+
+
+
+<article class="article" id="/2019/04/22/JVM/" data-name="JVM" data-version>
+
+    <!-- Title -->
+    <div class="article-header">
+         
+         
+            
+                
+            
+         
+         
+         <h1 class="article-title">
+            <a href="/2019/04/22/JVM/">
+                JVM
+            </a>
+        </h1>
+        <!-- TODO: support nested categories,display them nicely -->
+        
+    </div>
+    
+    <!-- Date and Author -->
+    <div class="article-meta">
+    <ul>
+            <li><i class="fa fa-calendar"></i> 2019年04月22日</li>
+            
+            <li><i class="fa fa-user"></i> duyu</li>
+
+    </ul>
+    
+    </div>
+    <!-- 分割线 -->
+    <hr>
+
+    <div class="article-cards">
+        <!-- Author Card -->
+        <!---
+        <div class='Card-article Card-author'>
+            <div class='card-title'>
+                <h3></h3>
+            </div>
+            <div class='card-content'>
+                    <div class="author-meta">
+                            <div class='author-figure'>
+                                <img src="" alt="">
+                            </div>
+                            <div class='author-name'>
+                                duyu
+                            </div>
+                        </div>
+                        <div class="author-ai">
+                            <div class='author-intro'>
+                                <!-- TODO: auto generating author description -->
+                                <!-- 
+                            </div>
+                            <div class="author-articles">
+                                <!-- TODO: auto generating author articles -->
+                                <!-- <ul>
+                                    <li>Article 1</li>
+                                    <li>Article 2</li>
+                                    <li>Article 3</li>
+                                    <li>Article 4</li>
+                                    <li>Article 5</li>
+                                    <li>Article 6</li>
+                                </ul>
+                            </div>
+                        </div>
+            </div>
+            
+        </div> -->
+
+        <!-- Visit Card -->
+        <!-- <div class="Card-article Card-visit"> -->
+            <!-- <div class="card-title">
+  <h3>Post Visit</h3>
+</div>
+<div class="card-chart">
+  <div id="chart-post-visit"></div>
+</div> -->
+        <!-- </div> -->
+        
+        <!-- Auto Excerpt Card -->
+        <!-- <div class="Card-article Card-excerpt">
+            <div class="card-title">
+  <h3>Quick Read</h3>
+</div>
+<div class="card-text">
+  <p id="text-post-summary">JVM在性能优化时是必备知识点, 则必须知道JVM内存的结构, 如何GC回收, 如何使用工具和参数来实现调优;
+
+JVM内存结构
+GC回收机制与算法
+垃圾收集器,使用性能监控工具调优,参数调优
+动态字节码
+类加载器
+
+
+一 JVM内存结构
+(1)结构图
+注意区别于JMM内存模型
+图1
+
+根据线程私有还是公有, 给出一张图,
+注意程序计数器没有内存异常;
+注意:
+
+申请Heap堆空间内存不足, 或者栈允许动态扩容且申请内存不足时抛出OutOfMemeryError; 一般是大量创建对象时才会发生堆内存溢出
+只有栈才会抛出StackOverFlowError,...</p>
+</div>
+        </div> -->
+    </div>
+    
+    <!-- Gallery -->
+    <!-- TODO: add a slider to gallery -->
+    
+
+    <!-- Content -->
+    <!-- TODO: support table of content -->
+    <div class="article-toc" id="article-toc">
+    
+        
+
+
+
+
+
+
+
+
+    
+
+<div class="toc-button">
+    <img src="/images/icons/own/toc.svg" alt>
+</div>
+
+    </div>
+    <div class="article-content">
+    <p>JVM在性能优化时是必备知识点, 则必须知道JVM内存的结构, 如何GC回收, 如何使用工具和参数来实现调优;</p>
+<blockquote>
+<p><strong>JVM内存结构</strong>
+<strong>GC回收机制与算法</strong>
+<strong>垃圾收集器,使用性能监控工具调优,参数调优</strong>
+<strong>动态字节码</strong>
+<strong>类加载器</strong></p>
+</blockquote>
+<hr>
+<h2 id="一-jvm内存结构">一 JVM内存结构</h2>
+<h3 id="1-结构图">(1)结构图</h3>
+<p>注意区别于JMM内存模型
+图1
+<img src="https://static.oschina.net/uploads/space/2018/0120/101859_uZAV_867830.png" alt></p>
+<p>根据线程私有还是公有, 给出一张图,
+<font color="red">注意程序计数器没有内存异常;
+注意:</font></p>
+<ol>
+<li>申请Heap堆空间内存不足, 或者栈允许动态扩容且申请内存不足时抛出<code>OutOfMemeryError</code>; 一般是大量创建对象时才会发生堆内存溢出</li>
+<li>只有栈才会抛出<code>StackOverFlowError</code>, 一般情况是入栈深度大于虚拟机所允许的深度, 常见的就是递归方法栈溢出(解决办法请见<code>尾递归</code>)
+图2
+<img src="http://incdn1.b0.upaiyun.com/2017/11/a48d39eef1ee33faede51c11d8a06780.png" alt></li>
+</ol>
+<h3 id="2-jvm内存的五大区域">(2)jvm内存的五大区域</h3>
+<p>堆, 栈, 本地栈, 方法区(永久代), 程序计数器</p>
+<blockquote>
+<ol>
+<li><strong><code>堆 Heap</code></strong>
+所有<strong>线程共享</strong>, JVM中最大的一块内存, 用于存储对象实例本身; 同时堆是垃圾搜集器管理的主要区域;
+所有对象以及数组都需要在堆上分配空间;
+堆的还有更具体的划分, 新生代, 老生代;
+堆大小可通过-Xmx 和 -Xms指定, 无法再扩展则会抛出OutOfMemoryError
+<font color="red">Heap堆里分为几块区域:
+<strong>方法区(永久代/Meta-Area)</strong>: 这块区域名字几经变化, java8叫做元数据空间; 主要存储jvm加载类的类信息，类变量，静态变量，方法信息，常量，即时编译器编译后的代码等数据
+<strong>运行时常量区</strong>: 它是<code>方法区</code>里的一部分, 存放编译器生成的各种字面量和符号引用，这部分内容将在类加载后存放到方法区的运行时常量池中 (比如我们常说的字符串常量池)
+<strong>注意: jvm将方法区描述为Heap堆区的一个逻辑部分, 但实际上它的别名叫non-heap(非堆)</strong></font></li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li><strong><code>栈 Stack</code></strong>
+单个<strong>线程私有</strong>, 每个方法执行时都会创建栈, 线程执行每个方法其实就是栈帧的出栈入栈 (一个栈帧对应一个方法), 栈帧用于存储局部变量表、操作数栈、动态链接、方法出口等信息
+<font color="red"><strong>局部变量表</strong>: 用于存储形参, 局部变量(基本类型/对象引用/返回类型); 它在编译期(class文件)完成局部变量表容量的计算, 运行期不会改变其大小
+<strong>操作数栈</strong>: 即方法执行期间出栈入栈操作, 栈的深度编译期就已确定; Java虚拟机的解释执行引擎称为“基于栈的执行引擎”，其中所指的“栈”就是操作数栈, 也称Java虚拟机是基于栈的; 优点是可移植性好, 缺点是执行速度相对慢一些 (相对Android基于寄存器的虚拟机)
+<strong>动态链接</strong>: 每个栈帧都包含一个指向运行时常量池(位于方法区)中该栈帧所属方法的引用, 持有这个引用是为了支持方法调用过程中的动态连接;
+Class文件的常量池中存在有大量的符号引用，字节码中的方法调用指令就以常量池中指向方法的符号引用为参数
+<code>静态解析</code>: 一部分符号引用会在类加载阶段或第一次使用的时候转化为直接引用（如 final、static 域等）
+<code>动态连接</code>: 另一部分将在每一次的运行期间转化为直接引用
+<strong>方法返回地址</strong>: 方法被执行后, 有两种方式退出该方法: 执行引擎遇到了任意一个方法返回的字节码指令或遇到了异常, 并且该异常没有在方法体内得到处理;
+方法退出后需要返回到方法被调用的位置, 如果是正常退出, 上层方法的栈帧会保存一些地址信息以便返回, 如果是异常退出, 则需要通过异常处理器来确定返回地址;
+<strong>退出方法需要做的操作: 恢复上层方法的局部变量表和操作数栈, 若有返回值则还需要压入调用者栈帧的操作数栈中</strong></font></li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li><strong><code>本地方法栈 Native Static</code></strong>
+单个<strong>线程私有</strong>, 和java栈很类似, 只是它存的是JVM调用C++的方法局部变量等</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="4">
+<li><strong><code>程序计数器</code></strong>
+单个<strong>线程私有</strong>, 记录了当前线程执行到哪一条指令, 因为每个线程都有一个独立的线程计数器, 目的是为了线程切换的时候能恢复到正常执行位置 (cpu时间片只能执行一个指令)
+注意它没有抛出内存异常, 查阅上图2</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="5">
+<li><strong><code>堆外内存(直接内存)</code></strong>
+这个不属于JVM内存管理的范畴, 所以回收跟c和c++一样需要自己回收, 而不通过垃圾回收器
+NIO中就有一个DirectByteBuffer可以开辟堆外内存</li>
+</ol>
+</blockquote>
+<p><font color="orange">总结 :</font></p>
+<ol>
+<li>方法区：
+方法区称为持久代，因为GC会很少回收这块区域，但不代表不回收；
+比如运行时常量区，除了存储编译期常量外（字面常量、符号引用、翻译出来的直接引用），也可以存储在运行时间产生的常量，比如String类的intern()方法；
+针对持久代的回收一般是对<code>常量池</code>和<code>已加载类的卸载</code>进行回收；
+方法区可以设置大小：<code>--XX:PermSize</code>，<code>--XX:MaxPermSize</code>；方法区超出允许的大小会抛出OutOfMemory异常，一般来说无须调整方法区大小
+<font color="red">2. 运行时常量池和方法区的区别
+方法区包含两部分：
+其一，Class类信息(类的版本、字段、方法、接口等描述信息)
+其二，运行时常量池，主要是编译期生成的各种字面量和符号引用；它具有动态性，并不要求常量一定只有编译期才能产生，运行时也可产生，最常见的即String.intern()</font></li>
+<li>堆区：
+常将-Xms和-Xmx设置成一样。为了让内存回收更加高效</li>
+</ol>
+<h3 id="3-hotspot逃逸分析">(3) <strong>HotSpot逃逸分析</strong></h3>
+<p>这是HotSpot虚拟机比较前沿的优化技术, 一种全局的跨函数数据流分析算法;
+可以有效减少Java程序中同步负载, 降低内存堆分配压力和GC压力</p>
+<p><font color="orange">首先要了解java创建对象或数组一般是在Heap堆上, 但这不是绝对; 有两种方式导致创建出来的对象不在Heap堆上 :
+</font></p>
+<blockquote>
+<ol>
+<li>Java中的逃逸分析</li>
+<li>TLAB（Thread Local Allocation Buffer）线程私有的缓存区</li>
+</ol>
+</blockquote>
+<p>首先要了解什么是<code>java逃逸分析</code>?
+<font color="red"><strong>逃逸分析的基本行为就是分析对象动态作用域, 是否跨域了; 编译器能够分析出一个新的对象的引用的使用范围从而决定是否要将这个对象分配到堆上</strong></font></p>
+<blockquote>
+<p>发生逃逸的2种情况</p>
+<blockquote>
+<ol>
+<li>当一个对象在方法中定义之后, 作为参数传递到其它方法中</li>
+<li>如类变量或实例变量, 可能被其它线程访问到</li>
+</ol>
+</blockquote>
+</blockquote>
+<p>若没有出现逃逸行为, 则可以通过如下行为进行优化:</p>
+<blockquote>
+<ol>
+<li>同步消除</li>
+<li>标量替换</li>
+<li>栈上分配</li>
+</ol>
+</blockquote>
+<p><strong>1. 同步消除</strong>
+<font color="orange">如果确定对象不会逃逸出线程, 无法被其他线程访问到, 那该对象的读写就不会存在竞争, 则可以消除对该对象的同步锁, 通过<code>-XX:+EliminateLocks</code>可以开启同步消除
+<strong>注意: 如果有逃逸行为, 但是线程永远只有一个(无锁竞争), 这时HotSpot不会做任何优化, 只是互斥锁会一直是偏向锁而已</strong></font></p>
+<p><strong>2. 标量替换</strong></p>
+<blockquote>
+<p><font color="orange"><strong>1.</strong> 标量是指不可分割的量，如java中基本数据类型和reference类型，相对的一个数据可以继续分解，称为聚合量；
+<strong>2.</strong> 如果把一个对象拆散，将其成员变量恢复到基本类型来访问就叫做标量替换；
+<strong>3.</strong> 如果逃逸分析发现一个对象不会被外部访问，并且该对象可以被拆散，那么经过优化之后，并不直接生成该对象，而是在栈上创建若干个成员变量
+<strong>4.</strong> 通过<code>-XX:+EliminateAllocations</code>可以开启标量替换， <code>-XX:+PrintEliminateAllocations</code>查看标量替换情况</font></p>
+</blockquote>
+<p><strong>3. 栈上分配</strong>
+<font color="orange">其实目前Hotspot并没有实现真正意义上的栈上分配，实际上是标量替换;
+堆内存的开辟和GC回收都是耗时操作, 如果能优化为栈上(局部变量表)分配, 栈帧出栈即会销毁, 大大减少堆分配和GC压力</font></p>
+<p><strong>4. 总结</strong>
+<font color="red">逃逸分析是一项耗时操作, 目前的实现都是采用不那么准确但是时间复杂度相对较小的算法来完成逃逸分析, 这就可能导致效果不稳定, 要<strong>慎用</strong></font></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * HotSpot逃逸分析 (创建200w个对象, 查看Heap堆的对象分布情况)</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 即时编译（Just-in-time Compilation，JIT）</span></span><br><span class="line"><span class="comment"> * 是一种通过在运行时将字节码翻译为机器码，从而改善字节码编译语言性能的技术;</span></span><br><span class="line"><span class="comment"> * 1. C1编译速度快, 优化方式比较保守  (client)</span></span><br><span class="line"><span class="comment"> * 2. C2编译速度慢, 优化方式比较激进  (server)</span></span><br><span class="line"><span class="comment"> * 3. C1+C2在开始阶段采用C1编译, 当代码运行到一定热度之后采用G2重新编译 (分层编译)</span></span><br><span class="line"><span class="comment"> * 在1.8之前, 分层编译默认是关闭的, 可以添加-server -XX:+TieredCompilation参数进行开启</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 1. java -cp . -Xmx3G -Xmn2G -server -XX:-DoEscapeAnalysis DoEscapeAnalysis // 运行代码</span></span><br><span class="line"><span class="comment"> *    (-XX:-DoEscapeAnalysis // 关闭逃逸分析)</span></span><br><span class="line"><span class="comment"> *    jmap -histo [pid] // 查看Heap堆对象分布情况</span></span><br><span class="line"><span class="comment"> *    结果: 堆上200w个User对象</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 2. java -cp . -Xmx3G -Xmn2G -server DoEscapeAnalysis // 运行代码</span></span><br><span class="line"><span class="comment"> *    jmap -histo [pid] // 开启逃逸分析后, 查看Heap堆对象分布情况</span></span><br><span class="line"><span class="comment"> *    结果: 堆上41w+个User对象</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 3. java -cp . -Xmx3G -Xmn2G -server -XX:-TieredCompilation DoEscapeAnalysis //运行代码</span></span><br><span class="line"><span class="comment"> *    (-XX:-TieredCompilation // 关闭分层编译)</span></span><br><span class="line"><span class="comment"> *    jmap -histo [pid]</span></span><br><span class="line"><span class="comment"> *    结果: 堆上1w+个User对象</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 总结: 开启JIT分层编译会阻碍逃逸分析</span></span><br><span class="line"><span class="comment"> *     即时编译JIT只在代码段执行足够次数才会进行优化，在执行过程中不断收集各种数据，</span></span><br><span class="line"><span class="comment"> *     作为优化的决策，所以在优化完成之前，例子中的User对象还是在堆上进行分配</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DoEscapeAnalysis</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> age;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.age = age;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> age;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">1000000</span>;</span><br><span class="line">        <span class="comment">//warm up</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">            sum += fn(i);</span><br><span class="line">        &#125;</span><br><span class="line">        Thread.sleep(<span class="number">500</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">            sum += fn(i);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(sum);</span><br><span class="line">        System.in.read();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">fn</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        User user = <span class="keyword">new</span> User(age);</span><br><span class="line">        <span class="keyword">int</span> i = user.getAge();</span><br><span class="line">        <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参考:
+<a href="http://www.importnew.com/27262.html" target="_blank" rel="noopener">Java 逃逸分析</a>
+<a href="https://www.jianshu.com/p/20bd2e9b1f03" target="_blank" rel="noopener">浅谈HotSpot逃逸分析</a></p>
+<hr>
+<h2 id="二-gc回收机制与算法">二 GC回收机制与算法</h2>
+<p>上面说过, JVM内存结构被描述为五大区域, 其中「程序计数器」,「native方法栈」,「虚拟机栈」三个是线程私有, 伴随线程的生命周期而生灭, 因此分配和回收具备确定性;
+垃圾收集器的工作场所主要是在Heap堆区</p>
+<h3 id="1-堆内存分布">(1) 堆内存分布</h3>
+<p>jvm堆内存分布图 : 所有回收器类型都是基于分代技术</p>
+<blockquote>
+<ol>
+<li>新生代 : 分为三个区域
+<font color="red"> <strong>原始区(Eden) :</strong> 对象绝大部分在此区分配 (除非对象太大放不下则会放到<code>老年代</code>);
+<strong>存活区s1(From) :</strong> s1和s2是两块大小相同的存活区
+<strong>存活区s2(To) :</strong> 回收结束后, s1和s2交换, 保证<code>s2(To)</code>为空
+<strong>总结 :</strong> 回收选型为<code>Copy复制</code>, 回收后<code>原始区(Eden), s2(To)</code>是空的
+原始区和两个存活区按照 <strong>8:1:1</strong>的比例分配空间</font></li>
+<li>老年代 :
+回收时, <code>标记（Mark</code>）、<code>清除（Sweep）</code>、<code>合并（Compact）</code>, 回收选型为<code>Compact合并</code></li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li>永久代 :
+也叫做<code>方法区</code>, 现在叫做<code>元数据区</code> (详情见上面)</li>
+</ol>
+</blockquote>
+<p>图1
+<img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3927290212,3064353507&amp;fm=173&amp;s=9133C13245F8EE202E4D68CB02005032&amp;w=639&amp;h=156&amp;img.JPEG" alt></p>
+<p>图2
+<img src="http://t11.baidu.com/it/u=4191374602,3766009169&amp;fm=173&amp;s=D9A019729FB84C030AFDE1DB000080B2&amp;w=640&amp;h=223&amp;img.JPEG" alt></p>
+<blockquote>
+<ol>
+<li><strong>垃圾收集算法</strong>
+1.1 tracing算法 (标记-清除收集器)
+1.2 copying算法 (上面图中的s1, s2就是容量相等的两块区域)
+1.3 compacting算法
+1.4 generation算法</li>
+<li><strong>常用垃圾收集器</strong>
+2.1 标记-清除收集器 Mark-Sweep
+2.2 复制收集器 Copying　　
+2.3 标记-压缩收集器 Mark-Compact
+2.4 分代收集器　　　Generational</li>
+<li><strong>对象回收算法</strong>
+3.1 引用计数算法
+3.2 可达性分析算法</li>
+</ol>
+</blockquote>
+<h3 id="2-垃圾回收算法">(2) 垃圾回收算法</h3>
+<h4 id="1-tracing算法-mark-sweep-标记-清除收集器">1. tracing算法 (Mark-Sweep/标记-清除收集器)</h4>
+<p>它是最简单的算法, 效率也是最高, 但缺陷也是最大的</p>
+<blockquote>
+<ol>
+<li>标记(Mark) :
+从根集合（GC Roots）进行扫描, 对存活的对象进行标记</li>
+<li>清除(Sweep) :
+再扫描整个空间中未被标记的对象，进行回收</li>
+<li><font color="red">注意: 标记清除没有移动对象, 所以不管存活对象多不多, 这都是效率最高的方式, 但严重缺陷是会有内存碎片;
+极端情况时, 碎片太多导致大对象(数组)无法分配, 提前触发新的一次垃圾收集动作, 再次无法分配直接抛出OutOfMemeryError异常</font></li>
+</ol>
+</blockquote>
+<p><img src="http://images0.cnblogs.com/i/288799/201406/181024382398115.jpg" alt></p>
+<h4 id="2-copying算法-copying收集器">2. copying算法 (Copying收集器)</h4>
+<p>为解决内存碎片, 提出此算法</p>
+<blockquote>
+<p>它将可用内存按容量划分为大小相等的两块, 每次只使用其中的一块;
+当这一块的内存用完了, 就将还存活着的对象复制到另外一块上面, 然后再把已使用的内存空间一次清理掉;
+这样一来就不容易出现内存碎片的问题
+<font color="red">注意: 此方式高效且没有内存碎片, 但是内存空间却浪费了一半
+如果存活对象很多, 那么复制的数量大大增加, 效率直线下降</font></p>
+</blockquote>
+<p>可以看出, 新生代中<code>Survivor1/Survivor2</code>就是两个相等的存活区, 所以jvm对于<code>新生代</code>的垃圾回收就是使用<code>copying算法</code>
+<img src="http://images0.cnblogs.com/i/288799/201406/181041528488728.jpg" alt></p>
+<h4 id="3-compacting算法-mark-compact-标记-压缩收集器">3. compacting算法 (Mark-Compact/标记-压缩收集器)</h4>
+<p>为解决空间浪费, 以及移动大量活动对象造成效率低下, 提出此算法</p>
+<blockquote>
+<p>为了解决Copying算法的缺陷，充分利用内存空间，提出了Mark-Compact算法。该算法标记阶段和Mark-Sweep一样，但是在完成标记之后，它不是直接清理可回收对象，而是将存活对象都向一端移动，然后清理掉端边界以外的内存</p>
+</blockquote>
+<h4 id="4-generation分代算法">4. Generation分代算法</h4>
+<p>这是大部分HotSpot垃圾收集器采用的算法, 核心思想是根据对象生命后期进行分代, 将堆分为<code>新生代</code>, <code>老年代</code></p>
+<p>图3
+<img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=503803508,4219141947&amp;fm=173&amp;s=90A3F11206AE5509084C6AEE0200E032&amp;w=640&amp;h=430&amp;img.JPEG" alt></p>
+<ul>
+<li>新生代</li>
+</ul>
+<p>其特点是每次GC都有大量对象被回收, 存活对象少;  所以<code>新生代</code>很适合<code>copying算法</code>, 因为复制的对象较少</p>
+<blockquote>
+<p>1 原始区 : <strong>较大</strong>; 是绝大多数对象分配内存的地方(少数放不下可能直接放到<code>老年代</code>)
+2 两块存活区 : <strong>较小,且一样大</strong>, 目的是为了符合<code>copying</code>算法
+3 minor gc : <font color="orange">
+3.1 Eden区域的空间不足于分配新对象时, 首次触发minor gc
+3.2 将存活对象拷贝到<code>s1(From)</code>, 清除<code>Eden</code>不可达对象, 同时年龄+1 (年龄就是minor gc的次数)
+3.3 当<code>s1(From)</code>也满了, 则第二次触发<code>minor gc</code>时, 将<code>Eden</code>, <code>s1(From)</code>中存活对象拷贝到<code>s2(To)</code>, 各自对象年龄+1, 清空<code>Eden</code>, <code>s1(From)</code>; 注意如果s2放不下则会直接放到<code>老年代</code>
+3.4 垃圾回收后<code>Eden</code>, <code>s1(From)</code>是空的; 此时<strong>交换s1和s2, 保证s2(To)是空的</strong>, 如此往复
+</font></p>
+</blockquote>
+<p>**<font color="red">注意 ：
+首先年轻代的默认空间配比: <code>Eden:s1:s2--&gt;8:1:1</code>, 可通过jvm参数调整(后续说明)</font></p>
+<ol>
+<li>年龄即为minor的次数, 每GC一次年龄+1 (默认超过8次minor gc还未回收则会进入老年代)</li>
+<li>每次回收触发原因是由于<code>Eden</code>或者<code>s1(From)</code>空间不足 (当然还有Full GC)
+**</li>
+</ol>
+<ul>
+<li>新生代垃圾回收流程</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. 在初始阶段，新创建的对象被分配到Eden区，survivor的两块空间都为空</span><br><span class="line"><span class="number">2</span>. 当Eden区满了的时候，minor garbage 被触发</span><br><span class="line"><span class="number">3</span>. 经过扫描与标记，存活的对象被复制到S1，不存活的对象被回收，清空Eden；首次回收完毕</span><br><span class="line">注意：当S1满了，则会触发第二次minor gc，和下面情形相同</span><br><span class="line"><span class="number">4</span>. 当Eden再次满时，触发第二次年轻代GC，Eden和S1存活的对象将会被拷贝到S2（放不下的会被放到老年代）</span><br><span class="line"><span class="number">5</span>. 清空Eden和S1，交换S1和S2，第二次回收完毕</span><br><span class="line"><span class="number">6</span>. 此时Eden和S2是空的，再循环往复</span><br><span class="line"></span><br><span class="line">注意：</span><br><span class="line"><span class="number">1</span>. 每次minor gc后，年龄+<span class="number">1</span></span><br><span class="line"><span class="number">2</span>. 若不指定，默认<span class="number">8</span>次minor gc后进入老年代</span><br><span class="line"><span class="number">3</span>. 如果触发gc后Eden还是无法分配内存，抛出OutOfMemery</span><br><span class="line"><span class="number">4</span>. s2不足以放下Eden和s1的存活对象，直接放到老年代</span><br><span class="line"><span class="number">5</span>. 老年代也满了则会触发Full GC，即新生代老年代都回收</span><br><span class="line"><span class="number">6</span>. 这里涉及-Xmx -Xms -Xmn -Xss的堆大小指定，</span><br><span class="line">还有-XX:NewRatio -XX:SurvivorRatio -XX:MaxPermSize -XX:MaxPermSize 堆的比例等等，后续讲解</span><br></pre></td></tr></table></figure>
+<ul>
+<li>老年代</li>
+</ul>
+<p>其特点是对象存活率很高，很少回收，所以很适合compacting算法（标记压缩）
+堆空间默认大致配比:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">原始区   存活区(from)   存活区(to)    老年代</span><br><span class="line">Eden    Survivor1     Survivor2    Tenured</span><br><span class="line"><span class="number">8</span>       <span class="number">1</span>             <span class="number">1</span>            <span class="number">10</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>标记出存活的对象， 并移动向一端以保证没有内存碎片，因为有移动，所以适合少量对象回收的情况（大量实践证明的确老年代很少有对象回收）</p>
+</blockquote>
+<p><font color="red">从新生代晋升到老年代会先判断老年代的剩余空间大小，如果不够存放一个对象，则会触发Full GC
+<code>XX:+Handle PromotionFailure</code>是只要晋升到老年代就会触发Full GC，就算老年代还有很多内存富余也会触发，所以最好不要用</font></p>
+<ul>
+<li>永久代(方法区)</li>
+</ul>
+<p>一般情况下很少回收永久代，如下两种情况会触发永久代回收
+如果不想回收永久代，可以通过jvm参数设置
+甚至可以设置Eden区域对象不经过存活区直接到老年代
+<font color="red">jvm规范的确不要求回收永久代，只是性价比很低，而且回收无用的类时条件十分苛刻；当然各个厂商的jvm实现也可以不回收；</font></p>
+<p><strong>但是在大量使用反射、动态代理、CGLib等bytecode框架的场景，以及动态生成JSP和OSGi这类频繁自定义ClassLoader的场景都需要虚拟机具备类卸载的功能，以保证永久代不会溢出</strong></p>
+<p>方法区(永久代)可回收的内容：</p>
+<blockquote>
+<ol>
+<li>常量池中的常量
+没有引用即可回收</li>
+<li>无用的类信息 (条件苛刻, 必须保证如下3点)
+2.1 类的所有实例都已经被回收
+2.2 加载类的ClassLoader已经被回收
+2.3 类对象的Class对象没有被引用（即没有通过反射引用该类的地方）</li>
+</ol>
+</blockquote>
+<ul>
+<li>Minor GC ，Full GC 触发条件</li>
+</ul>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span><span class="string">Minor</span> <span class="string">GC触发条件</span> <span class="string">:</span></span><br><span class="line">    <span class="string">当Eden区满时，触发Minor</span> <span class="string">GC</span></span><br><span class="line"></span><br><span class="line"><span class="number">2.</span><span class="string">Full</span> <span class="string">GC触发条件</span> <span class="string">:</span></span><br><span class="line">    <span class="number">2.1</span> <span class="string">调用System.gc时，系统建议执行Full</span> <span class="string">GC，但是不必然执行</span></span><br><span class="line">    <span class="number">2.2</span> <span class="string">老年代空间不足</span></span><br><span class="line">    <span class="number">2.3</span> <span class="string">永久代（方法区）空间不足</span></span><br><span class="line">    <span class="number">2.4</span> <span class="string">通过Minor</span> <span class="string">GC后进入老年代的平均大小大于老年代的可用内存</span></span><br><span class="line">    <span class="number">2.5</span> <span class="string">由Eden区、From</span> <span class="string">Space区向To</span> <span class="string">Space区复制时，对象大小大于To</span> <span class="string">Space可用内存，则把该对象转存到老年代，且老年代的可用内存小于该对象大小</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="3-对象回收算法">(3) 对象回收算法</h3>
+<p>上面讲述了垃圾回收采用分代算法，组合使用了<code>标记压缩</code>和<code>复制</code>；</p>
+<blockquote>
+<p>问题1: 标记对象不可达是如何计算的呢？
+问题2: 释放对象又是如何做到的呢？
+问题3: finalize方法?</p>
+</blockquote>
+<h4 id="1-finalize方法">1. finalize方法</h4>
+<p>jvm只会回收new出来的内存堆块，通过native方法调用操作系统函数创建的对象则无法回收；
+<font color="red">finalize作用：
+finalize用于在GC发生前事先调用去回收JNI调用中申请的特殊内存，下次GC发生时候保证GC后所有该对象的内存都释放了</font></p>
+<ul>
+<li>特点</li>
+</ul>
+<blockquote>
+<ol>
+<li>finalize()是Object的protected方法，子类可以覆盖该方法以实现资源清理工作，GC在回收对象之前调用该方法</li>
+<li>finalize()与C<ins>中的析构函数不是对应的。C</ins>中的析构函数调用的时机是确定的（对象离开作用域或delete掉），但Java中的finalize的调用具有不确定性</li>
+<li>不建议用finalize方法完成“非内存资源”的清理工作，但建议用于：① 清理本地对象(通过JNI创建的对象)；② 作为确保某些非内存资源(如Socket、文件等)</li>
+</ol>
+</blockquote>
+<p><font color="red">当GC时，发现对象不可达，</font></p>
+<ol>
+<li>对象没有重写finalize方法，或者finalize已经被执行过（此方法只会被执行一次），则标记可清除</li>
+<li>对象重写了finalize方法，则不会直接回收，会判断对象是否执行过finalize方法 (因为此方法只允许执行一次)，没有执行过就会放入<code>F-Queue队列</code>，由一低优先级线程执行该队列中对象的finalize方法。执行finalize方法完毕后，GC会再次判断该对象是否可达，若不可达，则进行回收，否则，对象“复活”。</li>
+</ol>
+<p>所以，finalize被执行的不确定性太大，不要指望使用finalize来回收你的对象，它只会在系统进行GC的时候清理特殊内存，不受你的控制；因为它不是C/C<ins>中的析构函数，而是Java刚诞生时为了使C/C</ins>程序员更容易接受它所做出的一个妥协，运行代价高昂，不确定性大，无法保证各个对象的调用顺序</p>
+<p><img src="http://img.blog.csdn.net/20131006163937765" alt></p>
+<p>对象通过<code>finalize</code>’自救’</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FinalizeTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> FinalizeTest SAVE_HOOK = <span class="keyword">null</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        SAVE_HOOK = <span class="keyword">new</span> FinalizeTest();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 第一次断开强引用, 即删除 (通过finalize自救)</span></span><br><span class="line">        SAVE_HOOK = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">// 建议系统Full GC</span></span><br><span class="line">        System.gc();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 休眠半秒, 等待Full GC完成</span></span><br><span class="line">        Thread.sleep(<span class="number">500</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//此时对象应该处于(reachable, finalized)状态</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> != SAVE_HOOK) &#123;</span><br><span class="line">            System.out.println(<span class="string">"Yes , I am still alive"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"No , I am dead"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//第二次断开强引用, 即删除(finalize已执行过一次, 无法自救)</span></span><br><span class="line">        SAVE_HOOK = <span class="keyword">null</span>;</span><br><span class="line">        System.gc();</span><br><span class="line">        Thread.sleep(<span class="number">500</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> != SAVE_HOOK) &#123;</span><br><span class="line">            System.out.println(<span class="string">"Yes , I am still alive"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"No , I am dead"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 只会执行一次</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Throwable</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.finalize();</span><br><span class="line">        System.out.println(<span class="string">"execute method finalize()"</span>);</span><br><span class="line">        <span class="comment">// 只能自救一次, 重新添加引用, 第二次标记不可达时会从F-Queue队列移除</span></span><br><span class="line">        SAVE_HOOK = <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-回收算法">2. 回收算法</h4>
+<p>对象回收算法有两类：<code>引用计数法</code>，<code>根搜索算法</code></p>
+<h5 id="2-1-引用计数法">2.1 引用计数法</h5>
+<p>有一个巨大缺陷：无法检测循环引用问题
+<img src="http://img-blog.csdn.net/20171129111132033?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzY4NjY4MDg=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt></p>
+<h5 id="2-2-根搜索算法-gc-roots">2.2 根搜索算法(GC Roots)</h5>
+<p>根搜索是根据一系列作为root根的对象, 进行图遍历(引用链), 如果当一个对象到GC Roots没有任何引用链相连时, 则证明此对象是不可用的</p>
+<ul>
+<li>为GC Roots根对象</li>
+</ul>
+<p>可以为如下四类</p>
+<blockquote>
+<ol>
+<li>Java虚拟机栈中引用的对象
+User user= new User()</li>
+<li>静态属性引用的对象
+private static User user = new User()</li>
+<li>常量引用的对象(final)
+private static final  User user = new User()</li>
+<li>本地方法栈中引用的对象(JNI)</li>
+</ol>
+</blockquote>
+<ul>
+<li>对象何时死亡
+如果遍历后对象不可达，也并非&quot;非死不可&quot;，会判断是否重写过``或者虚拟机执行过，没有则直接标记为可移除，没有则是另外一个流程
+详情请见上面 《finalize方法》小节
+参考:
+<a href="https://www.cnblogs.com/Smina/p/7189427.html" target="_blank" rel="noopener">对象回收时finalize的作用</a></li>
+</ul>
+<h2 id="三-常用垃圾收集器-jvm调优-调优工具">三 常用垃圾收集器, jvm调优, 调优工具</h2>
+<h3 id="1-垃圾收集器-3类7种">(1) 垃圾收集器(3类7种)</h3>
+<p>大致分为3大类共7种垃圾收集器
+<img src="http://pic1.zhimg.com/80/v2-55fdcd5fe54faa11542cceb3642c4dcc_hd.jpg" alt></p>
+<h4 id="1-新生代收集器">1. 新生代收集器</h4>
+<ul>
+<li>Serial收集器（新生代单线程Client模式）</li>
+</ul>
+<blockquote>
+<p><strong>Serial收集器是最基本、发展历史最悠久的单线程收集器</strong></p>
+<ol>
+<li>是单线程的收集器</li>
+<li>它在进行垃圾收集时，必须暂停其他所有的工作线程</li>
+<li>采用复制算法进行垃圾收集</li>
+<li>Serial收集器依然是虚拟机运行在Client模式下默认新生代收集器</li>
+</ol>
+</blockquote>
+<ul>
+<li>ParNew收集器（新生代多线程Server模式）</li>
+</ul>
+<blockquote>
+<p><strong>Serial收集器的多线程版本</strong>
+附加说明:</p>
+<ol>
+<li>ParNew 在单核 CPU 环境并不会比 Serial 收集器达到更好的效果</li>
+<li>它默认开启的收集线程数和 CPU 数量一致, 可通过<code>-XX:ParallelGCThreads</code> 来设置垃圾收集的线程数</li>
+</ol>
+</blockquote>
+<ul>
+<li>Parallel Scavenge收集器（新生代并行回收）</li>
+</ul>
+<blockquote>
+<p><strong>该收集器的目标是达到一个可控制的吞吐量</strong></p>
+<ol>
+<li>也是基于多线程的复制算法</li>
+<li>提供两个参数用于精确控制吞吐量，分别是控制最大垃圾收起停顿时间的<code>-XX:MaxGCPauseMillis</code>，以及直接设置吞吐量大小的<code>-XX:GCTimeRatio</code></li>
+<li>自适应调节策略 <code>-XX:+UseAdaptiveSizePolicy</code>，开启之后就无须设置如下3个参数:
+<code>-Xmn (新生代大小)</code>,
+<code>-XX:SurvivorRatio (Eden&amp;Survivor区的比例)</code>,
+<code>-XX:PretenureSizeThreshold (晋升老年代年龄)</code></li>
+<li>和ParNew不太一样，ParNew追求的是尽可能缩短垃圾收集时用户线程的停顿时间，Parallel Scavenge的目标是达到一个可控制的吞吐量，可能单次回收时间还略高于ParNew</li>
+</ol>
+</blockquote>
+<h4 id="2-老年代收集器">2. 老年代收集器</h4>
+<ul>
+<li>Serial Old 收集器（老年代单线程Client模式）</li>
+</ul>
+<blockquote>
+<p>Serial收集器的老年代版本
+基于单线程，标记合并算法
+与 Parallel Scavenge 收集器搭配；作为 CMS 收集器的后备预案</p>
+</blockquote>
+<ul>
+<li>Parallel Old 收集器（老年代多线程）</li>
+</ul>
+<blockquote>
+<p>是Parallel Scavenge收集器的老年代版本
+使用 <code>-XX:+UseParallelOldGC</code> 来指定使用 Paralle Old 收集器
+dk7、jdk8 默认使用该收集器作为老年代收集器</p>
+</blockquote>
+<ul>
+<li>CMS收集器（老年代 最短回收停顿时间）</li>
+</ul>
+<p>很适合B/S系统的服务端上</p>
+<blockquote>
+<p>老年代收集器唯一一个使用<code>标记-清除</code>算法的，所以有内存碎片</p>
+<ol>
+<li>以获取最短回收停顿时间为目标</li>
+<li>分为4个步骤：
+<code>初始标记</code>: 标记一下 GC Roots 能直接关联到的对象，速度较快
+<code>并发标记</code>: 进行 GC Roots Tracing，标记出全部的垃圾对象，耗时较长
+<code>重新标记</code>: 修正并发标记阶段引用户程序继续运行而导致变化的对象的标记记录，耗时较短
+<code>并发清除</code>: 用标记-清除算法清除垃圾对象，耗时较长</li>
+<li>耗时最长的并发标记和并发清除都是和用户线程一起工作，总体上来说，CMS收集器垃圾收集可以看做是和用户线程并发执行的</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>缺点:</p>
+<ol>
+<li><code>对CPU资源敏感</code>：默认分配的垃圾收集线程数为(CPU 数+3)/4，随着 CPU 数量下降，占用 CPU 资源越多，吞吐量越小</li>
+<li><code>无法处理浮动垃圾</code>： 在并发清理阶段，由于用户线程还在运行，还会不断产生新的垃圾，CMS当次无法清除；同时由于在垃圾收集阶段用户线程也在并发执行，CMS 收集器不能像其他收集器那样等老年代被填满时再进行收集，需要预留一部分空间提供用户线程运行使用。当 CMS 运行时，预留的内存空间无法满足用户线程的需要，就会出现 “ Concurrent Mode Failure ”的错误，这时将会启动后备预案，临时用 Serial Old 来重新进行老年代的垃圾收集。</li>
+</ol>
+</blockquote>
+<ol start="3">
+<li><code>产生内存碎片</code>：基于标记-清除算法
+<code>XX:UserCMSCompactAtFullCollection</code>开启碎片整理（默认开启），在 CMS 进行 Full GC 之前，会进行内存碎片的整理
+<code>-XX:CMSFullGCsBeforeCompaction</code>设置执行多少次不压缩的 Full GC 之后，跟着来一次带压缩的 Full GC（默认0）
+<code>XX:+UserConMarkSweepGC</code> 选择 CMS 作为老年代收集器</li>
+</ol>
+<h4 id="3-堆内存垃圾收集器">3. 堆内存垃圾收集器</h4>
+<ul>
+<li>G1收集器</li>
+</ul>
+<p><font color="orange">G1 收集器是 jdk1.7 才正式引用的商用收集器，现在已经成为 jdk9 默认的收集器。前面几款收集器收集的范围都是新生代或者老年代，G1 进行垃圾收集的范围是整个堆内存，它采用 “ 化整为零 ” 的思路，把整个堆内存划分为多个大小相等的独立区域（Region），在 G1 收集器中还保留着新生代和老年代的概念，它们分别都是一部分 Region</font>
+<img src="http://pic1.zhimg.com/80/v2-62d471e0ba563d1d10c53114488c47b8_hd.jpg" alt></p>
+<p><font color="orange">每一个方块就是一个区域，每个区域可能是 Eden、Survivor、老年代，每种区域的数量也不一定。JVM 启动时会自动设置每个区域的大小（1M ~ 32M，必须是 2 的次幂），最多可以设置 2048 个区域（即支持的最大堆内存为 32M*2048 = 64G），假如设置 -Xmx8g -Xms8g，则每个区域大小为 8g/2048=4M</font></p>
+<p>为了在 GC Roots Tracing 的时候避免扫描全堆，在每个 Region 中，都有一个 Remembered Set 来实时记录该区域内的引用类型数据与其他区域数据的引用关系（在前面的几款分代收集中，新生代、老年代中也有一个 Remembered Set 来实时记录与其他区域的引用关系），在标记时直接参考这些引用关系就可以知道这些对象是否应该被清除，而不用扫描全堆的数据。</p>
+<p>G1 收集器可以 “ 建立可预测的停顿时间模型 ”，它维护了一个列表用于记录每个 Region 回收的价值大小（回收后获得的空间大小以及回收所需时间的经验值），这样可以保证 G1 收集器在有限的时间内可以获得最大的回收效率。
+</p>
+<blockquote>
+<p>初始标记
+并发标记
+最终标记
+筛选回收</p>
+</blockquote>
+<h3 id="2-jvm参数调优">(2) JVM参数调优</h3>
+<h4 id="垃圾收集器相关jvm参数">垃圾收集器相关jvm参数</h4>
+<blockquote>
+<p>-XX:+UseSerialGC：在新生代和老年代使用串行收集器
+-XX:+UseParNewGC：在新生代使用并行收集器
+-XX:+UseParallelGC ：新生代使用并行回收收集器，更加关注吞吐量
+-XX:+UseParallelOldGC：老年代使用并行回收收集器
+-XX:ParallelGCThreads：设置用于垃圾回收的线程数
+-XX:+UseConcMarkSweepGC：新生代使用并行收集器，老年代使用CMS+串行收集器
+-XX:ParallelCMSThreads：设定CMS的线程数量
+-XX:+UseG1GC：启用G1垃圾回收器</p>
+</blockquote>
+<h3 id="3-调优工具的使用">(3) 调优工具的使用</h3>
+<h4 id="1-jvm调优-监控和故障处理-命令-6个">1. jvm调优(监控和故障处理)命令(6个)</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">- 命令</th>
+<th style="text-align:left">- 作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong><code>jstat</code></strong></td>
+<td style="text-align:left"><font color="orange">监视虚拟机运行时状态信息(类装载、内存、垃圾收集、JIT编译等运行数据)</font></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong><code>jps</code></strong></td>
+<td style="text-align:left"><font color="orange">显示指定系统内所有的HotSpot虚拟机进程</font></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong><code>jmap</code></strong></td>
+<td style="text-align:left"><font color="orange">内存映射工具, 用于生成heap dump文件</font></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong><code>jhat</code></strong></td>
+<td style="text-align:left"><font color="orange">与jmap搭配使用，用来分析jmap生成的dump，jhat内置了一个微型的HTTP/HTML服务器，生成dump的分析结果后，可以在浏览器中查看; 注意，一般不会直接在服务器上进行分析，因为jhat是一个耗时并且耗费硬件资源的过程，一般把服务器生成的dump文件复制到本地或其他机器上进行分析</font></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong><code>jstack</code></strong></td>
+<td style="text-align:left"><font color="orange">生成java虚拟机当前时刻的线程快照; 目的是定位线程出现长时间停顿的原因，如线程间死锁、死循环、请求外部资源导致的长时间等待等</font></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong><code>jinfo</code></strong></td>
+<td style="text-align:left"><font color="orange">实时查看和调整虚拟机运行参数</font></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 查看gc情况 1000表示1秒展示一次, 10表示最多展示10次</span></span><br><span class="line">jstat -gc pid <span class="number">1000</span> <span class="number">10</span></span><br></pre></td></tr></table></figure>
+    
+    </div>
+    
+    
+        <div class="article-comment" id="article-comment">
+            
+
+<h1>评论</h1>
+
+  
+    <div id="gitment"></div>
+  
+
+
+        </div>
+        
+</article>
+  </div>
+
+  
+
+<footer id="footer">
+    <div class="footer-copyright">
+        <div>
+            <p style="font-family: sketch; font-size: 28px;">just do it</p>
+            <p> 版权所有 <a href>duyu </a> @ 2019</p>
+            
+        </div>
+    </div>
+    
+    <div class="footer-social">
+        
+            
+                
+                    <div class="footer-social-item">
+                        <a href="https://github.com/doooyo" target="_blank">
+                        
+                            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+                        
+                        </a>
+                    </div>
+                
+            
+                
+                    <div class="footer-social-item">
+                        <a href="/atom.xml" target="_blank">
+                        
+                             <i class="fa fa-rss fa-2x" aria-hidden="true"></i>
+                        
+                        </a>
+                    </div>
+                
+            
+        
+    </div>
+</footer>
+
+  <br>
+
+  <div id="footer-menu-container">
+		
+
+
+
+<nav class="menu">
+	
+	
+		
+		
+		
+		
+		
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/archives/" title="归档">
+					<img src="/images/icons/own/archive.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/archives/">
+					<span>归档</span>
+				</a>
+			</div>
+		</div>
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/search/" title="搜索">
+					<img src="/images/icons/own/search.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/search/">
+					<span>搜索</span>
+				</a>
+			</div>
+		</div>
+
+</nav>
+
+	</div>
+
+  
+
+
+
+    
+
+
+
+
+
+
+  <script>
+  var gitment = new Gitment({
+    id: window.location.pathname, // optional
+    owner: 'doooyo',
+    repo: 'https://github.com/doooyo',
+    oauth: {
+      client_id: '4320b9f63ad425418eb5',
+      client_secret: '9c0cb6fffad72917fe8416c9ac2066dc70127d9b',
+    },
+    // ...
+    // For more available options, check out the documentation below
+  })
+
+  gitment.render('gitment')
+  </script>
+
+
+
+
+
+
+
+    <script src="/js/lightgallery.min.js"></script>
+<script src="/js/lg-zoom.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#lightgallery").lightGallery(); 
+        $(".article-content img").each(function(){
+            console.log($(this).attr('src'))
+            $(this).attr('data-src', $(this).attr('src')).lightGallery({
+                selector: 'this'
+            })
+        });
+    });
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+
+  
+  // update cookie if this page is opened (directly)
+  loadjs(['/libs/jshashes/hashes.min.js', '/libs/js-cookie/src/js.cookie.js', '/js/post.v2.js'], 'post-version');
+  loadjs.ready('post-version', function(){
+    
+    new Postv2('hashit_a7f966d88f0e699bf9c5edd4996eb393526c0edf90f071e3bb3c1c8ab177344f').update('hashit_56a15d34243ebff2e8060bc54ec9d2f48b50ae0419e5f33e534f9f45302774d6', function(){});
+  });
+  
+</script>
+
+
+
+<!-- <script src="/js/post.js"></script> -->
+
+<script src="/js/headroom.min.js"></script>
+
+<script data-no-instant type="text/javascript">
+
+initHeadroom();
+
+changeLayoutOnTouchScreen();
+
+// 
+// var post = new Post('', '');
+// post.getCommentCount(window.location.pathname, function(count){
+//     $('#article-comment-count').text(count);
+// });
+// post.addVisitRecord(window.location.pathname, userip);
+// post.getVisitCount(window.location.pathname, function(count){
+//     $('#article-visit-count').text(count);
+// });
+
+// 
+</script>
+
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

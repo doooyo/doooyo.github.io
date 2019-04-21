@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  
+      <title>线程池 - N 27°59′′</title>
+  
+
+  
+  
+  <meta name="description" content="java node 微服务 大数据 数据结构">
+  <meta name="author" content="duyu">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- load loadjs.js -->
+  <script src="/libs/loadjs/dist/loadjs.min.js"></script>
+
+<link rel="stylesheet" href="/libs/animate.css/animate.min.css">
+  <!-- load lightgallery -->
+<link rel="stylesheet" href="/css/lightgallery.css">
+<link rel="stylesheet" href="/libs/noty/lib/noty.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+    <link rel="stylesheet" href="/css/taurus.css">
+    
+        <link rel="stylesheet" href="/css/scheme-taurus/animations.css">
+    
+
+
+<link rel="stylesheet" href="/.css">
+
+  <!-- load font awesome 5 -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+  </script>
+  <!-- load mathjax -->
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax//libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <!-- load js-cookie -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="/js/social-share.min.js"></script>
+    <script src="/js/theme.js"></script>
+
+  <!-- include cookie.js -->
+  
+  
+
+  <!-- include comment system code -->
+  
+    <link rel="stylesheet" href="/css/gitment/default.css">
+<script src="/js/gitment.browser.js"></script>
+  
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+
+
+
+<header class="my-header">
+	<div class="header-title">
+		
+			<div class="header-logo">
+				<a href="/">
+					<img class="grow" src="/images/lion.svg">
+				</a>
+			</div>
+			<div class="header-text">
+				<h1 style="font-family: sketch; font-weight: 400">
+					<a href="/">N 27°59′′</a>
+				</h1>
+				<p>
+					<small>
+						duyu
+					</small>
+				</p>
+			</div>
+		
+	</div>
+	<div id="header-menu-container">
+		
+
+
+
+<nav class="menu">
+	
+	
+		
+		
+		
+		
+		
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/archives/" title="归档">
+					<img src="/images/icons/own/archive.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/archives/">
+					<span>归档</span>
+				</a>
+			</div>
+		</div>
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/search/" title="搜索">
+					<img src="/images/icons/own/search.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/search/">
+					<span>搜索</span>
+				</a>
+			</div>
+		</div>
+
+</nav>
+
+	</div>
+</header>
+
+ 
+
+  
+
+
+
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div style="flex: 1;">
+      <style>
+    body {
+        background-color: white;
+    }
+</style>
+
+
+
+
+	
+	
+	
+	
+
+
+
+    
+    
+
+
+
+
+
+
+    
+    
+        
+    
+
+    
+        
+    
+
+
+
+
+
+
+
+
+
+<article class="article" id="/2019/04/22/线程池/" data-name="线程池" data-version>
+
+    <!-- Title -->
+    <div class="article-header">
+         
+         
+            
+                
+            
+         
+         
+         <h1 class="article-title">
+            <a href="/2019/04/22/线程池/">
+                线程池
+            </a>
+        </h1>
+        <!-- TODO: support nested categories,display them nicely -->
+        
+    </div>
+    
+    <!-- Date and Author -->
+    <div class="article-meta">
+    <ul>
+            <li><i class="fa fa-calendar"></i> 2019年04月22日</li>
+            
+            <li><i class="fa fa-user"></i> duyu</li>
+
+    </ul>
+    
+    </div>
+    <!-- 分割线 -->
+    <hr>
+
+    <div class="article-cards">
+        <!-- Author Card -->
+        <!---
+        <div class='Card-article Card-author'>
+            <div class='card-title'>
+                <h3></h3>
+            </div>
+            <div class='card-content'>
+                    <div class="author-meta">
+                            <div class='author-figure'>
+                                <img src="" alt="">
+                            </div>
+                            <div class='author-name'>
+                                duyu
+                            </div>
+                        </div>
+                        <div class="author-ai">
+                            <div class='author-intro'>
+                                <!-- TODO: auto generating author description -->
+                                <!-- 
+                            </div>
+                            <div class="author-articles">
+                                <!-- TODO: auto generating author articles -->
+                                <!-- <ul>
+                                    <li>Article 1</li>
+                                    <li>Article 2</li>
+                                    <li>Article 3</li>
+                                    <li>Article 4</li>
+                                    <li>Article 5</li>
+                                    <li>Article 6</li>
+                                </ul>
+                            </div>
+                        </div>
+            </div>
+            
+        </div> -->
+
+        <!-- Visit Card -->
+        <!-- <div class="Card-article Card-visit"> -->
+            <!-- <div class="card-title">
+  <h3>Post Visit</h3>
+</div>
+<div class="card-chart">
+  <div id="chart-post-visit"></div>
+</div> -->
+        <!-- </div> -->
+        
+        <!-- Auto Excerpt Card -->
+        <!-- <div class="Card-article Card-excerpt">
+            <div class="card-title">
+  <h3>Quick Read</h3>
+</div>
+<div class="card-text">
+  <p id="text-post-summary">类图结构
+
+线程池的工作原理
+
+原理:
+
+
+判断核心线程(core)是否已满, 没满则创建新线程, 满则步骤2
+判断队列是否已满, 没满则入队, 满则步骤3
+判断线程池(max)是否已满, 没满则继续创建线程, 满则步骤4
+按照拒绝策略拒绝任务
+
+
+线程池工作具体示意图:
+
+
+SynchronousQueue队列(补充)
+此队列实现比较复杂, 先看类继承结构和数据结构:
+
+
+
+不存储元素的队列, 每一个put操作必须等待一个take操作, 否则不能继续添加元素
+支持公平策略(双重队列-先进先出), 也支持非公平策略(双重栈–先进后出),...</p>
+</div>
+        </div> -->
+    </div>
+    
+    <!-- Gallery -->
+    <!-- TODO: add a slider to gallery -->
+    
+
+    <!-- Content -->
+    <!-- TODO: support table of content -->
+    <div class="article-toc" id="article-toc">
+    
+        
+
+
+
+
+
+
+
+
+    
+
+<div class="toc-button">
+    <img src="/images/icons/own/toc.svg" alt>
+</div>
+
+    </div>
+    <div class="article-content">
+    <p>类图结构
+<img src="https://upload-images.jianshu.io/upload_images/5401975-04f3cf53fcf41296.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/734/format/webp" alt></p>
+<h2 id="线程池的工作原理">线程池的工作原理</h2>
+<p><img src="http://www.uml.org.cn/j2ee/images/2012121931.jpg" alt></p>
+<p>原理:</p>
+<blockquote>
+<ol>
+<li>判断核心线程(core)是否已满, 没满则创建新线程, 满则步骤2</li>
+<li>判断队列是否已满, 没满则入队, 满则步骤3</li>
+<li>判断线程池(max)是否已满, 没满则继续创建线程, 满则步骤4</li>
+<li>按照拒绝策略拒绝任务</li>
+</ol>
+</blockquote>
+<p>线程池工作具体示意图:
+<img src="https://pic4.zhimg.com/v2-885830dd498528ca7e277f9d930fcac3_b.jpg" alt></p>
+<hr>
+<h2 id="synchronousqueue队列-补充">SynchronousQueue队列(补充)</h2>
+<p>此队列实现比较复杂, 先看类继承结构和数据结构:
+<img src="https://upload-images.jianshu.io/upload_images/6050820-5bc09993fe75642d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/698/format/webp" alt></p>
+<blockquote>
+<ol>
+<li>不存储元素的队列, 每一个put操作必须等待一个take操作, 否则不能继续添加元素</li>
+<li>支持公平策略(双重队列-先进先出), 也支持非公平策略(双重栈–先进后出), 默认非公平策略
+<font color="red">双重Queue/Stack内部实现是单链表</font></li>
+</ol>
+</blockquote>
+<hr>
+<h2 id="线程池的4种类型">线程池的4种类型</h2>
+<ul>
+<li>使用</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 固定线程数为5的线程池</span></span><br><span class="line">Executors.newFixedThreadPool(<span class="number">5</span>);</span><br><span class="line"><span class="comment">// 带时间策略调度的线程池</span></span><br><span class="line">Executors.newScheduledThreadPool(<span class="number">5</span>);</span><br><span class="line"><span class="comment">// 线程可缓存的线程池</span></span><br><span class="line">Executors.newCachedThreadPool();</span><br><span class="line"><span class="comment">// 单个线程的线程池</span></span><br><span class="line">Executors.newSingleThreadExecutor();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>内部如何构造</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 固定线程池: 默认线程数为5的线程池, 任务队列无界</span></span><br><span class="line"><span class="comment">// 由于队列无界, 永远不会创建第六个线程, 所以不会触发keepAliveTime</span></span><br><span class="line"><span class="keyword">new</span> ThreadPoolExecutor(<span class="number">5</span>, <span class="number">5</span>,</span><br><span class="line">                <span class="number">0L</span>, TimeUnit.MILLISECONDS,</span><br><span class="line">                <span class="keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 带时间调度的线程池: 由于队列是可扩容二叉堆(数组), 所以无界</span></span><br><span class="line"><span class="comment">// 同理, keepAliveTime是无效的</span></span><br><span class="line"><span class="keyword">new</span> ThreadPoolExecutor(<span class="number">5</span>,  Integer.MAX_VALUE,</span><br><span class="line">                <span class="number">0</span>, NANOSECONDS,</span><br><span class="line">                <span class="keyword">new</span> DelayedWorkQueue());</span><br><span class="line"></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">new</span> ThreadPoolExecutor(<span class="number">0</span>, Integer.MAX_VALUE,</span><br><span class="line">                <span class="number">60L</span>, TimeUnit.SECONDS,</span><br><span class="line">                <span class="keyword">new</span> SynchronousQueue&lt;Runnable&gt;());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 单个线程池: 线程池只会有一个线程, 其他线程入队等待, 队列默认是无界的</span></span><br><span class="line"><span class="comment">// 如果队列无界, 则同理keepAliveTime是无效</span></span><br><span class="line"><span class="keyword">new</span> ThreadPoolExecutor(<span class="number">1</span>, <span class="number">1</span>,</span><br><span class="line">                <span class="number">0L</span>, TimeUnit.MILLISECONDS,</span><br><span class="line">                <span class="keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;());</span><br></pre></td></tr></table></figure>
+<ul>
+<li>四种线程池的概念</li>
+</ul>
+<ol>
+<li>
+<p><code>固定线程池 - Executors.newFixedThreadPool(5)</code>
+核心线程数 与 最大线程数相等, 同时使用了LinkedBlockingQueue无界队列(默认无界), 所以任务永远不会被拒绝, 同理就永远不会创建多余线程;
+所以**<font color="red">maximumPoolSize和keepAliveTime将无效, 适合任务并发量少且稳定的情况</font>**</p>
+</li>
+<li>
+<p><code>延时/定时线程池 - Executors.newScheduledThreadPool(5)</code>
+DelayQueue是基于二叉堆(数组)的可扩容队列(内部封装了一个PriorityQueue), 是基于时间先后排序的, 若time相同则根据sequenceNumber排序; 也即无界队列;
+<strong><font color="pink">执行效果是: 从队列取已到期的任务去执行, 完毕后重新设置任务到期时间, 再次放回DelayQueue</font></strong>
+由于队列无界, <strong><font color="red">同理maximumPoolSize和keepAliveTime是无效的, 适合定时或周期性任务, 可用以替代Timer(基于单线程且有并发缺陷)</font></strong></p>
+</li>
+<li>
+<p><code>线程可缓存的线程池 - Executors.newCachedThreadPool()</code>
+这个比较难以理解, 由于使用了SynchronousQueue同步等待队列, 它没有存储空间, 意味着请求到来就必须找到线程处理, 若没有空闲线程就新创建;
+注意:
+3.1 <font color="pink">corePoolSize为0，maximumPoolSize为无限大，意味着线程数量可以无限大</font>
+3.2 <font color="pink">keepAliveTime为60S，意味着线程空闲时间超过60S就会被杀死; 这里核心线程为0, 意味着所有线程一旦从空闲算起,超时了都会被杀掉</font>
+3.3 <font color="pink">这是一个理论上可无限扩大的线程池, 没空闲线程就创建, 有则复用, 所以叫可缓存的线程池; 但空闲超时也会销毁, 提高效率 </font>
+3.4 <font color="orange">SynchronousQueue队列类似一个通道, A线程添加任务, 线程池里的子线程B获取任务执行;
+(1).若线程池没有可用线程, 则会立刻启动一个线程来执行, 同时生产者线程必须同步等待子线程的创建</font>
+3.5 <font color="red">它适合耗时小的任务, 因为一旦任务耗时长, 而且任务并发量大(或波峰期)的话会创建大量线程, 任务并发波谷期会频繁GC空闲线程</font></p>
+</li>
+<li>
+<p><code>单线程池 - Executors.newSingleThreadExecutor()</code>
+只会创建一个核心线程, 同时队列使用了LinkedBlockingQueue无界队列(不填容量默认无界),
+所以**<font color="red">maximumPoolSize和keepAliveTime将无效; 适合任务量极少的情况, 且由于单线程, 所以没有并发问题
+注意: Executors.newFixedThreadPool(1) 和 Executors.newSingleThreadExecutor()是等价的</font>**</p>
+</li>
+</ol>
+<p>使用一张图来示意线程池:
+<img src="https://pic4.zhimg.com/v2-885830dd498528ca7e277f9d930fcac3_b.jpg" alt>
+参考: <a href="https://www.zhihu.com/question/23212914" target="_blank" rel="noopener">线程池的使用</a></p>
+<hr>
+<h2 id="线程池的重要内容">线程池的重要内容</h2>
+<ul>
+<li>
+<p><code>空闲过期时间 keepAliveTime</code>
+这个上面已经讲述过, 这个和使用的队列有界无界息息相关
+队列无界, 则无效
+队列有界, 则和最大线程数maximumPoolSize有关</p>
+</li>
+<li>
+<p><code>线程组 ThreadGroup</code>
+多线程机制是由java虚拟机支持的, 目的是通过组的概念批量管理线程;
+它是树形结构:
+所以创建线程可以继承父线程组的优先级, 是否Daemon守护线程, 有唯一根节点祖先线程组; 数组初始化为4, 2倍速扩容
+本质目的是为了方便管理
+<img src="https://img-blog.csdn.net/20181012162426786?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hzaHFpYW5n/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
+</li>
+<li>
+<p><code>线程工厂接口 ThreadFactory</code>
+位于Executors工具类</p>
+</li>
+</ul>
+<ol>
+<li>DefaultThreadFactory(默认线程工厂)
+线程名遵循<code>pool-{index}-thread-</code>
+不继承父线程组的daemon, priority属性, 即默认创建非守护线程,同时优先级为普通</li>
+<li>PrivilegedThreadFactory
+<font color="red">通过这种方式创建出来的线程，将与创建privilegedThreadFactory的线程拥有相同的访问权限、 AccessControlContext、ContextClassLoader。如果不使用privilegedThreadFactory， 线程池创建的线程将从在需要新线程时调用execute或submit的客户程序中继承访问权限</font></li>
+<li>可以自己实现ThreadFactory接口来定制自己的线程工厂方法
+这里可以自定义线程池如何创建线程, 比如自定义的Thread类
+甚至可以在线程里加入业务逻辑, 比如日志统计</li>
+</ol>
+<ul>
+<li><strong>拒绝策略</strong>
+都继承自<code>RejectedExecutionHandler</code>接口</li>
+</ul>
+<blockquote>
+<ol>
+<li><code>AbortPolicy</code>: 直接抛出异常, 这是JDK默认策略</li>
+<li><code>CallerRunsPolicy</code>: 如果线程池没有Shutdown, 则由提交任务的线程主动执行这个任务;
+<font color="pink">意味着这是同步阻塞执行的;
+意味着阻(延)塞(缓)新任务的提交
+意味着不想丢弃任何一个任务</font></li>
+</ol>
+</blockquote>
+<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rejectedExecution</span><span class="params">(Runnable r, ThreadPoolExecutor e)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!e.isShutdown()) &#123;</span><br><span class="line">        r.run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
+<blockquote>
+<ol start="3">
+<li><code>DiscardPolicy</code>: 是一个空实现, 意思是丢弃当前任务</li>
+<li><code>DiscardOldestPolicy</code>: 丢弃队头的任务(最老/旧)
+<font color="pink">这种拒绝策略要非常小心, 因为一旦任务提交过快, 会连续的丢掉最早(旧)的任务, 如果任务无关紧要则无所谓</font></li>
+</ol>
+</blockquote>
+<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rejectedExecution</span><span class="params">(Runnable r, ThreadPoolExecutor e)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!e.isShutdown()) &#123; <span class="comment">// 如果线程池没有Shutdown</span></span><br><span class="line">        e.getQueue().poll(); <span class="comment">// 出(丢)队(弃)</span></span><br><span class="line">        e.execute(r); <span class="comment">// 提交当前任务</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
+<ul>
+<li>继承重写ThreadPoolExecutor类的beforeExecute, afterExecute, terminated等钩子方法
+这个主要用于日志统计, 运行时间之类的, 比如netty内部重写线程池</li>
+</ul>
+<blockquote>
+<ol>
+<li>beforeExecute:
+任务执行前 (抛出运行时异常, afterExecute不会被执行)</li>
+<li>afterExecute
+任务执行后</li>
+<li>terminated
+当线程池在关闭的时候
+<font color="pink">注意重写钩子方法后, 里面的参数必须是ThreadLocal或者同步的, 毕竟每个线程的变量不能互相影响</font></li>
+</ol>
+</blockquote>
+<ul>
+<li>如何设置核心线程数, 最大线程数</li>
+</ul>
+<blockquote>
+<ol>
+<li>通常情况下, corePoolSize设置为CPU核数的1倍, maximumPoolSize设置为CPU核数的两倍</li>
+<li>理论上的计算可以根据下面几个维度来衡量
+2.1 每秒任务数量
+2.2 每个任务执行时间
+2.3 容忍每个任务从提交到开始执行的最大响应时间
+从上面的维度可以很容易算出<code>核心线程数, 最大线程数, 队列容量</code>
+参考: <a href="https://www.cnblogs.com/waytobestcoder/p/5323130.html" target="_blank" rel="noopener">ThreadPoolExecutor线程池参数设置技巧</a></li>
+</ol>
+</blockquote>
+<hr>
+<h2 id="future-callable">Future/Callable</h2>
+<p>通过下面的接口概览, 可以看出Future和Callable是配对使用的
+本质是将主调线程阻塞, 等待子任务执行完毕得到结果</p>
+<ul>
+<li>Callable</li>
+</ul>
+<p>下面接口预览可以看到call()是带返回值的</p>
+<ul>
+<li>FutureTask概念</li>
+</ul>
+<p>它是Future接口的唯一实现, 同时它还实现了Runnable接口
+再来看构造函数:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">FutureTask</span><span class="params">(Callable&lt;V&gt; callable)</span> </span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">FutureTask</span><span class="params">(Runnable runnable, V result)</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p><font color="pink">第一个构造函数是对Callable的包装
+第二个构造函数是为了兼容之前的Runnable, 使用适配器模式使之拥有Future的特性 (可以查阅<code>Executors</code>内部的<code>RunnableAdapter</code>适配器类)</font></p>
+<ul>
+<li>Future接口解析</li>
+</ul>
+<p>重点说明一下cancel, isCancelled, isDone, 其余请查阅下面的接口概览</p>
+<blockquote>
+<ol>
+<li><code>cancel(mayInterruptIfRunning)</code>
+如果任务执行完毕, 则肯定是返回false;
+如果还未执行, 则肯定是返回true
+如果正在执行中则和参数有关系, 参数是true则返回true, 是false则返回false
+(注意cancel只是发出了中断, 无法确保线程真正退出)</li>
+<li><code>isCancelled</code>
+CANCELLED, INTERRUPTING, INTERRUPTED都认为是取消状态</li>
+<li><code>isDone</code>
+state != NEW, 即任务执行后的任意状态都认为是已完成</li>
+</ol>
+</blockquote>
+<ul>
+<li>FutureTask源码解析</li>
+</ul>
+<p>1.state状态机:
+内部维护了Task的任务四种状态迁移, 初始状态为NEW</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * NEW -&gt; COMPLETING -&gt; NORMAL 正常的状态转移</span></span><br><span class="line"><span class="comment"> * NEW -&gt; COMPLETING -&gt; EXCEPTIONAL 异常</span></span><br><span class="line"><span class="comment"> * NEW -&gt; CANCELLED 取消</span></span><br><span class="line"><span class="comment"> * NEW -&gt; INTERRUPTING -&gt; INTERRUPTED 中断</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">int</span> state;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NEW          = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> COMPLETING   = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NORMAL       = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> EXCEPTIONAL  = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> CANCELLED    = <span class="number">4</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> INTERRUPTING = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> INTERRUPTED  = <span class="number">6</span>;</span><br></pre></td></tr></table></figure>
+<p>2.run</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//如果当前不是new状态，或者当前cas设置当前线程失败则返回，只有一个线程可以成功。</span></span><br><span class="line">    <span class="keyword">if</span> (state != NEW ||</span><br><span class="line">        !UNSAFE.compareAndSwapObject(<span class="keyword">this</span>, runnerOffset,</span><br><span class="line">                                     <span class="keyword">null</span>, Thread.currentThread()))</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">//当前状态为new 则调用任务的call方法执行任务</span></span><br><span class="line">        Callable&lt;V&gt; c = callable;</span><br><span class="line">        <span class="keyword">if</span> (c != <span class="keyword">null</span> &amp;&amp; state == NEW) &#123;</span><br><span class="line">            V result;</span><br><span class="line">            <span class="keyword">boolean</span> ran;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                result = c.call();</span><br><span class="line">                ran = <span class="keyword">true</span>;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Throwable ex) &#123;</span><br><span class="line">                result = <span class="keyword">null</span>;</span><br><span class="line">                ran = <span class="keyword">false</span>;</span><br><span class="line">                setException(ex);完成NEW -&gt; COMPLETING -&gt; EXCEPTIONAL 状态转移</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//执行任务成功则保存结果更新状态，unpark所有等待线程</span></span><br><span class="line">            <span class="keyword">if</span> (ran)</span><br><span class="line">                set(result);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        runner = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">int</span> s = state;</span><br><span class="line">        <span class="keyword">if</span> (s &gt;= INTERRUPTING)</span><br><span class="line">            handlePossibleCancellationInterrupt(s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(V v)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//状态从new-&gt;COMPLETING</span></span><br><span class="line">    <span class="keyword">if</span> (UNSAFE.compareAndSwapInt(<span class="keyword">this</span>, stateOffset, NEW, COMPLETING)) &#123;</span><br><span class="line">        outcome = v;</span><br><span class="line">        <span class="comment">//状态从COMPLETING-》NORMAL</span></span><br><span class="line">        UNSAFE.putOrderedInt(<span class="keyword">this</span>, stateOffset, NORMAL); <span class="comment">// final state</span></span><br><span class="line">        <span class="comment">//unpark所有等待线程。</span></span><br><span class="line">        finishCompletion();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">setException</span><span class="params">(Throwable t)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (UNSAFE.compareAndSwapInt(<span class="keyword">this</span>, stateOffset, NEW, COMPLETING)) &#123;</span><br><span class="line">        outcome = t;</span><br><span class="line">        <span class="comment">//设置为异常状态</span></span><br><span class="line">        UNSAFE.putOrderedInt(<span class="keyword">this</span>, stateOffset, EXCEPTIONAL);</span><br><span class="line">        finishCompletion();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.cancel
+只有NEW才可取消, 这里比较难以理解; 因为一旦为其他状态, 则是正在执行中, 或者已完毕(异常/中断/已取消);
+“只有NEW才可取消”这句话表示未执行的任务永远返回true
+已完成的则永远返回false(异常/中断/已取消)
+<font color="red">注意: 状态机的状态是终态, 它无法表示过程
+COMPLETING在这里只是瞬态, 可以直接认为: NEW-&gt;NORMAL, NEW-&gt;EXCEPTIONAL
+run方法没有一进入就设置为COMPLETING, 而是真正完成后作为一个瞬态出现</font></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">cancel</span><span class="params">(<span class="keyword">boolean</span> mayInterruptIfRunning)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//只有任务是new的才能取消</span></span><br><span class="line">    <span class="keyword">if</span> (state != NEW)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">   <span class="comment">//运行时允许中断</span></span><br><span class="line">    <span class="keyword">if</span> (mayInterruptIfRunning) &#123;</span><br><span class="line">       <span class="comment">//完成new-&gt;INTERRUPTING</span></span><br><span class="line">        <span class="keyword">if</span> (!UNSAFE.compareAndSwapInt(<span class="keyword">this</span>, stateOffset, NEW, INTERRUPTING))</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        Thread t = runner;</span><br><span class="line">        <span class="keyword">if</span> (t != <span class="keyword">null</span>)</span><br><span class="line">            t.interrupt();</span><br><span class="line">        <span class="comment">//完成INTERRUPTING-&gt;INTERRUPTED</span></span><br><span class="line">        UNSAFE.putOrderedInt(<span class="keyword">this</span>, stateOffset, INTERRUPTED); <span class="comment">// final state</span></span><br><span class="line">    &#125;</span><br><span class="line">   <span class="comment">//不允许中断则直接new-&gt;CANCELLED</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!UNSAFE.compareAndSwapInt(<span class="keyword">this</span>, stateOffset, NEW, CANCELLED))</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    finishCompletion();</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参考: <a href="https://www.jianshu.com/p/49541d720d5b" target="_blank" rel="noopener">FutureTask 原理</a></p>
+<hr>
+<h2 id="threadpoolexecutor源码解析">ThreadPoolExecutor源码解析</h2>
+<p>参考: <a href="https://www.zhihu.com/search?type=content&amp;q=PrivilegedThreadFactory" target="_blank" rel="noopener">ThreadPoolExecutor源码解析</a></p>
+<ul>
+<li>池</li>
+</ul>
+<hr>
+<h2 id="接口概览">接口概览</h2>
+<p><strong><code>Runable任务接口, 无返回值的任务</code></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong><code>Callable任务接口, 可携带返回值的任务</code></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Callable</span>&lt;<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function">V <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong><code>Future接口</code></strong>
+<font color="pink">对于具体的Runnable或者Callable任务的执行结果进行取消、查询是否完成、获取结果。必要时可以通过get方法获取执行结果，该方法会阻塞直到任务返回结果</font></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Future</span>&lt;<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">     <span class="function"><span class="keyword">boolean</span> <span class="title">cancel</span><span class="params">(<span class="keyword">boolean</span> mayInterruptIfRunning)</span></span>;</span><br><span class="line">     <span class="function"><span class="keyword">boolean</span> <span class="title">isCancelled</span><span class="params">()</span></span>;</span><br><span class="line">     <span class="function"><span class="keyword">boolean</span> <span class="title">isDone</span><span class="params">()</span></span>;</span><br><span class="line">     <span class="function">V <span class="title">get</span><span class="params">()</span></span></span><br><span class="line"><span class="function">        <span class="keyword">throws</span> InterruptedException, ExecutionException</span>;</span><br><span class="line">     <span class="function">V <span class="title">get</span><span class="params">(<span class="keyword">long</span> timeout, TimeUnit unit)</span></span></span><br><span class="line"><span class="function">        <span class="keyword">throws</span> InterruptedException, ExecutionException, TimeoutException</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里进行接口说明</p>
+<blockquote>
+<ol>
+<li><code>boolean cancel(boolean mayInterruptIfRunning)</code>
+cancel取消任务; 取消成功返回true, 失败返回false;
+mayInterruptIfRunning 表示是否取消正在执行中的任务
+<font color="pink">意思是如果任务执行完毕(取消/异常都算完成), 则肯定是返回false;
+如果还未执行, 则肯定是返回true
+如果正在执行中则和参数有关系, 参数是true则返回true, 是false则返回false</font>
+<font color="red">注意: 正在执行的任务就算允许被取消, 返回了true, 只是保证发送了中断信号(thread.interrupt), 但是发送了中断信号却不一定能触发线程的中断异常 (因为只有在线程处于阻塞态才会触发中断异常, 即wait/join/sleep/远程或本地IO(也即数据库,文件,RPC…));
+<strong>所以cancle(true)正在执行的线程, 线程不保证一定能退出(参考线程优雅退出的两种方式)</strong></font></li>
+<li><code>boolean isCancelled()</code>
+表示任务是否被取消成功
+<font color="red">和上面一样, 返回true不保证线程真正退出</font></li>
+<li><code>boolean isDone()</code>
+表示任务是否已经完成
+<font color="red">包括正常完毕/执行异常/任务取消, 都认为完成; 同上一样, cancle取消的任务不一定真正的退出了</font></li>
+<li><code>V get()</code>
+用于获取执行结果, 但会阻塞主调方线程(一般是主线程), 直到任务执行完毕并得到结果返回后才会唤醒主线程(暂且认为是主线程, 方便理解)
+<font color="red">当前状态是new或者COMPLETING则等待, 其他状态甚至异常状态都认为结束, 且只有NORMAL/EXCEPTIONAL两种可以获取值, 其他都会抛出异常</font></li>
+<li><code>V get(long timeout, TimeUnit unit)</code>
+同上, 只是指定了过期时间, 过期还未拿到结果就返回null</li>
+</ol>
+</blockquote>
+<p><strong><code>1. Executor接口, 运行无返回值的新任务</code></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Executor</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">execute</span><span class="params">(Runnable command)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong><code>2. ExecutorService接口</code></strong>
+增加了管理「执行器生命周期」,「任务生命周期」的方法</p>
+<blockquote>
+<ol>
+<li><code>shutdown/shutdownNow/awaitTermination</code>
+<code>shutdown</code>: 置为SHUTDOWN; 停止接收外部commit的任务; 直到队列里任务执行完毕才停止
+<code>shutdownNow</code>: 同上, 只是不再接收任务, 而且还会尝试中断正在执行的线程 (但是如果线程未被sleep/wait/join…阻塞,则不会产生中断异常), 所以也有可能不会立即停止, 最后返回未执行的任务列表
+<code>awaitTermination</code>: 阻塞主线程, 超时后会检测线程池是否<code>Terminated</code>状态, 如果不是则返回false</li>
+<li><code>isShutdown/isTerminated</code>
+<code>Shutdown</code>是主动关闭后都是此状态;
+<code>Terminated</code>是等所有任务都执行完毕后才是此状态</li>
+<li><code>submit/execute</code>
+submit: 允许提交Runnable/Callable任务
+execute: 实现于Executor接口, 只能提交Runnable任务</li>
+<li><code>Callable/Runnable</code>
+Callable允许返回结果, 且可抛出异常;
+Runnable更像沙箱, 内部错误无法向外抛, 无返回值;
+Callable若要获得返回值, 调用<code>FutureTask.get()</code>, 此方法会阻塞主线程直到任务结束并返回结果</li>
+</ol>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ExecutorService</span> <span class="keyword">extends</span> <span class="title">Executor</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 线程池执行器相关的管理接口</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="comment">//线程池状态SHUTDOWN,停止接收外部commit的任务;直到队列里任务执行完毕, 停止所有线程(优雅停止)</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">shutdown</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//同上;只是会忽略队列里等待的任务, 甚至会interrupt尝试中断正在执行的线程(但是如果线程未被sleep/wait/join...阻塞,则不会产生中断异常),则必须等待当前正在执行的任务执行完毕, 也可能不会立即停止; 最后返回未执行的任务列表 (尝试强制停止)</span></span><br><span class="line">    <span class="function">List&lt;Runnable&gt; <span class="title">shutdownNow</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">// 阻塞主线程指定时间, 超时后检测线程池是否Terminated(即所有任务执行完毕), 并返回布尔值 (一般用于检查是否执行完任务)</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">awaitTermination</span><span class="params">(<span class="keyword">long</span> timeout, TimeUnit unit)</span> <span class="keyword">throws</span> InterruptedException</span>;</span><br><span class="line">    <span class="comment">// shutdown标记(主动shutdown/shutdownNow都会为true)</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isShutdown</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">// 任务全部执行完毕才会Terminated=true</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isTerminated</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 单任务的提交, 可提交Runnable/Callable, 即是否有返回值</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    &lt;T&gt; <span class="function">Future&lt;T&gt; <span class="title">submit</span><span class="params">(Callable&lt;T&gt; task)</span></span>;</span><br><span class="line">    &lt;T&gt; <span class="function">Future&lt;T&gt; <span class="title">submit</span><span class="params">(Runnable task, T result)</span></span>;</span><br><span class="line">    <span class="comment">// 如果想要返回值, 则必须是FutureTask(实现了RunableFuture两个接口的功能)</span></span><br><span class="line">    Future&lt;?&gt; submit(Runnable task);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 批量任务的提交, 只支持Callable</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    &lt;T&gt; List&lt;Future&lt;T&gt;&gt; invokeAll(Collection&lt;? extends Callable&lt;T&gt;&gt; tasks) <span class="keyword">throws</span> InterruptedException;</span><br><span class="line"></span><br><span class="line">    &lt;T&gt; List&lt;Future&lt;T&gt;&gt; invokeAll(Collection&lt;? extends Callable&lt;T&gt;&gt; tasks, <span class="keyword">long</span> timeout, TimeUnit unit) <span class="keyword">throws</span> InterruptedException;</span><br><span class="line"></span><br><span class="line">    &lt;T&gt; <span class="function">T <span class="title">invokeAny</span><span class="params">(Collection&lt;? extends Callable&lt;T&gt;&gt; tasks)</span> <span class="keyword">throws</span> InterruptedException, ExecutionException</span>;</span><br><span class="line"></span><br><span class="line">    &lt;T&gt; <span class="function">T <span class="title">invokeAny</span><span class="params">(Collection&lt;? extends Callable&lt;T&gt;&gt; tasks, <span class="keyword">long</span> timeout, TimeUnit unit)</span> <span class="keyword">throws</span> InterruptedException, ExecutionException, TimeoutException</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong><code>3. ScheduledExecutorService接口</code></strong>
+支持了<code>Future</code>和定时器</p>
+<blockquote>
+<ol>
+<li>支持指定时延后执行任务, 可以是Runnable/Callable</li>
+<li>支持指定时间间隔定期执行任务;  定时器是在一个子线程执行任务, 此处是线程池执行, 可以避免并发问题</li>
+<li>回顾定时器</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="4">
+<li>注意事项:</li>
+</ol>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ScheduledExecutorService</span> <span class="keyword">extends</span> <span class="title">ExecutorService</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> ScheduledFuture&lt;?&gt; schedule(Runnable command, <span class="keyword">long</span> delay, TimeUnit unit);</span><br><span class="line">    <span class="keyword">public</span> &lt;V&gt; <span class="function">ScheduledFuture&lt;V&gt; <span class="title">schedule</span><span class="params">(Callable&lt;V&gt; callable, <span class="keyword">long</span> delay, TimeUnit unit)</span></span>;</span><br><span class="line">    <span class="keyword">public</span> ScheduledFuture&lt;?&gt; scheduleAtFixedRate(Runnable command, <span class="keyword">long</span> initialDelay, <span class="keyword">long</span> period, TimeUnit unit);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> ScheduledFuture&lt;?&gt; scheduleWithFixedDelay(Runnable command, <span class="keyword">long</span> initialDelay, <span class="keyword">long</span> delay, TimeUnit unit);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    
+    </div>
+    
+    
+        <div class="article-comment" id="article-comment">
+            
+
+<h1>评论</h1>
+
+  
+    <div id="gitment"></div>
+  
+
+
+        </div>
+        
+</article>
+  </div>
+
+  
+
+<footer id="footer">
+    <div class="footer-copyright">
+        <div>
+            <p style="font-family: sketch; font-size: 28px;">just do it</p>
+            <p> 版权所有 <a href>duyu </a> @ 2019</p>
+            
+        </div>
+    </div>
+    
+    <div class="footer-social">
+        
+            
+                
+                    <div class="footer-social-item">
+                        <a href="https://github.com/doooyo" target="_blank">
+                        
+                            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+                        
+                        </a>
+                    </div>
+                
+            
+                
+                    <div class="footer-social-item">
+                        <a href="/atom.xml" target="_blank">
+                        
+                             <i class="fa fa-rss fa-2x" aria-hidden="true"></i>
+                        
+                        </a>
+                    </div>
+                
+            
+        
+    </div>
+</footer>
+
+  <br>
+
+  <div id="footer-menu-container">
+		
+
+
+
+<nav class="menu">
+	
+	
+		
+		
+		
+		
+		
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/archives/" title="归档">
+					<img src="/images/icons/own/archive.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/archives/">
+					<span>归档</span>
+				</a>
+			</div>
+		</div>
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/search/" title="搜索">
+					<img src="/images/icons/own/search.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/search/">
+					<span>搜索</span>
+				</a>
+			</div>
+		</div>
+
+</nav>
+
+	</div>
+
+  
+
+
+
+    
+
+
+
+
+
+
+  <script>
+  var gitment = new Gitment({
+    id: window.location.pathname, // optional
+    owner: 'doooyo',
+    repo: 'https://github.com/doooyo',
+    oauth: {
+      client_id: '4320b9f63ad425418eb5',
+      client_secret: '9c0cb6fffad72917fe8416c9ac2066dc70127d9b',
+    },
+    // ...
+    // For more available options, check out the documentation below
+  })
+
+  gitment.render('gitment')
+  </script>
+
+
+
+
+
+
+
+    <script src="/js/lightgallery.min.js"></script>
+<script src="/js/lg-zoom.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#lightgallery").lightGallery(); 
+        $(".article-content img").each(function(){
+            console.log($(this).attr('src'))
+            $(this).attr('data-src', $(this).attr('src')).lightGallery({
+                selector: 'this'
+            })
+        });
+    });
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+
+  
+  // update cookie if this page is opened (directly)
+  loadjs(['/libs/jshashes/hashes.min.js', '/libs/js-cookie/src/js.cookie.js', '/js/post.v2.js'], 'post-version');
+  loadjs.ready('post-version', function(){
+    
+    new Postv2('hashit_739aa708fd22e5b2371f9382cbe1b5dfdbca2bd6710d1e1943e1ee9e6d91a0fc').update('hashit_bb6b10a30a82a857f047b1d89748a6e5a56520ee69b765d265464584ed5cddc3', function(){});
+  });
+  
+</script>
+
+
+
+<!-- <script src="/js/post.js"></script> -->
+
+<script src="/js/headroom.min.js"></script>
+
+<script data-no-instant type="text/javascript">
+
+initHeadroom();
+
+changeLayoutOnTouchScreen();
+
+// 
+// var post = new Post('', '');
+// post.getCommentCount(window.location.pathname, function(count){
+//     $('#article-comment-count').text(count);
+// });
+// post.addVisitRecord(window.location.pathname, userip);
+// post.getVisitCount(window.location.pathname, function(count){
+//     $('#article-visit-count').text(count);
+// });
+
+// 
+</script>
+
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

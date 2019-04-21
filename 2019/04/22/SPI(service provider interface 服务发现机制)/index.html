@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  
+      <title>SPI(service provider interface 服务发现机制) - N 27°59′′</title>
+  
+
+  
+  
+  <meta name="description" content="java node 微服务 大数据 数据结构">
+  <meta name="author" content="duyu">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- load loadjs.js -->
+  <script src="/libs/loadjs/dist/loadjs.min.js"></script>
+
+<link rel="stylesheet" href="/libs/animate.css/animate.min.css">
+  <!-- load lightgallery -->
+<link rel="stylesheet" href="/css/lightgallery.css">
+<link rel="stylesheet" href="/libs/noty/lib/noty.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+    <link rel="stylesheet" href="/css/taurus.css">
+    
+        <link rel="stylesheet" href="/css/scheme-taurus/animations.css">
+    
+
+
+<link rel="stylesheet" href="/.css">
+
+  <!-- load font awesome 5 -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+  </script>
+  <!-- load mathjax -->
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax//libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <!-- load js-cookie -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="/js/social-share.min.js"></script>
+    <script src="/js/theme.js"></script>
+
+  <!-- include cookie.js -->
+  
+  
+
+  <!-- include comment system code -->
+  
+    <link rel="stylesheet" href="/css/gitment/default.css">
+<script src="/js/gitment.browser.js"></script>
+  
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+
+
+
+<header class="my-header">
+	<div class="header-title">
+		
+			<div class="header-logo">
+				<a href="/">
+					<img class="grow" src="/images/lion.svg">
+				</a>
+			</div>
+			<div class="header-text">
+				<h1 style="font-family: sketch; font-weight: 400">
+					<a href="/">N 27°59′′</a>
+				</h1>
+				<p>
+					<small>
+						duyu
+					</small>
+				</p>
+			</div>
+		
+	</div>
+	<div id="header-menu-container">
+		
+
+
+
+<nav class="menu">
+	
+	
+		
+		
+		
+		
+		
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/archives/" title="归档">
+					<img src="/images/icons/own/archive.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/archives/">
+					<span>归档</span>
+				</a>
+			</div>
+		</div>
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/search/" title="搜索">
+					<img src="/images/icons/own/search.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/search/">
+					<span>搜索</span>
+				</a>
+			</div>
+		</div>
+
+</nav>
+
+	</div>
+</header>
+
+ 
+
+  
+
+
+
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div style="flex: 1;">
+      <style>
+    body {
+        background-color: white;
+    }
+</style>
+
+
+
+
+	
+	
+	
+	
+
+
+
+    
+    
+
+
+
+
+
+
+    
+    
+        
+    
+
+    
+        
+    
+
+
+
+
+
+
+
+
+
+<article class="article" id="/2019/04/22/SPI(service provider interface 服务发现机制)/" data-name="SPI(service provider interface 服务发现机制)" data-version>
+
+    <!-- Title -->
+    <div class="article-header">
+         
+         
+            
+                
+            
+         
+         
+         <h1 class="article-title">
+            <a href="/2019/04/22/SPI(service provider interface 服务发现机制)/">
+                SPI(service Provider Interface 服务发现机制)
+            </a>
+        </h1>
+        <!-- TODO: support nested categories,display them nicely -->
+        
+    </div>
+    
+    <!-- Date and Author -->
+    <div class="article-meta">
+    <ul>
+            <li><i class="fa fa-calendar"></i> 2019年04月22日</li>
+            
+            <li><i class="fa fa-user"></i> duyu</li>
+
+    </ul>
+    
+    </div>
+    <!-- 分割线 -->
+    <hr>
+
+    <div class="article-cards">
+        <!-- Author Card -->
+        <!---
+        <div class='Card-article Card-author'>
+            <div class='card-title'>
+                <h3></h3>
+            </div>
+            <div class='card-content'>
+                    <div class="author-meta">
+                            <div class='author-figure'>
+                                <img src="" alt="">
+                            </div>
+                            <div class='author-name'>
+                                duyu
+                            </div>
+                        </div>
+                        <div class="author-ai">
+                            <div class='author-intro'>
+                                <!-- TODO: auto generating author description -->
+                                <!-- 
+                            </div>
+                            <div class="author-articles">
+                                <!-- TODO: auto generating author articles -->
+                                <!-- <ul>
+                                    <li>Article 1</li>
+                                    <li>Article 2</li>
+                                    <li>Article 3</li>
+                                    <li>Article 4</li>
+                                    <li>Article 5</li>
+                                    <li>Article 6</li>
+                                </ul>
+                            </div>
+                        </div>
+            </div>
+            
+        </div> -->
+
+        <!-- Visit Card -->
+        <!-- <div class="Card-article Card-visit"> -->
+            <!-- <div class="card-title">
+  <h3>Post Visit</h3>
+</div>
+<div class="card-chart">
+  <div id="chart-post-visit"></div>
+</div> -->
+        <!-- </div> -->
+        
+        <!-- Auto Excerpt Card -->
+        <!-- <div class="Card-article Card-excerpt">
+            <div class="card-title">
+  <h3>Quick Read</h3>
+</div>
+<div class="card-text">
+  <p id="text-post-summary">SPI全称为(Service Provider Interface) ，是JDK内置的一种服务提供发现机制；主要被框架的开发人员使用，比如java.sql.Driver接口，数据库厂商实现此接口即可，当然要想让系统知道具体实现类的存在，还需要使用固定的存放规则，需要在classpath下的META-INF/services/目录里创建一个以服务接口命名的文件，这个文件里的内容就是这个接口的具体的实现类；日志门面框架和DriverManager数据库驱动都是基于此。
+
+spi是一种动态发现并替换的机制,...</p>
+</div>
+        </div> -->
+    </div>
+    
+    <!-- Gallery -->
+    <!-- TODO: add a slider to gallery -->
+    
+
+    <!-- Content -->
+    <!-- TODO: support table of content -->
+    <div class="article-toc" id="article-toc">
+    
+        
+
+
+
+
+
+
+
+
+    
+
+<div class="toc-button">
+    <img src="/images/icons/own/toc.svg" alt>
+</div>
+
+    </div>
+    <div class="article-content">
+    <p>SPI全称为(Service Provider Interface) ，是JDK内置的一种服务提供发现机制；主要被框架的开发人员使用，比如java.sql.Driver接口，数据库厂商实现此接口即可，当然要想让系统知道具体实现类的存在，还需要使用固定的存放规则，需要在classpath下的META-INF/services/目录里创建一个以服务接口命名的文件，这个文件里的内容就是这个接口的具体的实现类；日志门面框架和DriverManager数据库驱动都是基于此。</p>
+<blockquote>
+<p>spi是一种动态发现并替换的机制, 比如运行时动态添加接口实现,主要针对厂商或者插件;
+典型的比如数据库驱动Driver, slf4j日志框架(外观模式)
+基于接口编程 + 策略模式 + 配置文件</p>
+<blockquote>
+<p>1.定义一组接口
+<code>com.doyo.learn.spi.IHello</code></p>
+</blockquote>
+<blockquote>
+<p>2.接口的多个实现
+<code>com.doyo.learn.spi.impl.HelloV1Impl</code>
+<code>com.doyo.learn.spi.impl.HelloV2Impl</code></p>
+</blockquote>
+<blockquote>
+<p>3.在 <code>src/main/resources/</code> 下建立 <code>/META-INF/services</code> 目录,新增一个以接口命名的文件
+/META-INF/services/com.doyo.learn.spi.IHello
+文件的内容是实现类的全名,可以写上多个实现, 比如:
+<code>com.doyo.learn.spi.impl.HelloV1Impl com.doyo.learn.spi.impl.HelloV2Impl</code></p>
+</blockquote>
+<blockquote>
+<p>4.使用ServiceLoader来加载指定配置文件中的实现</p>
+</blockquote>
+</blockquote>
+<p>例如有一个开源搜索模块基于接口编程规范,可能基于文件系统,可能基于数据库; 接口如下:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">package</span> <span class="string">org.xyz.spi;</span></span><br><span class="line"><span class="string">import</span> <span class="string">java.util.List;</span></span><br><span class="line"><span class="string">public</span> <span class="string">interface</span> <span class="string">ISearch</span> <span class="string">&#123;</span></span><br><span class="line">   <span class="string">public</span> <span class="string">List</span> <span class="string">serch(String</span> <span class="string">keyword);</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>A公司提供文件搜索实现<code>com.A.spi.impl.FileSearch</code>
+A公司发布jar时,文件<code>META-INF/services/org.xyz.spi.ISearch</code>中填写如下内容:<code>com.A.spi.impl.FileSearch</code></p>
+<p>B公司提供数据库搜索实现<code>com.B.spi.impl.DatabaseSearch</code>
+B公司发布jar时,文件<code>META-INF/services/org.xyz.spi.ISearch</code>中填写如下内容:<code>com.B.spi.impl.DatabaseSearch</code></p>
+<p>最后使用者会通过开源搜索jar包(<code>门面模式</code>)的工厂类来使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.xyz.factory;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.ServiceLoader;</span><br><span class="line"><span class="keyword">import</span> org.xyz.spi.ISearch;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SearchFactory</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Search <span class="title">newSearch</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Search search = <span class="keyword">null</span>;</span><br><span class="line">        ServiceLoader&lt;Search&gt; serviceLoader = ServiceLoader.load(Search.class);</span><br><span class="line">        Iterator&lt;Search&gt; searchs = serviceLoader.iterator();</span><br><span class="line">        <span class="keyword">if</span> (searchs.hasNext()) &#123;</span><br><span class="line">            search = searchs.next();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> search;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>总结: 这是一种接口与实现分离解耦,提升可扩展性,轻松实现功能模块的可插拔;开发者无须手动注入实现,只需引入<code>具体实现jar包 + spi接口jar包</code>
+参考:
+<a href="https://blog.csdn.net/sigangjun/article/details/79071850" target="_blank" rel="noopener">java中的SPI机制</a>
+<a href="https://blog.csdn.net/lemon89/article/details/79189475" target="_blank" rel="noopener">jdbc的设计</a>
+<a href="https://www.cnblogs.com/lovesqcc/p/5229353.html" target="_blank" rel="noopener">spi服务加载的手工实现</a></p>
+<h2 id="serviceloader">ServiceLoader</h2>
+<p>从上面看出最终会使用<code>ServiceLoader</code>来实现类的载入</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span><span class="string">读取`/META-INF/services/&#123;接口全路径名文件&#125;`配置,获取实现类的全名称字符串</span></span><br><span class="line"><span class="number">2.</span><span class="string">java反射机制(或者采用Class.forName或者ClassLoader)构造服务实现类的实例</span></span><br><span class="line"><span class="number">3.</span><span class="string">官方实现</span> <span class="string">使用了迭代器,</span> <span class="string">ClassLoader,</span> <span class="string">以及System.setSecurityManager(new</span> <span class="string">SecurityManager());开启权限检查</span></span><br></pre></td></tr></table></figure>
+<p>java简单实现<code>Serviceloader</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleServiceLoader</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String PREFIX = <span class="string">"/META-INF/services/"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">load</span><span class="params">(Class&lt;T&gt; cls)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; implClasses = readServiceFile(cls);</span><br><span class="line">        List&lt;T&gt; implList = <span class="keyword">new</span> ArrayList&lt;T&gt;();</span><br><span class="line">        <span class="keyword">for</span> (String implClass : implClasses) &#123;</span><br><span class="line">            Class&lt;T&gt; c;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">                c = (Class&lt;T&gt;) Class.forName(implClass);</span><br><span class="line">                implList.add(c.newInstance());</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> implList;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> List&lt;String&gt; <span class="title">readServiceFile</span><span class="params">(Class&lt;?&gt; cls)</span> </span>&#123;</span><br><span class="line">        String infName = cls.getCanonicalName();</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        String fileName = cls.getResource(PREFIX + infName).getPath();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(<span class="keyword">new</span> File(fileName)));</span><br><span class="line">            String line;</span><br><span class="line">            List&lt;String&gt; implClasses = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">            <span class="keyword">while</span> ((line = br.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                implClasses.add(line);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> implClasses;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">            System.out.println(<span class="string">"File not found: "</span> + fileName);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException ioe) &#123;</span><br><span class="line">            System.out.println(<span class="string">"Read file failed: "</span> + fileName);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="slf4j日志框架">Slf4j日志框架</h2>
+<blockquote>
+<p>使用了门面模式,注意只有slf4j是无法打印日志的(最优选择是<code>Logback＋SLF4J</code> (Logback是Log4j的改进版))
+<code>SLF4J(Log4j/Logback/Commons-logging(Apache)/logging(JDK))</code></p>
+</blockquote>
+<ul>
+<li>java日志框架历史</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span><span class="attr">Log4j:</span></span><br><span class="line">  <span class="number">1996</span><span class="string">年早期,</span> <span class="string">Log4j是java社区的日志标准(后成为apache基金会项目一员)</span></span><br><span class="line"><span class="number">2.</span><span class="attr">JUL:</span></span><br><span class="line">  <span class="string">Java</span> <span class="string">Util</span> <span class="string">Logging,由Sun在2002年推出java标准库(Apache曾建议过将Log4j纳入java标准库被拒)</span></span><br><span class="line"><span class="number">3.</span><span class="attr">common-logging:</span></span><br><span class="line">  <span class="string">原因是Log4j和JUL比较混乱且接口不统一,所以Apache推出的统一日志接口(内部有一个Simple</span> <span class="string">Log简单实现);以便统一Log4j和JUL</span></span><br><span class="line"><span class="number">4.</span><span class="attr">Slf4j:</span> <span class="string">Ceki</span> <span class="string">Gülcü离开Apache后创建的Slf4j日志门面接口,其实现为logback</span></span><br><span class="line"><span class="number">5.</span><span class="string">阵营:</span> <span class="string">common-logging阵营(Apache),</span> <span class="string">Slf4j阵营(Ceki</span> <span class="string">Gülcü)</span></span><br><span class="line"></span><br><span class="line"><span class="number">6.</span><span class="attr">Log4j2:</span> <span class="string">Apache眼看Slf4j快要将其超越,</span> <span class="string">随即2012/07重写了Log4j实现,且拥有Slf4j实现Logback的全部特性,所以两个版本无法兼容</span></span><br><span class="line"></span><br><span class="line"><span class="string">使用方式:</span></span><br><span class="line">  <span class="string">Slf4j</span> <span class="string">+</span> <span class="string">Logback</span></span><br><span class="line">  <span class="string">Commons</span> <span class="string">Logging</span> <span class="string">+</span> <span class="string">Log4j</span></span><br><span class="line"></span><br><span class="line"><span class="string">实现机制:</span></span><br><span class="line">    <span class="string">Commons</span> <span class="string">Logging通过动态查找机制,使用自己的ClassLoader寻找和载入本地实现;主要通过扫描`META-INF/services/org.apache.commons.logging.LogFactory`配置文件,来查找`org.apache.commons.logging.impl.LogFactoryImpl.java`实现类</span></span><br><span class="line">    <span class="string">Slf4j是在编译期间,静态绑定本地Log实现库,</span> <span class="string">通过查找类路径下`org.slf4j.impl.StaticLoggerBinder`,然后在`StaticLoggerBinder`中进行绑定</span></span><br></pre></td></tr></table></figure>
+<p>下面将以<code>Slf4j + Logback</code>来说明日志如何加载</p>
+<ul>
+<li>
+<p>第一句话开始
+<code>Logger logger = LoggerFactory.getLogger(Object.class);</code>
+SLF4J只有接口,没有实现,所以各大厂商通过META-INF/services/org.apache.commons.logging.LogFactory配置文件</p>
+</li>
+<li>
+<p>进入内部</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Logger <span class="title">getLogger</span><span class="params">(Class&lt;?&gt; clazz)</span> </span>&#123;</span><br><span class="line">    Logger logger = getLogger(clazz.getName());</span><br><span class="line">    <span class="keyword">if</span> (DETECT_LOGGER_NAME_MISMATCH) &#123;</span><br><span class="line">        Class&lt;?&gt; autoComputedCallingClass = Util.getCallingClass();</span><br><span class="line">        <span class="keyword">if</span> (autoComputedCallingClass != <span class="keyword">null</span> &amp;&amp; nonMatchingClasses(clazz, autoComputedCallingClass)) &#123;</span><br><span class="line">            Util.report(String.format(<span class="string">"Detected logger name mismatch. Given name: \"%s\"; computed name: \"%s\"."</span>, logger.getName(),</span><br><span class="line">                            autoComputedCallingClass.getName()));</span><br><span class="line">            Util.report(<span class="string">"See "</span> + LOGGER_NAME_MISMATCH_URL + <span class="string">" for an explanation"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> logger;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>到bind方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bind</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        Set&lt;URL&gt; staticLoggerBinderPathSet = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">// skip check under android, see also</span></span><br><span class="line">        <span class="comment">// http://jira.qos.ch/browse/SLF4J-328</span></span><br><span class="line">        <span class="keyword">if</span> (!isAndroid()) &#123;</span><br><span class="line">            staticLoggerBinderPathSet = findPossibleStaticLoggerBinderPathSet();</span><br><span class="line">            reportMultipleBindingAmbiguity(staticLoggerBinderPathSet);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// the next line does the binding</span></span><br><span class="line">        StaticLoggerBinder.getSingleton();</span><br><span class="line">        INITIALIZATION_STATE = SUCCESSFUL_INITIALIZATION;</span><br><span class="line">        reportActualBinding(staticLoggerBinderPathSet);</span><br><span class="line">        fixSubstituteLoggers();</span><br><span class="line">        replayEvents();</span><br><span class="line">        <span class="comment">// release all resources in SUBST_FACTORY</span></span><br><span class="line">        SUBST_FACTORY.clear();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (NoClassDefFoundError ncde) &#123;</span><br><span class="line">        String msg = ncde.getMessage();</span><br><span class="line">        <span class="keyword">if</span> (messageContainsOrgSlf4jImplStaticLoggerBinder(msg)) &#123;</span><br><span class="line">            INITIALIZATION_STATE = NOP_FALLBACK_INITIALIZATION;</span><br><span class="line">            Util.report(<span class="string">"Failed to load class \"org.slf4j.impl.StaticLoggerBinder\"."</span>);</span><br><span class="line">            Util.report(<span class="string">"Defaulting to no-operation (NOP) logger implementation"</span>);</span><br><span class="line">            Util.report(<span class="string">"See "</span> + NO_STATICLOGGERBINDER_URL + <span class="string">" for further details."</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            failedBinding(ncde);</span><br><span class="line">            <span class="keyword">throw</span> ncde;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (java.lang.NoSuchMethodError nsme) &#123;</span><br><span class="line">        String msg = nsme.getMessage();</span><br><span class="line">        <span class="keyword">if</span> (msg != <span class="keyword">null</span> &amp;&amp; msg.contains(<span class="string">"org.slf4j.impl.StaticLoggerBinder.getSingleton()"</span>)) &#123;</span><br><span class="line">            INITIALIZATION_STATE = FAILED_INITIALIZATION;</span><br><span class="line">            Util.report(<span class="string">"slf4j-api 1.6.x (or later) is incompatible with this binding."</span>);</span><br><span class="line">            Util.report(<span class="string">"Your binding is version 1.5.5 or earlier."</span>);</span><br><span class="line">            Util.report(<span class="string">"Upgrade your binding to version 1.6.x."</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">throw</span> nsme;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        failedBinding(e);</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"Unexpected initialization failure"</span>, e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第七行的<code>findPossibleStaticLoggerBinderPathSet</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> Set&lt;URL&gt; <span class="title">findPossibleStaticLoggerBinderPathSet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// use Set instead of list in order to deal with bug #138</span></span><br><span class="line">    <span class="comment">// LinkedHashSet appropriate here because it preserves insertion order</span></span><br><span class="line">    <span class="comment">// during iteration</span></span><br><span class="line">    Set&lt;URL&gt; staticLoggerBinderPathSet = <span class="keyword">new</span> LinkedHashSet&lt;URL&gt;();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        ClassLoader loggerFactoryClassLoader = LoggerFactory.class.getClassLoader();</span><br><span class="line">        Enumeration&lt;URL&gt; paths;</span><br><span class="line">        <span class="keyword">if</span> (loggerFactoryClassLoader == <span class="keyword">null</span>) &#123;</span><br><span class="line">            paths = ClassLoader.getSystemResources(STATIC_LOGGER_BINDER_PATH);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            paths = loggerFactoryClassLoader.getResources(STATIC_LOGGER_BINDER_PATH);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (paths.hasMoreElements()) &#123;</span><br><span class="line">            URL path = paths.nextElement();</span><br><span class="line">            staticLoggerBinderPathSet.add(path);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException ioe) &#123;</span><br><span class="line">        Util.report(<span class="string">"Error getting resources from path"</span>, ioe);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> staticLoggerBinderPathSet;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第十二行代码</li>
+</ul>
+<p>其中<code>STATIC_LOGGER_BINDER_PATH</code>为<code>org/slf4j/impl/StaticLoggerBinder.class</code>
+注意:
+<code>所有slf4j的实现，在提供的jar包路径下，一定是有&quot;org/slf4j/impl/StaticLoggerBinder.class&quot;存在的, 由于可能出现引用多个日志框架,所以reportMultipleBindingAmbiguity(staticLoggerBinderPathSet);方法会打印警告</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">paths = loggerFactoryClassLoader.getResources(STATIC_LOGGER_BINDER_PATH);</span><br></pre></td></tr></table></figure>
+<p>参考: <a href="https://www.cnblogs.com/xrq730/p/8619156.html" target="_blank" rel="noopener">https://www.cnblogs.com/xrq730/p/8619156.html</a></p>
+<h2 id="jdbc的spi设计">JDBC的SPI设计</h2>
+<blockquote>
+<p><code>Driver接口</code>:
+Sun公司提供了JDBC驱动的统一接口规范<code>java.sql.Driver</code>,各大厂商(oracle/mysql/db2/sqlserver)驱动只要实现其接口逻辑
+<code>DriverManager管理类</code>:
+主要是注册管理Driver实现类</p>
+</blockquote>
+<h4 id="流程">流程</h4>
+<p>1.启动后,DriverManager有一个静态代码块,对Driver进行加载到内存</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> &#123;</span><br><span class="line">    loadInitialDrivers();</span><br><span class="line">    println(<span class="string">"JDBC DriverManager initialized"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.<code>loadInitialDrivers</code>方法首先会尝试从系统变量中加载,若没有则通过SPI加载</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.尝试获取JDBC驱动的系统变量</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    drivers = AccessController.doPrivileged(<span class="keyword">new</span> PrivilegedAction&lt;String&gt;() &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> System.getProperty(<span class="string">"jdbc.drivers"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">    drivers = <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 如果系统变量存在则Class.forName进行加载,注意第二个参数为true,即加载时需要运行静态代码块;后面可以看到Driver实现类的静态代码块在进行注册到DriverManager</span></span><br><span class="line"><span class="keyword">if</span> (drivers == <span class="keyword">null</span> || drivers.equals(<span class="string">""</span>)) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">String[] driversList = drivers.split(<span class="string">":"</span>);</span><br><span class="line">println(<span class="string">"number of Drivers:"</span> + driversList.length);</span><br><span class="line"><span class="keyword">for</span> (String aDriver : driversList) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        println(<span class="string">"DriverManager.Initialize: loading "</span> + aDriver);</span><br><span class="line">        Class.forName(aDriver, <span class="keyword">true</span>,</span><br><span class="line">                ClassLoader.getSystemClassLoader());</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">        println(<span class="string">"DriverManager.Initialize: load failed: "</span> + ex);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.尝试SPI加载</span></span><br><span class="line">AccessController.doPrivileged(<span class="keyword">new</span> PrivilegedAction&lt;Void&gt;() &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Void <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ServiceLoader&lt;Driver&gt; loadedDrivers = ServiceLoader.load(Driver.class);</span><br><span class="line">        Iterator&lt;Driver&gt; driversIterator = loadedDrivers.iterator();</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="keyword">while</span>(driversIterator.hasNext()) &#123;</span><br><span class="line">                <span class="comment">// 迭代遍历的时候,加载并初始化Driver实现类</span></span><br><span class="line">                driversIterator.next();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span>(Throwable t) &#123;</span><br><span class="line">        <span class="comment">// Do nothing</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>3.<code>Class.forName</code>进行加载
+MySql驱动的Driver实现类会有一个静态代码块,在向DriverManager进行注册<code>DriverInfo</code>,info对象内部包含Driver实现类的实例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// com.mysql.cj.jdbc.Driver静态代码块</span></span><br><span class="line"><span class="keyword">static</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 注意new了一个Driver实例并注册到DriverManager</span></span><br><span class="line">        java.sql.DriverManager.registerDriver(<span class="keyword">new</span> Driver());</span><br><span class="line">    &#125; <span class="keyword">catch</span> (SQLException E) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Can't register driver!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.<code>SPI</code>进行加载
+截取上面的代码片段, 重点是<code>ServiceLoader.load(Driver.class)</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">AccessController.doPrivileged(<span class="keyword">new</span> PrivilegedAction&lt;Void&gt;() &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Void <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ServiceLoader&lt;Driver&gt; loadedDrivers = ServiceLoader.load(Driver.class);</span><br><span class="line">        Iterator&lt;Driver&gt; driversIterator = loadedDrivers.iterator();</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="keyword">while</span>(driversIterator.hasNext()) &#123;</span><br><span class="line">                driversIterator.next();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span>(Throwable t) &#123;</span><br><span class="line">        <span class="comment">// Do nothing</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>再来看<code>ServieLoader</code>内部的迭代器如何初始化Driver并注册</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> S <span class="title">nextService</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!hasNextService())</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException();</span><br><span class="line">    String cn = nextName;<span class="comment">//上一步找到的服务实现者全限定名</span></span><br><span class="line">    nextName = <span class="keyword">null</span>;</span><br><span class="line">    Class&lt;?&gt; c = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">//加载字节码返回class对象.但并不去初始化（换句话就是说不去执行这个类中的static块与static变量初始化）</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">        c = Class.forName(cn, <span class="keyword">false</span>, loader);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (ClassNotFoundException x) &#123;</span><br><span class="line">        fail(service,</span><br><span class="line">             <span class="string">"Provider "</span> + cn + <span class="string">" not found"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!service.isAssignableFrom(c)) &#123;</span><br><span class="line">        fail(service,</span><br><span class="line">             <span class="string">"Provider "</span> + cn  + <span class="string">" not a subtype"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">//初始化这个实现类.将会通过static块的方式触发实现类注册到DriverManager(其中组合了一个CopyOnWriteArrayList的registeredDrivers成员变量)中</span></span><br><span class="line">        S p = service.cast(c.newInstance());</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        providers.put(cn, p);<span class="comment">//本地缓存 （全限定名，实现类对象）</span></span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Throwable x) &#123;</span><br><span class="line">        fail(service,</span><br><span class="line">             <span class="string">"Provider "</span> + cn + <span class="string">" could not be instantiated"</span>,</span><br><span class="line">             x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> Error();          <span class="comment">// This cannot happen</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4.<code>Class.forName(cn, false, loader)</code>中的cn
+第22行实际在读取<code>META-INF/services/java.sql.Driver</code>里的内容
+内容为: <code>com.mysql.cj.jdbc.Driver</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">hasNextService</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nextName != <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (configs == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// SPI资源路径</span></span><br><span class="line">            String fullName = PREFIX + service.getName();</span><br><span class="line">            <span class="keyword">if</span> (loader == <span class="keyword">null</span>)</span><br><span class="line">                configs = ClassLoader.getSystemResources(fullName);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                configs = loader.getResources(fullName);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException x) &#123;</span><br><span class="line">            fail(service, <span class="string">"Error locating configuration files"</span>, x);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 第一次时,会去读取META-INF中的SPI资源里的配置信息</span></span><br><span class="line">    <span class="keyword">while</span> ((pending == <span class="keyword">null</span>) || !pending.hasNext()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!configs.hasMoreElements()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 读取文件内容</span></span><br><span class="line">        pending = parse(service, configs.nextElement());</span><br><span class="line">    &#125;</span><br><span class="line">    nextName = pending.next();</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    
+    </div>
+    
+    
+        <div class="article-comment" id="article-comment">
+            
+
+<h1>评论</h1>
+
+  
+    <div id="gitment"></div>
+  
+
+
+        </div>
+        
+</article>
+  </div>
+
+  
+
+<footer id="footer">
+    <div class="footer-copyright">
+        <div>
+            <p style="font-family: sketch; font-size: 28px;">just do it</p>
+            <p> 版权所有 <a href>duyu </a> @ 2019</p>
+            
+        </div>
+    </div>
+    
+    <div class="footer-social">
+        
+            
+                
+                    <div class="footer-social-item">
+                        <a href="https://github.com/doooyo" target="_blank">
+                        
+                            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+                        
+                        </a>
+                    </div>
+                
+            
+                
+                    <div class="footer-social-item">
+                        <a href="/atom.xml" target="_blank">
+                        
+                             <i class="fa fa-rss fa-2x" aria-hidden="true"></i>
+                        
+                        </a>
+                    </div>
+                
+            
+        
+    </div>
+</footer>
+
+  <br>
+
+  <div id="footer-menu-container">
+		
+
+
+
+<nav class="menu">
+	
+	
+		
+		
+		
+		
+		
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/archives/" title="归档">
+					<img src="/images/icons/own/archive.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/archives/">
+					<span>归档</span>
+				</a>
+			</div>
+		</div>
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/search/" title="搜索">
+					<img src="/images/icons/own/search.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/search/">
+					<span>搜索</span>
+				</a>
+			</div>
+		</div>
+
+</nav>
+
+	</div>
+
+  
+
+
+
+    
+
+
+
+
+
+
+  <script>
+  var gitment = new Gitment({
+    id: window.location.pathname, // optional
+    owner: 'doooyo',
+    repo: 'https://github.com/doooyo',
+    oauth: {
+      client_id: '4320b9f63ad425418eb5',
+      client_secret: '9c0cb6fffad72917fe8416c9ac2066dc70127d9b',
+    },
+    // ...
+    // For more available options, check out the documentation below
+  })
+
+  gitment.render('gitment')
+  </script>
+
+
+
+
+
+
+
+    <script src="/js/lightgallery.min.js"></script>
+<script src="/js/lg-zoom.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#lightgallery").lightGallery(); 
+        $(".article-content img").each(function(){
+            console.log($(this).attr('src'))
+            $(this).attr('data-src', $(this).attr('src')).lightGallery({
+                selector: 'this'
+            })
+        });
+    });
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+
+  
+  // update cookie if this page is opened (directly)
+  loadjs(['/libs/jshashes/hashes.min.js', '/libs/js-cookie/src/js.cookie.js', '/js/post.v2.js'], 'post-version');
+  loadjs.ready('post-version', function(){
+    
+    new Postv2('hashit_3275db352b69441c84d1e92aae2fc7b80eccfedc01f12771d9be2af1a28a01ee').update('hashit_a76f1338fbb5576549f426576dcf447d6f92d0024a50cc316940a66f683173c0', function(){});
+  });
+  
+</script>
+
+
+
+<!-- <script src="/js/post.js"></script> -->
+
+<script src="/js/headroom.min.js"></script>
+
+<script data-no-instant type="text/javascript">
+
+initHeadroom();
+
+changeLayoutOnTouchScreen();
+
+// 
+// var post = new Post('', '');
+// post.getCommentCount(window.location.pathname, function(count){
+//     $('#article-comment-count').text(count);
+// });
+// post.addVisitRecord(window.location.pathname, userip);
+// post.getVisitCount(window.location.pathname, function(count){
+//     $('#article-visit-count').text(count);
+// });
+
+// 
+</script>
+
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

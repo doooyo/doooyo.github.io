@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  
+      <title>分布式一致性概览 - N 27°59′′</title>
+  
+
+  
+  
+  <meta name="description" content="java node 微服务 大数据 数据结构">
+  <meta name="author" content="duyu">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- load loadjs.js -->
+  <script src="/libs/loadjs/dist/loadjs.min.js"></script>
+
+<link rel="stylesheet" href="/libs/animate.css/animate.min.css">
+  <!-- load lightgallery -->
+<link rel="stylesheet" href="/css/lightgallery.css">
+<link rel="stylesheet" href="/libs/noty/lib/noty.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+    <link rel="stylesheet" href="/css/taurus.css">
+    
+        <link rel="stylesheet" href="/css/scheme-taurus/animations.css">
+    
+
+
+<link rel="stylesheet" href="/.css">
+
+  <!-- load font awesome 5 -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+  </script>
+  <!-- load mathjax -->
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax//libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <!-- load js-cookie -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="/js/social-share.min.js"></script>
+    <script src="/js/theme.js"></script>
+
+  <!-- include cookie.js -->
+  
+  
+
+  <!-- include comment system code -->
+  
+    <link rel="stylesheet" href="/css/gitment/default.css">
+<script src="/js/gitment.browser.js"></script>
+  
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+
+
+
+<header class="my-header">
+	<div class="header-title">
+		
+			<div class="header-logo">
+				<a href="/">
+					<img class="grow" src="/images/lion.svg">
+				</a>
+			</div>
+			<div class="header-text">
+				<h1 style="font-family: sketch; font-weight: 400">
+					<a href="/">N 27°59′′</a>
+				</h1>
+				<p>
+					<small>
+						duyu
+					</small>
+				</p>
+			</div>
+		
+	</div>
+	<div id="header-menu-container">
+		
+
+
+
+<nav class="menu">
+	
+	
+		
+		
+		
+		
+		
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/archives/" title="归档">
+					<img src="/images/icons/own/archive.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/archives/">
+					<span>归档</span>
+				</a>
+			</div>
+		</div>
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/search/" title="搜索">
+					<img src="/images/icons/own/search.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/search/">
+					<span>搜索</span>
+				</a>
+			</div>
+		</div>
+
+</nav>
+
+	</div>
+</header>
+
+ 
+
+  
+
+
+
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div style="flex: 1;">
+      <style>
+    body {
+        background-color: white;
+    }
+</style>
+
+
+
+
+	
+	
+	
+	
+
+
+
+    
+    
+
+
+
+
+
+
+    
+    
+        
+    
+
+    
+        
+    
+
+
+
+
+
+
+
+
+
+<article class="article" id="/2019/04/22/分布式一致性概览/" data-name="分布式一致性概览" data-version>
+
+    <!-- Title -->
+    <div class="article-header">
+         
+         
+            
+                
+            
+         
+         
+         <h1 class="article-title">
+            <a href="/2019/04/22/分布式一致性概览/">
+                分布式一致性概览
+            </a>
+        </h1>
+        <!-- TODO: support nested categories,display them nicely -->
+        
+    </div>
+    
+    <!-- Date and Author -->
+    <div class="article-meta">
+    <ul>
+            <li><i class="fa fa-calendar"></i> 2019年04月22日</li>
+            
+            <li><i class="fa fa-user"></i> duyu</li>
+
+    </ul>
+    
+    </div>
+    <!-- 分割线 -->
+    <hr>
+
+    <div class="article-cards">
+        <!-- Author Card -->
+        <!---
+        <div class='Card-article Card-author'>
+            <div class='card-title'>
+                <h3></h3>
+            </div>
+            <div class='card-content'>
+                    <div class="author-meta">
+                            <div class='author-figure'>
+                                <img src="" alt="">
+                            </div>
+                            <div class='author-name'>
+                                duyu
+                            </div>
+                        </div>
+                        <div class="author-ai">
+                            <div class='author-intro'>
+                                <!-- TODO: auto generating author description -->
+                                <!-- 
+                            </div>
+                            <div class="author-articles">
+                                <!-- TODO: auto generating author articles -->
+                                <!-- <ul>
+                                    <li>Article 1</li>
+                                    <li>Article 2</li>
+                                    <li>Article 3</li>
+                                    <li>Article 4</li>
+                                    <li>Article 5</li>
+                                    <li>Article 6</li>
+                                </ul>
+                            </div>
+                        </div>
+            </div>
+            
+        </div> -->
+
+        <!-- Visit Card -->
+        <!-- <div class="Card-article Card-visit"> -->
+            <!-- <div class="card-title">
+  <h3>Post Visit</h3>
+</div>
+<div class="card-chart">
+  <div id="chart-post-visit"></div>
+</div> -->
+        <!-- </div> -->
+        
+        <!-- Auto Excerpt Card -->
+        <!-- <div class="Card-article Card-excerpt">
+            <div class="card-title">
+  <h3>Quick Read</h3>
+</div>
+<div class="card-text">
+  <p id="text-post-summary">CAP与BASE
+CAP
+
+
+
+Consistency（一致性, 默认指强一致性）
+所有节点在同一时间具有相同的数据, 和A.可用性相悖
+Availability（可用性）
+保证每个请求不管成功或者失败都有响应, 一旦要求强一致则必须让其他节点先同步数据后再提供服务, 和C.一致性相悖
+Partition tolerance（分区容错性）
+分布式系统由于网络或硬件因素导致部分服务不可用, 但剩余的服务可完成完整的业务(只是负载会变高),
+
+
+在现代技术条件下, CAP是无法同时满足, 只能选择其二;
+而且在分布式系统, P.分区是一定存在的, 如果说满足CA则一定是单点部署,...</p>
+</div>
+        </div> -->
+    </div>
+    
+    <!-- Gallery -->
+    <!-- TODO: add a slider to gallery -->
+    
+
+    <!-- Content -->
+    <!-- TODO: support table of content -->
+    <div class="article-toc" id="article-toc">
+    
+        
+
+
+
+
+
+
+
+
+    
+
+<div class="toc-button">
+    <img src="/images/icons/own/toc.svg" alt>
+</div>
+
+    </div>
+    <div class="article-content">
+    <h2 id="cap与base">CAP与BASE</h2>
+<h3 id="cap">CAP</h3>
+<p><img src="http://www.wangbase.com/blogimg/asset/201807/bg2018071607.jpg" alt></p>
+<blockquote>
+<ol>
+<li><code>Consistency（一致性, 默认指强一致性）</code>
+所有节点在同一时间具有相同的数据, 和<code>A.可用性</code>相悖</li>
+<li><code>Availability（可用性）</code>
+保证每个请求不管成功或者失败都有响应, 一旦要求强一致则必须让其他节点先同步数据后再提供服务, 和<code>C.一致性</code>相悖</li>
+<li><code>Partition tolerance（分区容错性）</code>
+分布式系统由于网络或硬件因素导致部分服务不可用, 但剩余的服务可完成完整的业务(只是负载会变高),</li>
+</ol>
+</blockquote>
+<p><font color="brown">在现代技术条件下, CAP是无法同时满足, 只能选择其二;
+而且在分布式系统, <code>P.分区</code>是一定存在的, 如果说满足<code>CA</code>则一定是单点部署, 则存在单点故障;</font></p>
+<h3 id="base">BASE</h3>
+<p>BASE理论是对<code>CAP</code>中<code>CA</code>的权衡（因为分布式系统<code>P</code>肯定存在）, 比如
+<code>购票系统</code> : 购买时需要知道是否还有票, <em>需要保证强一致性</em>
+<code>银行转账系统</code> : 提示半小时后到账, <em>需要保证最终一致性</em>
+<code>购物车购物</code> : 库存可以不是一致性(不实时一致), 但是在提交订单时则必须是一致性的数据(延迟的一致)</p>
+<blockquote>
+<ol>
+<li><code>Basically Available（基本可用）</code></li>
+<li><code>Soft state（软状态）</code></li>
+<li><code>Eventually consistent（最终一致性）</code></li>
+</ol>
+</blockquote>
+<ul>
+<li>应用场景</li>
+</ul>
+<blockquote>
+<p><code>CA</code> : 特指<code>单点系统</code>, 因为分布式系统必存在分区
+<code>CP</code> : 适合<code>购票系统</code>, 就算无法保证可用性也必须保证数据一致
+<code>AP</code> : 这是大部分分布式系统的首选, 只要保证<code>BASE</code>中的<code>最终一致性</code>即可;
+比如CDN更新网站内容, 比如跨行转账保证最终一致性, 允许时延; 比如NoSQL集群</p>
+</blockquote>
+<h2 id="一致性算法raft-zab与paxos">一致性算法Raft/Zab与Paxos</h2>
+<h3 id="raft-replicated-and-fault-tolerant">Raft (Replicated And Fault Tolerant)</h3>
+<p><a href="http://thesecretlivesofdata.com/raft/" target="_blank" rel="noopener">Raft分布式一致性算法动画</a></p>
+<p><code>复制容错一致性算法</code>
+<font color="red"><code>Raft</code>是一个在随机时间Leader选举基础上叠加了各种补丁的方案, 它是一个分布式一致性的实际操作指南, 它是实现的过程;
+<code>Paxos</code>是一个经过论证的完备理论, 任何形态下都有解, 前提是你要有解决它给出步骤的工程手段;
+这类似道与术, 理论和实践的区别</font></p>
+<blockquote>
+<ol>
+<li><code>Leader的选举过程</code>
+随机时间触发, 先到先得得</li>
+<li><code>Log的复制方案</code>
+给予Log复制机制的状态机</li>
+<li><code>数据安全</code>
+其实就是一致性, 对前两者的补充</li>
+</ol>
+</blockquote>
+<h4 id="leader选举">Leader选举</h4>
+<p>节点处于三个状态中的一种: <code>Leader</code>, <code>Follower</code>, <code>Candidate</code>
+大家都是从<code>Follower</code>追随者开始的</p>
+<p><code>Raft</code>算法有两个控制选举的超时设置:
+<code>选举超时</code>: 是等待追随者(<code>Follower</code>)成为候选人(<code>Candidate</code>)的时间(100ms~300ms内随机)</p>
+<blockquote>
+<ol>
+<li>先启动则优先发起投票, 将当前已知<code>Terms</code>加1, 向其他服务器发送投票请求, 同时给自己一票</li>
+<li>其他服务器对每个节点至多投一票, 意思是谁先给我发送投票请求, 我就投给谁, 来晚了我就没票了, 先到先得; 同时重置<code>投票超时</code>
+<font color="red">(a)注意Leader会定时发送心跳给Follower, Follower接收到心跳会重置选举超时时间(当然也可能会额外做一些日志commit之类的事情), (b)一旦Follower没有接收到心跳直到选举超时<code>election term</code>, 则会重新开始投票进行选举, 因为Leader很有可能’挂’掉了;
+谁先选举超时则会成为<code>候选人Candidate</code>, 新一轮的选举投票请求开始,  直到选票过半重新选举出Leader;
+©问题在于可能会出现我们认为’挂’掉的Leader只是由于网络原因暂时无法通信, 如果恢复了则会出现两个Leader, 则可以进行分裂投票
+(d) 分裂投票不止局限于上面的情况, 还可能两个节点同时启动的情况, 同时<code>投票超时</code>, 即同时成为了<code>候选人Candidate</code>, 都在发送投票请求, 而且各种的票数量一致, 这时则将通过谁先超时, 则谁成为Leader
+(e)网络分区的治愈, 很多情况下可能导致集群节点分成2个或多个分区, 意味着会出现多个Leader, 最后治愈时将会根据<code>Term</code>最高(递增)的那个Leader成为新Leader, 其余<code>Term</code>较低的Leader则会下台成为<code>Follower</code></font></li>
+<li>某台服务器选票过半, 则当选<code>Leader</code></li>
+</ol>
+</blockquote>
+<ol start="4">
+<li>为防止各自投票导致议案永远不一致的情况, 投票超时并发起投票请求的时间是随机的(一定范围内, 150ms~300ms)
+实践证明一般两轮选举即可达成议案一致, 即选举<code>Leader</code>成功</li>
+</ol>
+<blockquote>
+<ol start="5">
+<li>理论简单但是有许多细节需要约定 :</li>
+</ol>
+</blockquote>
+<p>一个有意思的 <a href="http://thesecretlivesofdata.com/raft/" target="_blank" rel="noopener">Raft分布式一致性算法动画</a></p>
+<h4 id="log日志同步">Log日志同步</h4>
+<p>选举<code>Leader</code>完毕, 则主要任务是日志同步
+<font color="red">日志有两个辅助概念: <strong>Terms</strong>, <strong>序号</strong>
+每次选举<code>Terms</code>和<code>序号</code>单向递增, 这不是分布式一致性本质要求, 只是工程实践的手段; 暂且称呼为<code>时期号</code>, 它作为逻辑时钟帮助Leader选举而存在
+</font>
+<img src="http://img-blog.csdn.net/20170629122054768" alt></p>
+<blockquote>
+<ol>
+<li>所有客户端请求由<code>Leader</code>负责处理</li>
+<li><code>Leader</code>将请求命令封装成一条日志, 发送给其他服务器节点;
+日志包含: <code>命令+Terms+序号+日志所在Log文件索引</code>
+这些额外信息是为了其他服务器判定日志合法性与数据同步安全</li>
+<li>日志确定提交<code>Commit</code>;
+当<code>Leader</code>确认一条日志已经被多数服务器成功复制后, 此条日志包含的指令则可以提交生效</li>
+<li><code>Leader</code>记录当前最新提交状态的日志索引号, 并将索引号在后续的日志复制请求或心跳中发送给其他服务器;
+最终所有的从服务器也将得到最新的信息并执行指令更新自己的状态机</li>
+<li><font color="red">日志同步也会产生很多网络问题, 比如Leader崩溃, 日志复制了但未能提交; 日志同步进度也各不相同, 期间可能遇到重启, 崩溃等等
+<code>Raft</code>会采取强制同步的方式, 来规避日志的反向或交叉复制, 以简化同步策略
+<code>Leader</code>会为每个<code>Follower</code>服务器维护一个当前待同步日志索引来跟踪同步进度, 是否发送<code>Commit</code>指令(心跳)也是根据此队列信息来判定, 比如当发现有一半的节点的同步进度符合要求, 则开始<code>Commit</code></font></li>
+</ol>
+</blockquote>
+<p>参考:
+<a href="https://www.cnblogs.com/bangerlee/p/5991417.html" target="_blank" rel="noopener">分布式系统理论进阶 - Raft、Zab</a>
+<a href="https://www.jianshu.com/p/24307e7ca9da" target="_blank" rel="noopener">Raft Vs Zab</a>
+<a href="https://my.oschina.net/pingpangkuangmo/blog/782702" target="_blank" rel="noopener">Raft对比ZAB协议 </a>
+<a href="https://www.zhihu.com/question/19787937" target="_blank" rel="noopener">如何浅显易懂地解说Paxos 的算法</a></p>
+<h2 id="注册中心的算法选择">注册中心的算法选择</h2>
+<p>zookeeper zab</p>
+
+    
+    </div>
+    
+    
+        <div class="article-comment" id="article-comment">
+            
+
+<h1>评论</h1>
+
+  
+    <div id="gitment"></div>
+  
+
+
+        </div>
+        
+</article>
+  </div>
+
+  
+
+<footer id="footer">
+    <div class="footer-copyright">
+        <div>
+            <p style="font-family: sketch; font-size: 28px;">just do it</p>
+            <p> 版权所有 <a href>duyu </a> @ 2019</p>
+            
+        </div>
+    </div>
+    
+    <div class="footer-social">
+        
+            
+                
+                    <div class="footer-social-item">
+                        <a href="https://github.com/doooyo" target="_blank">
+                        
+                            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+                        
+                        </a>
+                    </div>
+                
+            
+                
+                    <div class="footer-social-item">
+                        <a href="/atom.xml" target="_blank">
+                        
+                             <i class="fa fa-rss fa-2x" aria-hidden="true"></i>
+                        
+                        </a>
+                    </div>
+                
+            
+        
+    </div>
+</footer>
+
+  <br>
+
+  <div id="footer-menu-container">
+		
+
+
+
+<nav class="menu">
+	
+	
+		
+		
+		
+		
+		
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/archives/" title="归档">
+					<img src="/images/icons/own/archive.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/archives/">
+					<span>归档</span>
+				</a>
+			</div>
+		</div>
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/search/" title="搜索">
+					<img src="/images/icons/own/search.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/search/">
+					<span>搜索</span>
+				</a>
+			</div>
+		</div>
+
+</nav>
+
+	</div>
+
+  
+
+
+
+    
+
+
+
+
+
+
+  <script>
+  var gitment = new Gitment({
+    id: window.location.pathname, // optional
+    owner: 'doooyo',
+    repo: 'https://github.com/doooyo',
+    oauth: {
+      client_id: '4320b9f63ad425418eb5',
+      client_secret: '9c0cb6fffad72917fe8416c9ac2066dc70127d9b',
+    },
+    // ...
+    // For more available options, check out the documentation below
+  })
+
+  gitment.render('gitment')
+  </script>
+
+
+
+
+
+
+
+    <script src="/js/lightgallery.min.js"></script>
+<script src="/js/lg-zoom.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#lightgallery").lightGallery(); 
+        $(".article-content img").each(function(){
+            console.log($(this).attr('src'))
+            $(this).attr('data-src', $(this).attr('src')).lightGallery({
+                selector: 'this'
+            })
+        });
+    });
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+
+  
+  // update cookie if this page is opened (directly)
+  loadjs(['/libs/jshashes/hashes.min.js', '/libs/js-cookie/src/js.cookie.js', '/js/post.v2.js'], 'post-version');
+  loadjs.ready('post-version', function(){
+    
+    new Postv2('hashit_46f9d4cd431d2d840d72b247234119ed34692efbadf1d59187dd7e6504b91718').update('hashit_a75ae9b7d1449bdb3625f1cf9a9024188b8211d7b903b374752e9b458807d2ae', function(){});
+  });
+  
+</script>
+
+
+
+<!-- <script src="/js/post.js"></script> -->
+
+<script src="/js/headroom.min.js"></script>
+
+<script data-no-instant type="text/javascript">
+
+initHeadroom();
+
+changeLayoutOnTouchScreen();
+
+// 
+// var post = new Post('', '');
+// post.getCommentCount(window.location.pathname, function(count){
+//     $('#article-comment-count').text(count);
+// });
+// post.addVisitRecord(window.location.pathname, userip);
+// post.getVisitCount(window.location.pathname, function(count){
+//     $('#article-visit-count').text(count);
+// });
+
+// 
+</script>
+
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

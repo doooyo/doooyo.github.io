@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  
+      <title>LinkedTransferQueue 与 SynchronousQueue - N 27°59′′</title>
+  
+
+  
+  
+  <meta name="description" content="java node 微服务 大数据 数据结构">
+  <meta name="author" content="duyu">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- load loadjs.js -->
+  <script src="/libs/loadjs/dist/loadjs.min.js"></script>
+
+<link rel="stylesheet" href="/libs/animate.css/animate.min.css">
+  <!-- load lightgallery -->
+<link rel="stylesheet" href="/css/lightgallery.css">
+<link rel="stylesheet" href="/libs/noty/lib/noty.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+    <link rel="stylesheet" href="/css/taurus.css">
+    
+        <link rel="stylesheet" href="/css/scheme-taurus/animations.css">
+    
+
+
+<link rel="stylesheet" href="/.css">
+
+  <!-- load font awesome 5 -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+  </script>
+  <!-- load mathjax -->
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax//libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <!-- load js-cookie -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="/js/social-share.min.js"></script>
+    <script src="/js/theme.js"></script>
+
+  <!-- include cookie.js -->
+  
+  
+
+  <!-- include comment system code -->
+  
+    <link rel="stylesheet" href="/css/gitment/default.css">
+<script src="/js/gitment.browser.js"></script>
+  
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+
+
+
+<header class="my-header">
+	<div class="header-title">
+		
+			<div class="header-logo">
+				<a href="/">
+					<img class="grow" src="/images/lion.svg">
+				</a>
+			</div>
+			<div class="header-text">
+				<h1 style="font-family: sketch; font-weight: 400">
+					<a href="/">N 27°59′′</a>
+				</h1>
+				<p>
+					<small>
+						duyu
+					</small>
+				</p>
+			</div>
+		
+	</div>
+	<div id="header-menu-container">
+		
+
+
+
+<nav class="menu">
+	
+	
+		
+		
+		
+		
+		
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/archives/" title="归档">
+					<img src="/images/icons/own/archive.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/archives/">
+					<span>归档</span>
+				</a>
+			</div>
+		</div>
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/search/" title="搜索">
+					<img src="/images/icons/own/search.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/search/">
+					<span>搜索</span>
+				</a>
+			</div>
+		</div>
+
+</nav>
+
+	</div>
+</header>
+
+ 
+
+  
+
+
+
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div style="flex: 1;">
+      <style>
+    body {
+        background-color: white;
+    }
+</style>
+
+
+
+
+	
+	
+	
+	
+
+
+
+    
+    
+
+
+
+
+
+
+    
+    
+        
+    
+
+    
+        
+    
+
+
+
+
+
+
+
+
+
+<article class="article" id="/2019/04/22/LinkedTransferQueue 与 SynchronousQueue/" data-name="LinkedTransferQueue 与 SynchronousQueue" data-version>
+
+    <!-- Title -->
+    <div class="article-header">
+         
+         
+            
+                
+            
+         
+         
+         <h1 class="article-title">
+            <a href="/2019/04/22/LinkedTransferQueue 与 SynchronousQueue/">
+                LinkedTransferQueue 与 SynchronousQueue
+            </a>
+        </h1>
+        <!-- TODO: support nested categories,display them nicely -->
+        
+    </div>
+    
+    <!-- Date and Author -->
+    <div class="article-meta">
+    <ul>
+            <li><i class="fa fa-calendar"></i> 2019年04月22日</li>
+            
+            <li><i class="fa fa-user"></i> duyu</li>
+
+    </ul>
+    
+    </div>
+    <!-- 分割线 -->
+    <hr>
+
+    <div class="article-cards">
+        <!-- Author Card -->
+        <!---
+        <div class='Card-article Card-author'>
+            <div class='card-title'>
+                <h3></h3>
+            </div>
+            <div class='card-content'>
+                    <div class="author-meta">
+                            <div class='author-figure'>
+                                <img src="" alt="">
+                            </div>
+                            <div class='author-name'>
+                                duyu
+                            </div>
+                        </div>
+                        <div class="author-ai">
+                            <div class='author-intro'>
+                                <!-- TODO: auto generating author description -->
+                                <!-- 
+                            </div>
+                            <div class="author-articles">
+                                <!-- TODO: auto generating author articles -->
+                                <!-- <ul>
+                                    <li>Article 1</li>
+                                    <li>Article 2</li>
+                                    <li>Article 3</li>
+                                    <li>Article 4</li>
+                                    <li>Article 5</li>
+                                    <li>Article 6</li>
+                                </ul>
+                            </div>
+                        </div>
+            </div>
+            
+        </div> -->
+
+        <!-- Visit Card -->
+        <!-- <div class="Card-article Card-visit"> -->
+            <!-- <div class="card-title">
+  <h3>Post Visit</h3>
+</div>
+<div class="card-chart">
+  <div id="chart-post-visit"></div>
+</div> -->
+        <!-- </div> -->
+        
+        <!-- Auto Excerpt Card -->
+        <!-- <div class="Card-article Card-excerpt">
+            <div class="card-title">
+  <h3>Quick Read</h3>
+</div>
+<div class="card-text">
+  <p id="text-post-summary">两者是比较特殊的阻塞队列
+LinkedTransferQueue
+
+
+单向链表结构的无界阻塞队列 (CAS无锁)
+遵循happen-before, 即插入先行于访问或删除
+采用预占模式
+比如消费者线程take时发现队列为空, 则队列生成一个item为null, waiter为消费者线程本身节点并入队, 然后阻塞take操作;
+直到生产者线程put入队时, 发现队列有一个item为null的节点, 则不入队, 直接填充数据到该节点, 并唤醒消费者线程的take操作
+这和传递东西很类似, 也和通道pipeline很像,...</p>
+</div>
+        </div> -->
+    </div>
+    
+    <!-- Gallery -->
+    <!-- TODO: add a slider to gallery -->
+    
+
+    <!-- Content -->
+    <!-- TODO: support table of content -->
+    <div class="article-toc" id="article-toc">
+    
+        
+
+
+
+
+
+
+
+
+    
+
+<div class="toc-button">
+    <img src="/images/icons/own/toc.svg" alt>
+</div>
+
+    </div>
+    <div class="article-content">
+    <p>两者是比较特殊的阻塞队列</p>
+<h2 id="linkedtransferqueue">LinkedTransferQueue</h2>
+<blockquote>
+<ol>
+<li>单向链表结构的无界阻塞队列 (CAS无锁)</li>
+<li>遵循<strong>happen-before</strong>, 即插入先行于访问或删除</li>
+<li>采用预占模式
+比如消费者线程take时发现队列为空, 则队列生成一个<code>item为null, waiter为消费者线程本身</code>节点并入队, 然后阻塞take操作;
+直到生产者线程put入队时, 发现队列有一个<code>item为null</code>的节点, 则不入队, 直接填充数据到该节点, 并唤醒消费者线程的take操作
+<font color="orange">这和传递东西很类似, 也和通道pipeline很像, 这种模式叫做**‘匹配’**</font></li>
+<li>LinkedTransferQueue是无锁设计, 是SynchronousQueue和LinkedBlockingQueue的超集, 结合了两者的优点, 并摒弃了其缺陷
+<code>SynchronousQueue</code>: 无法存放数据, 严格的<strong>一应一答</strong>
+<code>LinkedBlockingQueue</code>: 使用了Lock锁, 并发效率低
+<code>LinkedTransferQueue</code>: 使用CAS和LockSupport, 且可存放数据和请求, 不会长时间阻塞;
+同时它适合生产者和消费者速度不匹配的情况, 允许生产者适当调整生产速度;
+普通队列的生产者和消费者是分离的, 举一个例子:
+<font color="gray">通常情况下, 厨师只管炒菜, 服务员只管端菜, 厨师是不关心也不知道服务员端没有端走; 现在的情形是厨师可能会将菜直接递到服务员手里, 即知道服务员有没有端菜, 既然知道了厨师就可以调整炒菜的速度, 是快点还是慢点 </font></li>
+</ol>
+</blockquote>
+<h3 id="一-数据结构与算法特性">一. 数据结构与算法特性</h3>
+<p><img src="https://upload-images.jianshu.io/upload_images/6050820-1514eb965ce72781.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/855/format/webp" alt></p>
+<ul>
+<li><strong>算法特性</strong></li>
+</ul>
+<p>它是单链表, 但和典型的单链表不同</p>
+<blockquote>
+<ol>
+<li><code>双重队列</code>
+多了一个<code>isData</code>布尔属性, 说明队列可以存储<code>数据item</code>和<code>消费者本身(null表示)</code>; 它在意义上叫做<code>双重队列</code>, 但本质是<code>单链表</code>
+<font color="red">节点item不为null,表示生产者节点;
+节点item为null(waiter为消费者线程), 表示消费者节点
+通过<code>isData</code>属性来标识</font></li>
+<li><code>松弛度</code>
+如下图2, 节点匹配后(put/take匹配),节点会置为自引用(断开外界引用,GC会进行清理), 但是它不会立刻更新head/tail, 而是当一个最近的未匹配节点距离head/tail超过阈值(默认2)时才会分别更新head/tail;  这会导致队列里「消费者」和「生产者」都会出现
+<font color="red">这样设计的原因？
+正常情况是匹配删除节点后立刻更新head/tail, 但一旦队列为空, 消费者take线程会进行自旋尝试等待put来唤醒自己 (虽然不是一直自旋), 这会消耗CPU时间片
+设计「延迟」更新head/tail能缓解自旋带来的性能损耗, 但「延迟」有一个度, 匹配是需要遍历链表的, 过多的「冗余(已匹配的节点)」会增大遍历性能消耗</font></li>
+</ol>
+</blockquote>
+<p>图1: 流程示意图
+<font color="pink">如下图, 按理某一时刻队列永远只会有「生产者(put)」或者「消费者(take)」, 但是由于<code>松弛特性</code>,「匹配」后不会立刻更新<code>head/tail</code>, 导致一些已匹配使用了的节点不会立刻移除;
+所以某一时刻, 队列里是生产者和消费者都可能出现的;
+<strong>注意: take消费者线程的阻塞使用了CAS自旋 (也不是一直自旋), 所以会浪费CPU时间片</strong></font></p>
+<p>下图逻辑不对, 并不只是去匹配队头
+<img src="https://upload-images.jianshu.io/upload_images/4236553-d60a5b0368dd8d8c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp" alt></p>
+<p>图2: 某一时刻队列状态图
+<font color="pink">上面已解释过, <code>松弛特性(默认阈值2)</code>导致生产者和消费者都会出现在队列里;
+</font></p>
+<blockquote>
+<ol>
+<li><code>未匹配节点</code>
+可能是生产者(item不为null), 可能是消费者(item为null, waiter为消费线程本身)</li>
+<li><code>已匹配节点</code>
+可能是生产者节点已被消费者拿走(被消费者赋值为节点自身), 也可能是消费者被生产者填充了数据(item不为null)</li>
+</ol>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/6050820-6afec565cfff223f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/859/format/webp" alt></p>
+<p><font color="red">上图有些不准确, 队头部分应是连续的已匹配节点, 队尾部分应是连续的未匹配节点
+正常的做法, 实时更新head/tail, 但这样做会增加CAS竞争开销; 所以折中办法是延迟更新head/tail;
+<strong>slack (head位置和第一个未匹配的结点的最大距离，尾结点类似)</strong>
+这是经验问题, 大多平台最佳值是1～3, jdk默认值是2
+所以正常情况补充为如下图:
+</font></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">          head                 tail</span><br><span class="line">           |                    |</span><br><span class="line">           v                    v</span><br><span class="line">M   M  -&gt;  M  -&gt;  M  -&gt;  U  -&gt;  U  -&gt; U  -&gt;  U</span><br></pre></td></tr></table></figure>
+<h3 id="二-源码分析">二. 源码分析</h3>
+<ul>
+<li>基本属性</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// MP表示是否是多核处理器</span></span><br><span class="line"><span class="keyword">boolean</span> MP = Runtime.getRuntime().availableProcessors() &gt; <span class="number">1</span>;</span><br><span class="line"><span class="comment">// 当一个节点目前是队列的第一个等待者(waiter), 在多核处理器上自旋的次数2^7(随机穿插调用thread.yield)</span></span><br><span class="line"><span class="keyword">int</span> FRONT_SPINS   = <span class="number">1</span> &lt;&lt; <span class="number">7</span>;</span><br><span class="line"><span class="comment">// 当一个节点先于另一个明显自旋的结点阻塞时自旋的次数</span></span><br><span class="line"><span class="comment">// 前继节点正在处理, 当前节点阻塞前的自旋次数</span></span><br><span class="line"><span class="keyword">int</span> CHAINED_SPINS = FRONT_SPINS &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line"><span class="comment">// sweepVotes(清除已匹配节点)的阀值</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SWEEP_THRESHOLD = <span class="number">32</span>;</span><br><span class="line"><span class="comment">// 队列头节点，第一次入列之前为空</span></span><br><span class="line">Node head;</span><br><span class="line"><span class="comment">// 队列尾节点，第一次添加节点之前为空</span></span><br><span class="line">Node tail;</span><br><span class="line"><span class="comment">// 累计到一定次数再清除已匹配node</span></span><br><span class="line"><span class="keyword">int</span> sweepVotes;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * xfer执行类型</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">int</span> NOW   = <span class="number">0</span>; <span class="comment">// for untimed poll, tryTransfer</span></span><br><span class="line"><span class="keyword">int</span> ASYNC = <span class="number">1</span>; <span class="comment">// for offer, put, add</span></span><br><span class="line"><span class="keyword">int</span> SYNC  = <span class="number">2</span>; <span class="comment">// for transfer, take</span></span><br><span class="line"><span class="keyword">int</span> TIMED = <span class="number">3</span>; <span class="comment">// for timed poll, tryTransfer</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>链表节点Node数据结构</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boolean</span> isData;  <span class="comment">// put型(true), take型(false)</span></span><br><span class="line">Object item;     <span class="comment">// put型(不为null), take型(null)</span></span><br><span class="line">Node next;       <span class="comment">// 后继节点</span></span><br><span class="line">Thread waiter;   <span class="comment">// 特指消费者线程(入队阻塞等待匹配)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// CAS更新当前结点next字段</span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">casNext</span><span class="params">(Node cmp, Node val)</span></span></span><br><span class="line"><span class="function"><span class="comment">// CAS更新当前结点的item字段</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">casItem</span><span class="params">(Object cmp, Object val)</span></span></span><br><span class="line"><span class="function"><span class="comment">// CAS设置当前结点的next字段为自身(自引用, 即删除)</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">forgetNext</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="comment">// CAS设置item字段为node自身，waiter为null</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">forgetContents</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="comment">// 是否是匹配了的结点</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isMatched</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="comment">// 是否是未匹配的消费者take型节点</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isUnmatchedRequest</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">// 当该节点是未匹配节点却与当前的结点类型不符的时候，返回true。</span></span></span><br><span class="line"><span class="function"><span class="comment">// 意思就是当前都是请求节点，数据节点应该立刻被消耗，未匹配的结点应该是同一种节点才允许附加入队</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">cannotPrecede</span><span class="params">(<span class="keyword">boolean</span> haveData)</span></span></span><br><span class="line"><span class="function"><span class="comment">// 数据节点尝试匹配</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">tryMatchData</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong><code>xfer</code>基本流程</strong></li>
+</ul>
+<p>根据如下队列快照, 来讲述一下流程</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 意味着M1匹配成功, 准备将head指针指向M1后继节点U1</span></span><br><span class="line"><span class="comment"> * 注意M1还保留着next引用, 后面会根据阈值进行清扫</span></span><br><span class="line"><span class="comment"> * 最后会将原始head节点断开next引用</span></span><br><span class="line"><span class="comment"> * ************************************************</span></span><br><span class="line"><span class="comment"> *           head                   tail</span></span><br><span class="line"><span class="comment"> *            |                      |</span></span><br><span class="line"><span class="comment"> *            v                      v</span></span><br><span class="line"><span class="comment"> * M   M  -&gt;  M  -&gt;  M1  -&gt;  U1  -&gt;  U  -&gt; U  -&gt;  U</span></span><br><span class="line"><span class="comment"> * ************************************************</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<ol>
+<li>从head开始向后匹配, 找到一个节点模式跟本次操作的模式不同的未匹配的节点（生产或消费）进行匹配; 没找到则下一个节点; 遍历完都没匹配到, 则准备尝试入队尾
+<strong>注意:
+<code>Node n = p.next; p = (p != n) ? n : (h = head);</code>
+p==n表明是已匹配且删除的节点(自引用), 说明有其他线程赶在前面匹配成功且重置了head, 需要重新从头部遍历, p!=n则继续遍历</strong></li>
+<li>找到未匹配节点, 如果发现节点和当前节点同类型, 说明整个队列未匹配的节点都是put或者take(如上图); 跳出循环准备尝试入队尾</li>
+<li>找到为匹配节点, 且不同类型, 说明允许匹配, 则开始匹配操作;</li>
+<li>开始匹配, CAS更新item, 失败说明被其他线程抢先, 继续循环直到CAS更新item成功(匹配成功);
+对照下面代码注解</li>
+<li>尝试入队<code>tryAppend</code></li>
+</ol>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 1.若CAS更新item成功, 表示匹配成功</span></span><br><span class="line"><span class="comment"> * 2.开始判断是否更新head, (q=p &amp;&amp; q!=h)表明p肯定是head之后的节点(其实就是head-&gt;next),</span></span><br><span class="line"><span class="comment"> *   然后n=q.next, 表明跳过了2个节点, slack=2满足条件则开始CAS更新head指针</span></span><br><span class="line"><span class="comment"> *   如果head的next节点未被匹配，跳出循环，不更新head，也就是松弛度&lt;2</span></span><br><span class="line"><span class="comment"> * 3.最后唤醒匹配节点其中的消费者节点线程(waiter), 返回节点的item值</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">if</span> (p.casItem(item, e)) &#123;</span><br><span class="line">    <span class="keyword">for</span> (Node q = p; q != h;) &#123;</span><br><span class="line">        Node n = q.next;  <span class="comment">// update by 2 unless singleton</span></span><br><span class="line">        <span class="keyword">if</span> (head == h &amp;&amp; casHead(h, n == <span class="keyword">null</span> ? q : n)) &#123;</span><br><span class="line">            <span class="comment">// 将原始head的next指向自己, 即自引用(删除)</span></span><br><span class="line">            h.forgetNext();</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;                 <span class="comment">// advance and retry</span></span><br><span class="line">        <span class="comment">// 如果head的next节点未被匹配，跳出循环，不更新head，也就是松弛度&lt;2</span></span><br><span class="line">        <span class="keyword">if</span> ((h = head) == <span class="keyword">null</span> ||</span><br><span class="line">                (q = h.next) == <span class="keyword">null</span> || !q.isMatched())</span><br><span class="line">            <span class="keyword">break</span>;        <span class="comment">// unless slack &lt; 2</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 最后唤醒匹配节点其中的消费者节点线程(waiter), 返回节点的item值</span></span><br><span class="line">    LockSupport.unpark(p.waiter);</span><br><span class="line">    <span class="keyword">return</span> OwnLinkedTransferQueue.&lt;E&gt;cast(item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>尝试入队</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> Node <span class="title">tryAppend</span><span class="params">(Node s, <span class="keyword">boolean</span> haveData)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (Node t = tail, p = t;;) &#123;        <span class="comment">// move p to last node and append</span></span><br><span class="line">        Node n, u;                        <span class="comment">// temps for reads of next &amp; tail</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 如果队列为空, 则将节点CAS设置为队头, 它没有前继节点则返回自己</span></span><br><span class="line">        <span class="keyword">if</span> (p == <span class="keyword">null</span> &amp;&amp; (p = head) == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (casHead(<span class="keyword">null</span>, s))</span><br><span class="line">                <span class="keyword">return</span> s;                 <span class="comment">// initialize</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 还有未匹配的节点, 如果入队尾则会违反算法逻辑, 因为根本没必要入队, 此时返回true表明「入队不能发生在还未匹配完之前」</span></span><br><span class="line">        <span class="comment">// 注意: 其实这种情况发生在put和take多线程竞争, 比如一个put节点遍历之后没有找到还未匹配的take节点,开始准备入队尾,</span></span><br><span class="line">        <span class="comment">//       再次判断的时候, 发现期间发生了很多take操作(多于put操作); 此时则不允许入队, 需要重新循环整个队列</span></span><br><span class="line">        <span class="comment">// 简单点说: 有相反类型的节点先附加入队(称之为失速)</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (p.cannotPrecede(haveData))</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;                  <span class="comment">// lost race vs opposite mode</span></span><br><span class="line">        <span class="comment">// 如果发现队尾还有后继节点, 说明期间有其他操作入队(可能同类型,也可能不同类型)</span></span><br><span class="line">        <span class="comment">// 说明期间其他线程在维护tail尾节点, t变量为过时的tail</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> ((n = p.next) != <span class="keyword">null</span>) &#123;  <span class="comment">// not last; keep traversing</span></span><br><span class="line">            <span class="comment">//p = p != t &amp;&amp; t != (u = tail) ? (t = u) : (p != n) ? n : null;      // restart if off list</span></span><br><span class="line">            p = (p != t &amp;&amp; t != (u = tail)) ? (t = u) : ((p != n) ? n : <span class="keyword">null</span>);    <span class="comment">// 更新为最新的tail, 重新开始</span></span><br><span class="line">            <span class="comment">//  ---------------------------   -------   ---------------------</span></span><br><span class="line">            <span class="comment">//   p = boolean ? t : (boolean ? n : null)</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// CAS入队尾节点失败, 说明有其他线程在入队</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (!p.casNext(<span class="keyword">null</span>, s))</span><br><span class="line">            p = p.next;                   <span class="comment">// re-read on CAS failure</span></span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (p != t) &#123;                 <span class="comment">// update if slack now &gt;= 2</span></span><br><span class="line">                <span class="keyword">while</span> ((tail != t || !casTail(t, s)) &amp;&amp;</span><br><span class="line">                        (t = tail)   != <span class="keyword">null</span> &amp;&amp;</span><br><span class="line">                        (s = t.next) != <span class="keyword">null</span> &amp;&amp; <span class="comment">// advance and retry</span></span><br><span class="line">                        (s = s.next) != <span class="keyword">null</span> &amp;&amp; s != t);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> p;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>awaitMatch(后续补充)</strong></li>
+</ul>
+<p><code>自旋/让步/阻塞,直到给定节点s匹配到或放弃匹配</code>
+当前操作为同步操作时，会调用<code>awaitMatch</code>方法阻塞等待匹配，成功返回匹配节点 item，失败返回给定参数e（s.item）。在等待期间如果线程被中断或等待超时，则取消匹配，并调用<code>unsplice</code>方法解除节点s和其前继节点的链接</p>
+<ul>
+<li><strong>unsplice(后续补充)</strong></li>
+</ul>
+<p><code>解除给定已经被删除/取消节点和前继节点的链接（可能延迟解除）</code>
+首先把给定节点s的next引用指向自身，如果s的前继节点pred还是指向s（pred.next == s），尝试解除s的链接，把pred的 next 引用指向s的 next 节点。如果s不能被解除（由于它是尾节点或者pred可能被解除链接，并且pred和s都不是head节点或已经出列），则添加到sweepVotes，sweepVotes累计到阀值SWEEP_THRESHOLD之后就调用sweep()对队列进行一次“大扫除”，清除队列中所有的无效节点。sweep()</p>
+<ul>
+<li><strong>sweep(后续补充)</strong></li>
+</ul>
+<p><code>解除(通常是取消)从头部遍历时遇到的已经被匹配的节点的链接</code></p>
+<p>参考:
+<a href="https://www.jianshu.com/p/42ceaed2afe6" target="_blank" rel="noopener">JUC源码分析-集合篇（六）：LinkedTransferQueue</a>
+<a href="https://www.jianshu.com/p/ae6977886cec" target="_blank" rel="noopener">并发编程-LinkedTransferQueue</a></p>
+<h2 id="synchronousqueue-后续补充">SynchronousQueue（后续补充）</h2>
+<blockquote>
+<ol>
+<li></li>
+</ol>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/6050820-5bc09993fe75642d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/698/format/webp" alt></p>
+
+    
+    </div>
+    
+    
+        <div class="article-comment" id="article-comment">
+            
+
+<h1>评论</h1>
+
+  
+    <div id="gitment"></div>
+  
+
+
+        </div>
+        
+</article>
+  </div>
+
+  
+
+<footer id="footer">
+    <div class="footer-copyright">
+        <div>
+            <p style="font-family: sketch; font-size: 28px;">just do it</p>
+            <p> 版权所有 <a href>duyu </a> @ 2019</p>
+            
+        </div>
+    </div>
+    
+    <div class="footer-social">
+        
+            
+                
+                    <div class="footer-social-item">
+                        <a href="https://github.com/doooyo" target="_blank">
+                        
+                            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+                        
+                        </a>
+                    </div>
+                
+            
+                
+                    <div class="footer-social-item">
+                        <a href="/atom.xml" target="_blank">
+                        
+                             <i class="fa fa-rss fa-2x" aria-hidden="true"></i>
+                        
+                        </a>
+                    </div>
+                
+            
+        
+    </div>
+</footer>
+
+  <br>
+
+  <div id="footer-menu-container">
+		
+
+
+
+<nav class="menu">
+	
+	
+		
+		
+		
+		
+		
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/archives/" title="归档">
+					<img src="/images/icons/own/archive.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/archives/">
+					<span>归档</span>
+				</a>
+			</div>
+		</div>
+		<div class="menu-item grow">
+			<div class="menu-icon">
+				<a href="/search/" title="搜索">
+					<img src="/images/icons/own/search.svg" alt>
+				</a>
+			</div>
+			<div class="menu-name">
+				<a class="menu-link" href="/search/">
+					<span>搜索</span>
+				</a>
+			</div>
+		</div>
+
+</nav>
+
+	</div>
+
+  
+
+
+
+    
+
+
+
+
+
+
+  <script>
+  var gitment = new Gitment({
+    id: window.location.pathname, // optional
+    owner: 'doooyo',
+    repo: 'https://github.com/doooyo',
+    oauth: {
+      client_id: '4320b9f63ad425418eb5',
+      client_secret: '9c0cb6fffad72917fe8416c9ac2066dc70127d9b',
+    },
+    // ...
+    // For more available options, check out the documentation below
+  })
+
+  gitment.render('gitment')
+  </script>
+
+
+
+
+
+
+
+    <script src="/js/lightgallery.min.js"></script>
+<script src="/js/lg-zoom.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#lightgallery").lightGallery(); 
+        $(".article-content img").each(function(){
+            console.log($(this).attr('src'))
+            $(this).attr('data-src', $(this).attr('src')).lightGallery({
+                selector: 'this'
+            })
+        });
+    });
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+
+  
+  // update cookie if this page is opened (directly)
+  loadjs(['/libs/jshashes/hashes.min.js', '/libs/js-cookie/src/js.cookie.js', '/js/post.v2.js'], 'post-version');
+  loadjs.ready('post-version', function(){
+    
+    new Postv2('hashit_ee0e61cc37db02d36aed5b4499369980cf91e9dcb0be477ec9f75ee5807b0fca').update('hashit_bb91face53c85902d8d2ddb56f7177422f7915914572206a9ce009e687856904', function(){});
+  });
+  
+</script>
+
+
+
+<!-- <script src="/js/post.js"></script> -->
+
+<script src="/js/headroom.min.js"></script>
+
+<script data-no-instant type="text/javascript">
+
+initHeadroom();
+
+changeLayoutOnTouchScreen();
+
+// 
+// var post = new Post('', '');
+// post.getCommentCount(window.location.pathname, function(count){
+//     $('#article-comment-count').text(count);
+// });
+// post.addVisitRecord(window.location.pathname, userip);
+// post.getVisitCount(window.location.pathname, function(count){
+//     $('#article-visit-count').text(count);
+// });
+
+// 
+</script>
+
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
